@@ -135,7 +135,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppContoller.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Plasmodium.cpp" />
+    <ClCompile Include="VectorMapRenderer.cpp" />
+    <ClCompile Include="Tube.cpp" />
+    <ClCompile Include="TubeSystem.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppController.h" />
+    <ClInclude Include="MapRenderer.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="TubeSystem.h" />
+    <ClInclude Include="Plasmodium.h" />
+    <ClInclude Include="Tube.h" />
+    <ClInclude Include="Vec2.h" />
+    <ClInclude Include="VectorMapRenderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

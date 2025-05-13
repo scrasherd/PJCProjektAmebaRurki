@@ -1,21 +1,15 @@
-#include <SFML/Graphics.hpp>
+#include "AppController.h"
 
-int main()
-{
-    sf::RenderWindow window(sf::VideoMode({ 200, 200 }), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+int main() {
+    int mapWidth = 1000;
+    int mapHeight = 1000;
+    float tubeLength = 2.0f;
 
-    while (window.isOpen())
-    {
-        while (const std::optional event = window.pollEvent())
-        {
-            if (event->is<sf::Event::Closed>())
-                window.close();
-        }
 
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+    AppController app(mapWidth, mapHeight, tubeLength);
+    app.run();
+    return 0;
 }
+
+
+
