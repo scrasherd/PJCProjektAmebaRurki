@@ -14,3 +14,11 @@ void Node::connectTube(Tube* tube) {
 const std::vector<Tube*>& Node::getConnectedTubes() const {
     return ConnectedTubes;
 }
+
+float Node::getPressure() const {
+    return pressure;
+}
+
+void Node::setPressure(float p) {
+    pressure = p;
+}

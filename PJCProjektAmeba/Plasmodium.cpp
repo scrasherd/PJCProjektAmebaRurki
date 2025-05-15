@@ -8,7 +8,7 @@
 #include <memory>
 
 Plasmodium::Plasmodium(const Vec2& startPosition, float tubeLength)
-    : rng(std::random_device{}()), tubeLength(tubeLength) {
+    : rng(std::random_device{}()), tubeLength(tubeLength), flowModel(*this) {
     
     auto startNode = std::make_unique<Node>(startPosition);
     EndingNodes.push_back(startNode.get());
@@ -54,7 +54,7 @@ void Plasmodium::growOneStep(const FoodField& foodField) {
             int successful = 0;
 
             while (successful < newBranches && attempts < 10) {
-                float newAngle = generateAngle(baseAngle, successful, direction);
+                float newAngle = generateAngle(baseAngle, successful, direction, foodField, parentPos);
                 Vec2 dir(std::cos(newAngle), std::sin(newAngle));
                 Vec2 newPos = parentPos + dir * tubeLength;
 
@@ -120,7 +120,7 @@ float Plasmodium::computeAngle(Node* parent) {
     return baseAngle;
 }
 
-float Plasmodium::generateAngle(float baseAngle, int generated, int direction) {
+float Plasmodium::generateAngle(float baseAngle, int generated, int direction, const FoodField& foodField, const Vec2& position) {
     float minOffset, maxOffset;
     float meanAngle = baseAngle;
     float spread = M_PI / 24;
@@ -139,10 +139,28 @@ float Plasmodium::generateAngle(float baseAngle, int generated, int direction) {
         spread = M_PI / 6;
     }
 
-    std::normal_distribution<float> angleDist(meanAngle, spread);
-    newAngle = angleDist(rng);
+    int x = static_cast<int>(position.x);
+    int y = static_cast<int>(position.y);
 
-    return newAngle;
+    float dx = foodField.getValueAt(x + 1, y) - foodField.getValueAt(x - 1, y);
+    float dy = foodField.getValueAt(x, y + 1) - foodField.getValueAt(x, y - 1);
+    Vec2 grad(dx, dy);
+
+    if (grad.length() > 0.001f) {
+        grad = grad.normalized();
+        float foodAngle = std::atan2(grad.y, grad.x);
+
+        //Przesuñ œrodek rozk³adu trochê w stronê gradientu
+        float influence = 0.5f; // 0 = ignoruj jedzenie, 1 = tylko jedzenie
+        meanAngle = std::lerp(meanAngle, foodAngle, influence);
+    }
+
+    std::normal_distribution<float> angleDist(meanAngle, spread);
+    return angleDist(rng);
+}
+
+void Plasmodium::simulateFlow(float dt) {
+    flowModel.updateFlow(dt);
 }
 
 

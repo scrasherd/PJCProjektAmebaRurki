@@ -13,10 +13,15 @@ private:
 
     bool isEnding;
 
+    float pressure = 0.0f;
+
 public:
     Node(const Vec2& pos);
 
     const Vec2& getPosition() const;
+
+    float getPressure() const;
+    void setPressure(float p);
 
     void connectTube(Tube* tube);
     const std::vector<Tube*>& getConnectedTubes() const;
