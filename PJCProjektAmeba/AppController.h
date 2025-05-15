@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include "Plasmodium.h"
 #include "MapRenderer.h"
+#include "FoodField.h"
 #include <memory>
 
 class AppController {
@@ -13,7 +14,9 @@ private:
     sf::View view;
 
     Plasmodium plasmodium;
+    FoodField foodField;
     std::unique_ptr<MapRenderer> renderer;
+
 
     sf::Clock clock;
 

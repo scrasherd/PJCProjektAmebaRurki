@@ -21,9 +21,6 @@
     <ClCompile Include="Plasmodium.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TubeSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Tube.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,15 +33,21 @@
     <ClCompile Include="VectorMapRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FoodField.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodSource.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodGradientMapRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Plasmodium.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TubeSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Vec2.h">
@@ -60,6 +63,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VectorMapRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodField.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodGradientMapRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

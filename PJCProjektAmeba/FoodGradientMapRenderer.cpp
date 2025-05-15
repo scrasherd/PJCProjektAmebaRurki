@@ -1,15 +1,30 @@
-#include "VectorMapRenderer.h"
+#include "FoodGradientMapRenderer.h"
 #include <SFML/Graphics.hpp>
 #include "Node.h"
 #include "Tube.h"
 #include "FoodField.h"
 
-void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
+void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
     sf::VertexArray lineArray(sf::PrimitiveType::Lines);
     sf::VertexArray nodeArray(sf::PrimitiveType::Lines);
 
     sf::VertexArray FoodSourceArray(sf::PrimitiveType::Triangles);
     float halfSize = 5.0f;
+
+    sf::VertexArray gradient(sf::PrimitiveType::Points);
+
+    for (int y = 0; y < foodField.getHeight(); ++y) {
+        for (int x = 0; x < foodField.getWidth(); ++x) {
+            float value = foodField.getValueAt(x, y);
+            if (value > 0.0f) {
+                // jasnoœæ skaluje siê z wartoœci¹ po¿ywienia
+                int alpha = static_cast<int>(std::clamp(value * 255.0f, 0.0f, 255.0f));
+                sf::Color color(255, 140, 0, alpha); // pomarañczowy odcieñ
+
+                gradient.append(sf::Vertex(sf::Vector2f(x, y), color));
+            }
+        }
+    }
 
     for (const auto& FoodSource : foodField.getSources()) {
         Vec2 c = FoodSource.getFoodSourcePosition();
@@ -53,8 +68,8 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
         nodeArray.append(sf::Vertex({ p.x + s, p.y - s }, color));
         nodeArray.append(sf::Vertex({ p.x - s, p.y + s }, color));
     }
-
+    window.draw(gradient);
     window.draw(lineArray);
     window.draw(nodeArray);
-    window.draw(FoodSourceArray); // rysujemy jeden okr¹g
+    window.draw(FoodSourceArray);
 }

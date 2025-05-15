@@ -1,12 +1,17 @@
 #include "AppController.h"
 #include "VectorMapRenderer.h"
+#include "FoodGradientMapRenderer.h"
 
-AppController::AppController(int mapWidth, int mapHeight, float tubeLength): 
+AppController::AppController(int mapWidth, int mapHeight, float tubeLength) :
     window(sf::VideoMode({ static_cast<unsigned int>(mapWidth), static_cast<unsigned int>(mapHeight) }), "Plasmodium App"),
-    plasmodium(Vec2(mapHeight/2.0f, mapHeight/2.0f), tubeLength),
-    renderer(std::make_unique<VectorMapRenderer>()) 
+    plasmodium(Vec2(mapHeight / 2.0f, mapWidth / 2.0f), tubeLength),
+    foodField(mapHeight, mapWidth),
+    renderer(std::make_unique<FoodGradientMapRenderer>())
 {
     view = window.getDefaultView();
+
+    foodField.addSource(Vec2((mapHeight / 2.0f) + 50.0f, (mapWidth / 2.0f) + 50.0f), 1.0f, 100.0f);
+    foodField.updateField();
 }
 
 void AppController::run() {
@@ -53,12 +58,12 @@ void AppController::run() {
         }
 
         if (clock.getElapsedTime().asMilliseconds() > 1) {
-            plasmodium.growOneStep();
+            plasmodium.growOneStep(foodField);
             clock.restart();
         }
 
         window.clear();
-        renderer->draw(window, plasmodium);
+        renderer->draw(window, plasmodium, foodField);
         window.display();
     }
 }

@@ -11,6 +11,8 @@ private:
 	Vec2 NodePosition;
 	std::vector<Tube*> ConnectedTubes;
 
+    bool isEnding;
+
 public:
     Node(const Vec2& pos);
 

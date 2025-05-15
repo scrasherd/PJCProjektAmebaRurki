@@ -1,11 +1,18 @@
+#define _USE_MATH_DEFINES
 #include "Plasmodium.h"
 #include "Tube.h"
 #include "Node.h"
+#include "FoodField.h"
+#include "math.h"
 #include <cmath>
+#include <memory>
 
 Plasmodium::Plasmodium(const Vec2& startPosition, float tubeLength)
     : rng(std::random_device{}()), tubeLength(tubeLength) {
-    nodes.push_back(std::make_unique<Node>(startPosition));
+    
+    auto startNode = std::make_unique<Node>(startPosition);
+    EndingNodes.push_back(startNode.get());
+    nodes.push_back(std::move(startNode));
 }
 
 Vec2 randomDirection(std::mt19937& rng) {
@@ -14,49 +21,130 @@ Vec2 randomDirection(std::mt19937& rng) {
     return Vec2(std::cos(angle), std::sin(angle));
 }
 
-void Plasmodium::growOneStep() {
-    std::vector<Node*> endings;
-    for (auto& node : nodes) {
-        if (node->getConnectedTubes().size() <= 1)
-            endings.push_back(node.get());
-    }
+void Plasmodium::growOneStep(const FoodField& foodField) {
+    if (EndingNodes.empty()) return;
 
-    if (endings.empty()) return;
+    sortEndings(foodField);
 
-    std::uniform_int_distribution<> pick(0, endings.size() - 1);
-    Node* parent = endings[pick(rng)];
-    Vec2 parentPos = parent->getPosition();
+    int total = static_cast<int>(EndingNodes.size());
+    int activeCount = std::max(1, total / 10); // 10% najlepszych, min. 1
 
-    std::uniform_int_distribution<int> branchCountDist(1, 2);
-    int newBranches = branchCountDist(rng);
+    std::uniform_real_distribution<float> skipChance(0.0f, 1.0f);
 
-    int attempts = 0;
-    int successful = 0;
+    for (int i = 0; i < activeCount; ++i) {
+        Node* parent = EndingNodes[i];
 
-    while (successful < newBranches && attempts < 10) {
-        Vec2 dir = randomDirection(rng);
-        Vec2 newPos = parentPos + dir * tubeLength;
+        // 5% szans na pominiêcie danego node'a
+        bool shouldGrow = skipChance(rng) >= 0.05f;
 
-        bool tooClose = false;
-        for (const auto& node : nodes) {
-            if (node->getPosition().distanceTo(newPos) < tubeLength * 0.9f) {
-                tooClose = true;
-                break;
+        if (shouldGrow) {
+            Vec2 parentPos = parent->getPosition();
+
+            std::discrete_distribution<int> branchDist({ 50, 25, 25 });
+            int newBranches = branchDist(rng) + 1;
+
+            int direction = 0;
+            if (newBranches > 1) {
+                std::uniform_int_distribution<int> DirectionDist(0, 1);
+                direction = DirectionDist(rng) == 0 ? 1 : -1;
+            }
+
+            float baseAngle = computeAngle(parent);
+            int attempts = 0;
+            int successful = 0;
+
+            while (successful < newBranches && attempts < 10) {
+                float newAngle = generateAngle(baseAngle, successful, direction);
+                Vec2 dir(std::cos(newAngle), std::sin(newAngle));
+                Vec2 newPos = parentPos + dir * tubeLength;
+
+                // SprawdŸ czy nowy wêze³ nie jest za blisko innych
+                bool tooClose = false;
+                for (const auto& node : nodes) {
+                    if (node->getPosition().distanceTo(newPos) < tubeLength * 0.9f) {
+                        tooClose = true;
+                        break;
+                    }
+                }
+
+                if (!tooClose) {
+                    auto newNode = std::make_unique<Node>(newPos);
+                    auto newTube = std::make_unique<Tube>(parent, newNode.get(), 1.0f);
+
+                    EndingNodes.push_back(newNode.get());
+
+                    auto it = std::find(EndingNodes.begin(), EndingNodes.end(), parent);
+                    if (it != EndingNodes.end()) {
+                        EndingNodes.erase(it);
+                    }
+
+                    nodes.push_back(std::move(newNode));
+                    tubes.push_back(std::move(newTube));
+                    ++successful;
+                }
+
+                ++attempts;
             }
         }
-
-        if (!tooClose) {
-            auto newNode = std::make_unique<Node>(newPos);
-            auto newTube = std::make_unique<Tube>(parent, newNode.get(), 1.0f);
-
-            nodes.push_back(std::move(newNode));
-            tubes.push_back(std::move(newTube));
-            ++successful;
-        }
-
-        ++attempts;
     }
 }
+
+void Plasmodium::sortEndings(const FoodField& foodField) {
+    std::sort(EndingNodes.begin(), EndingNodes.end(),
+        [&](Node* a, Node* b) {
+            Vec2 pa = a->getPosition();
+            Vec2 pb = b->getPosition();
+
+            float va = foodField.getValueAt(static_cast<int>(pa.x), static_cast<int>(pa.y));
+            float vb = foodField.getValueAt(static_cast<int>(pb.x), static_cast<int>(pb.y));
+
+            return va > vb; // malej¹co — najwy¿sze wartoœci na górze
+        });
+}
+
+float Plasmodium::computeAngle(Node* parent) {
+    float baseAngle = 0;
+
+    if (parent->getConnectedTubes().empty()) {
+        // Brak rurek – losuj dowolny k¹t
+        std::uniform_real_distribution<float> angleDist(0.0f, 2 * M_PI);
+        baseAngle = angleDist(rng);
+    }else {
+        // Kierunek ostatniej rurki
+        Tube* tube = parent->getConnectedTubes()[0];
+        Node* neighbor = (tube->getNodeA() == parent) ? tube->getNodeB() : tube->getNodeA();
+        Vec2 lastDir = (parent->getPosition() - neighbor->getPosition()).normalized();
+        baseAngle = std::atan2(lastDir.y, lastDir.x);
+    }
+
+    return baseAngle;
+}
+
+float Plasmodium::generateAngle(float baseAngle, int generated, int direction) {
+    float minOffset, maxOffset;
+    float meanAngle = baseAngle;
+    float spread = M_PI / 24;
+    float newAngle = 0;
+
+    if (generated == 0) {
+        meanAngle = baseAngle;               
+        spread = M_PI / 6;                    
+    }
+    else if (generated == 1) {
+        meanAngle = baseAngle + direction * M_PI * 3.f / 8.f; 
+        spread = M_PI / 6;                       
+    }
+    else if (generated == 2) {
+        meanAngle = baseAngle - direction * M_PI * 3.f / 8.f; 
+        spread = M_PI / 6;
+    }
+
+    std::normal_distribution<float> angleDist(meanAngle, spread);
+    newAngle = angleDist(rng);
+
+    return newAngle;
+}
+
 
 const std::vector<std::unique_ptr<Node>>& Plasmodium::getNodes() const {
     return nodes;
