@@ -20,8 +20,8 @@ public:
     const std::vector<FoodSource>& getSources() const;
 
  
-    bool isInside(int x, int y) const;
-    float getValueAt(int x, int y) const;
+    bool isInside(const Vec2& pos) const;
+    float getValueAt(const Vec2& pos) const;
 
     int getWidth() const { return width; }
     int getHeight() const { return height; }

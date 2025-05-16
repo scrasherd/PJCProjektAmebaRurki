@@ -13,7 +13,9 @@ private:
 
     bool isEnding;
 
-    float pressure = 0.0f;
+    float pressure;
+    float phase;
+    float amplitude;
 
 public:
     Node(const Vec2& pos);
@@ -26,4 +28,6 @@ public:
     void connectTube(Tube* tube);
     const std::vector<Tube*>& getConnectedTubes() const;
 
+    float getPhase();
+    void setPhase(float value);
 };

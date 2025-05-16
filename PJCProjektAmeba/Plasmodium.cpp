@@ -7,8 +7,8 @@
 #include <cmath>
 #include <memory>
 
-Plasmodium::Plasmodium(const Vec2& startPosition, float tubeLength)
-    : rng(std::random_device{}()), tubeLength(tubeLength), flowModel(*this) {
+Plasmodium::Plasmodium(const Vec2& startPosition, float tubeLength, FoodField& foodField)
+    : rng(std::random_device{}()), tubeLength(tubeLength), flowModel(*this, foodField) {
     
     auto startNode = std::make_unique<Node>(startPosition);
     EndingNodes.push_back(startNode.get());
@@ -91,14 +91,14 @@ void Plasmodium::growOneStep(const FoodField& foodField) {
 
 void Plasmodium::sortEndings(const FoodField& foodField) {
     std::sort(EndingNodes.begin(), EndingNodes.end(),
-        [&](Node* a, Node* b) {
-            Vec2 pa = a->getPosition();
-            Vec2 pb = b->getPosition();
+        [&](Node* A, Node* B) {
+            Vec2 positionA = A->getPosition();
+            Vec2 positionB = B->getPosition();
 
-            float va = foodField.getValueAt(static_cast<int>(pa.x), static_cast<int>(pa.y));
-            float vb = foodField.getValueAt(static_cast<int>(pb.x), static_cast<int>(pb.y));
+            float valueA = foodField.getValueAt(positionA);
+            float valueB = foodField.getValueAt(positionB);
 
-            return va > vb; // malej¹co — najwy¿sze wartoœci na górze
+            return valueA > valueB; // malej¹co — najwy¿sze wartoœci na górze
         });
 }
 
@@ -114,7 +114,7 @@ float Plasmodium::computeAngle(Node* parent) {
         Tube* tube = parent->getConnectedTubes()[0];
         Node* neighbor = (tube->getNodeA() == parent) ? tube->getNodeB() : tube->getNodeA();
         Vec2 lastDir = (parent->getPosition() - neighbor->getPosition()).normalized();
-        baseAngle = std::atan2(lastDir.y, lastDir.x);
+        baseAngle = std::atan2(lastDir.getY(), lastDir.getX());
     }
 
     return baseAngle;
@@ -139,16 +139,16 @@ float Plasmodium::generateAngle(float baseAngle, int generated, int direction, c
         spread = M_PI / 6;
     }
 
-    int x = static_cast<int>(position.x);
-    int y = static_cast<int>(position.y);
+    int x = position.getX();
+    int y = position.getY();
 
-    float dx = foodField.getValueAt(x + 1, y) - foodField.getValueAt(x - 1, y);
-    float dy = foodField.getValueAt(x, y + 1) - foodField.getValueAt(x, y - 1);
+    float dx = foodField.getValueAt(Vec2(x + 1, y)) - foodField.getValueAt(Vec2(x - 1, y));
+    float dy = foodField.getValueAt(Vec2(x - 1, y)) - foodField.getValueAt(Vec2(x, y - 1));
     Vec2 grad(dx, dy);
 
     if (grad.length() > 0.001f) {
         grad = grad.normalized();
-        float foodAngle = std::atan2(grad.y, grad.x);
+        float foodAngle = std::atan2(grad.getY(),grad.getX());
 
         //Przesuñ œrodek rozk³adu trochê w stronê gradientu
         float influence = 0.5f; // 0 = ignoruj jedzenie, 1 = tylko jedzenie
@@ -160,7 +160,7 @@ float Plasmodium::generateAngle(float baseAngle, int generated, int direction, c
 }
 
 void Plasmodium::simulateFlow(float dt) {
-    flowModel.updateFlow(dt);
+    //flowModel.updateFlow(dt);
 }
 
 

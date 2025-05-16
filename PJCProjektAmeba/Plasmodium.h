@@ -24,7 +24,7 @@ private:
 
 public:
 
-	Plasmodium(const Vec2& startPosition, float tubeLength);
+	Plasmodium(const Vec2& startPosition, float tubeLength, FoodField& foodField);
 
 	//Rozrost
 	void growOneStep(const FoodField& foodField);
@@ -36,7 +36,6 @@ public:
 
 	//Przep³yw
 	void simulateFlow(float dt);
-
 
 
 	const std::vector<std::unique_ptr<Node>>& getNodes() const;

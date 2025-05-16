@@ -24,15 +24,15 @@ void FoodField::updateField() {
         float intensity = source.getIntensity();
 
         // Przechodzimy tylko po obszarze w zasiêgu Ÿród³a
-        int minX = std::max(0, static_cast<int>(pos.x - radius));
-        int maxX = std::min(width - 1, static_cast<int>(pos.x + radius));
-        int minY = std::max(0, static_cast<int>(pos.y - radius));
-        int maxY = std::min(height - 1, static_cast<int>(pos.y + radius));
+        int minX = std::max(0, static_cast<int>(pos.getX() - radius));
+        int maxX = std::min(width - 1, static_cast<int>(pos.getX() + radius));
+        int minY = std::max(0, static_cast<int>(pos.getY() - radius));
+        int maxY = std::min(height - 1, static_cast<int>(pos.getY() + radius));
 
         for (int y = minY; y <= maxY; ++y) {
             for (int x = minX; x <= maxX; ++x) {
-                float dx = x - pos.x;
-                float dy = y - pos.y;
+                float dx = x - pos.getX();
+                float dy = y - pos.getY();
                 float dist = std::sqrt(dx * dx + dy * dy);
 
                 if (dist < radius) {
@@ -48,13 +48,13 @@ const std::vector<FoodSource>& FoodField::getSources() const {
     return sources;
 }
 
-float FoodField::getValueAt(int x, int y) const {
-    if (isInside(x, y)) {
-        return field[y][x];
+float FoodField::getValueAt(const Vec2& pos) const {
+    if (isInside(pos)) {
+        return field[pos.getY()][pos.getX()];
     }
     return 0.0f;
 }
 
-bool FoodField::isInside(int x, int y) const {
-    return (x >= 0 && y >= 0 && x < width && y < height);
+bool FoodField::isInside(const Vec2& pos) const {
+    return (pos.getX() >= 0 && pos.getY() >= 0 && pos.getX() < width && pos.getY() < height);
 }

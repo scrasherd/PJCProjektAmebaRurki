@@ -22,3 +22,11 @@ float Node::getPressure() const {
 void Node::setPressure(float p) {
     pressure = p;
 }
+
+float Node::getPhase() {
+    return phase;
+}
+
+void Node::setPhase(float value) {
+    phase = value;
+}

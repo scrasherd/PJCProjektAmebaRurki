@@ -1,11 +1,22 @@
 #pragma once
 #include <cmath>
 
-struct Vec2 {
+class Vec2 {
+
+private:
     float x, y;
 
+public:
     Vec2() : x(0), y(0) {}
     Vec2(float x, float y) : x(x), y(y) {}
+
+    float getX() const{
+        return x;
+    }
+
+    float getY() const{
+        return y;
+    }
 
     Vec2 operator+(const Vec2& other) const {
         return Vec2(x + other.x, y + other.y);

@@ -5,17 +5,18 @@
 #include "FoodField.h"
 
 void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
+    FigureMaker maker;
+
     sf::VertexArray lineArray(sf::PrimitiveType::Lines);
-    sf::VertexArray nodeArray(sf::PrimitiveType::Lines);
+    sf::VertexArray nodeArray(sf::PrimitiveType::Triangles);
 
     sf::VertexArray FoodSourceArray(sf::PrimitiveType::Triangles);
-    float halfSize = 5.0f;
 
     sf::VertexArray gradient(sf::PrimitiveType::Points);
 
     for (int y = 0; y < foodField.getHeight(); ++y) {
         for (int x = 0; x < foodField.getWidth(); ++x) {
-            float value = foodField.getValueAt(x, y);
+            float value = foodField.getValueAt(Vec2(y,x));
             if (value > 0.0f) {
                 // jasnoœæ skaluje siê z wartoœci¹ po¿ywienia
                 int alpha = static_cast<int>(std::clamp(value * 255.0f, 0.0f, 255.0f));
@@ -28,33 +29,18 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
 
     for (const auto& FoodSource : foodField.getSources()) {
         Vec2 c = FoodSource.getFoodSourcePosition();
-        float cx = c.x;
-        float cy = c.y;
         sf::Color color = sf::Color::Red;
+        float Size = 10.f;
 
-        // Wierzcho³ki kwadratu
-        sf::Vector2f A(cx - halfSize, cy - halfSize);
-        sf::Vector2f B(cx + halfSize, cy - halfSize);
-        sf::Vector2f C(cx + halfSize, cy + halfSize);
-        sf::Vector2f D(cx - halfSize, cy + halfSize);
-
-        // Trójk¹t ABC
-        FoodSourceArray.append(sf::Vertex(A, color));
-        FoodSourceArray.append(sf::Vertex(B, color));
-        FoodSourceArray.append(sf::Vertex(C, color));
-
-        // Trójk¹t ACD
-        FoodSourceArray.append(sf::Vertex(A, color));
-        FoodSourceArray.append(sf::Vertex(C, color));
-        FoodSourceArray.append(sf::Vertex(D, color));
+        maker.drawSquareVertex(FoodSourceArray, c, Size, color);
     }
 
     for (const auto& tube : plasmodium.getTubes()) {
         Vec2 a = tube->getNodeA()->getPosition();
         Vec2 b = tube->getNodeB()->getPosition();
 
-        lineArray.append(sf::Vertex(sf::Vector2f(a.x, a.y), sf::Color::White));
-        lineArray.append(sf::Vertex(sf::Vector2f(b.x, b.y), sf::Color::White));
+        lineArray.append(sf::Vertex(sf::Vector2f(a.getX(), a.getY()), sf::Color::White));
+        lineArray.append(sf::Vertex(sf::Vector2f(b.getX(), b.getY()), sf::Color::White));
     }
 
     for (const auto& node : plasmodium.getNodes()) {
@@ -62,12 +48,10 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
         sf::Color color = (node->getConnectedTubes().size() == 1) ?
             sf::Color::Green : sf::Color(100, 100, 100);
 
-        float s = 0.1f;
-        nodeArray.append(sf::Vertex({ p.x - s, p.y - s }, color));
-        nodeArray.append(sf::Vertex({ p.x + s, p.y + s }, color));
-        nodeArray.append(sf::Vertex({ p.x + s, p.y - s }, color));
-        nodeArray.append(sf::Vertex({ p.x - s, p.y + s }, color));
+        float s = 1.f;
+        maker.drawSquareVertex(nodeArray, p, s, color);
     }
+
     window.draw(gradient);
     window.draw(lineArray);
     window.draw(nodeArray);

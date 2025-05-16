@@ -3,23 +3,42 @@
 #include "Tube.h"
 #include "Node.h"
 
-FlowModel::FlowModel(Plasmodium& owner) : plasmodium(owner) {}
+FlowModel::FlowModel(Plasmodium& owner, FoodField& food) : plasmodium(owner), foodField(food) {}
 
-float FlowModel::computeFlow(Node* from, Node* to, float diameter) {
-    float deltaP = from->getPressure() - to->getPressure();
-    float resistance = resistanceFactor / (diameter * diameter); // uproszczony model oporu
-    return deltaP / resistance;
-}
+void FlowModel::updatePhasesAndPressures(float dt) {
+    auto& nodePtrs = plasmodium.getNodes(); // zak³adamy tak¹ metodê
 
-void FlowModel::updateFlow(float dt) {
-    for (const auto& tube : plasmodium.getTubes()) {
-        Node* A = tube->getNodeA();
-        Node* B = tube->getNodeB();
+    for (auto& nodePtr : nodePtrs) {
+        Node* thisNode = nodePtr.get();
+        float phaseSum = 0.f;
+        int count = 0;
 
-        float flow = computeFlow(A, B, tube->getDiameter());
+        for (Tube* tube : thisNode->getConnectedTubes()) {
+            Node* neighbor = tube->getNodeA();
+            if (neighbor == thisNode) {
+                neighbor = tube->getNodeB();
+            }
+            phaseSum += neighbor->getPhase();
+            ++count;
+        }
 
-        // Aktualizacja ciœnieñ – symetryczna
-        A->setPressure(A->getPressure() - flow * damping * dt);
-        B->setPressure(B->getPressure() + flow * damping * dt);
+        float averageNeighborPhase = thisNode->getPhase();
+        if (count > 0) {
+            averageNeighborPhase = phaseSum / count;
+        }
+
+        // 2. Dodanie szumu (losowa niewielka fluktuacja)
+        float noise = 0.1f * ((rand() / (float)RAND_MAX) - 0.5f); // zakres [-0.05, 0.05]
+
+        // 3. Aktualizacja fazy – dostrajanie siê do s¹siadów (damping = jak szybko siê synchronizuje)
+        float phaseDelta = (damping * (averageNeighborPhase - nodePtr->getPhase()) + noise)*dt;
+        float newPhase = nodePtr->getPhase() + phaseDelta;
+        nodePtr->setPhase(newPhase);
+
+        // 4. Oblicz ciœnienie z fazy
+        float foodAmount = foodField.getValueAt(nodePtr->getPosition());
+        float foodEffect = std::exp(foodAmount) - 1; // im wiêcej jedzenia, tym mniejsze ciœnienie
+        nodePtr->setPressure(0.5f * std::sin(newPhase)+ 2.5f - foodEffect);
     }
 }
+

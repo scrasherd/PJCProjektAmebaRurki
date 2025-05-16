@@ -45,6 +45,9 @@
     <ClCompile Include="FlowModel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="FigureMaker.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Plasmodium.h">
@@ -78,6 +81,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FlowModel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="FigureMaker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

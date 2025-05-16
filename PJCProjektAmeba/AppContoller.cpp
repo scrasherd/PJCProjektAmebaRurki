@@ -4,8 +4,8 @@
 
 AppController::AppController(int mapWidth, int mapHeight, float tubeLength) :
     window(sf::VideoMode({ static_cast<unsigned int>(mapWidth), static_cast<unsigned int>(mapHeight) }), "Plasmodium App"),
-    plasmodium(Vec2(mapHeight / 2.0f, mapWidth / 2.0f), tubeLength),
     foodField(mapHeight, mapWidth),
+    plasmodium(Vec2(mapHeight / 2.0f, mapWidth / 2.0f), tubeLength, foodField),
     renderer(std::make_unique<FoodGradientMapRenderer>())
 {
     view = window.getDefaultView();
