@@ -43,3 +43,4 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
     window.draw(nodeArray);
     window.draw(FoodSourceArray); // rysujemy jeden okr¹g
 }
+

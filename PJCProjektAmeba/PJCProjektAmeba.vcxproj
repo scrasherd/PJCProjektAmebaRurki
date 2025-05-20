@@ -142,8 +142,10 @@
     <ClCompile Include="FoodSource.cpp" />
     <ClCompile Include="FoodGradientMapRenderer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MapRenderer.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Plasmodium.cpp" />
+    <ClCompile Include="PressureMapRenderer.cpp" />
     <ClCompile Include="VectorMapRenderer.cpp" />
     <ClCompile Include="Tube.cpp" />
   </ItemGroup>
@@ -157,6 +159,7 @@
     <ClInclude Include="MapRenderer.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Plasmodium.h" />
+    <ClInclude Include="PressureMapRenderer.h" />
     <ClInclude Include="Tube.h" />
     <ClInclude Include="Vec2.h" />
     <ClInclude Include="VectorMapRenderer.h" />

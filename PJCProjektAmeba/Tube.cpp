@@ -1,8 +1,8 @@
 #include "Tube.h"
 #include "Node.h"
 
-Tube::Tube(Node* a, Node* b, float diameter, bool isEnding)
-    : NodeA(a), NodeB(b), TubeDiameter(diameter), isEnding(isEnding) {
+Tube::Tube(Node* a, Node* b, float diameter, float CytValue)
+    : NodeA(a), NodeB(b), TubeDiameter(diameter), dP(0.0f), dPnorm(0.0f), CytoplasmAmount(CytValue){
     a->connectTube(this);
     b->connectTube(this);
 }
@@ -15,22 +15,47 @@ Node* Tube::getNodeB() const {
     return NodeB;
 }
 
+Node* Tube::getOtherNode(Node* node) const{
+    if (node == getNodeA()) {
+        return getNodeB();
+    }
+    else {
+        return getNodeA();
+    }
+}
+
 float Tube::getDiameter() const {
     return TubeDiameter;
 }
 
-bool Tube::getIsEnding() const {
-    return isEnding;
-}
-
-void Tube::setIsEnding(bool value) {
-    isEnding = value;
-}
-
-Vec2 Tube::direction() const {
+Vec2 Tube::getDirection() const {
     return (NodeA->getPosition() - NodeB->getPosition()).normalized();
 }
 
-float Tube::length() const {
+float Tube::getLength() const {
     return (NodeB->getPosition() - NodeA->getPosition()).length();
+}
+
+float Tube::getdP() {
+    return dP;
+}
+
+void Tube::setdP(float value) {
+    dP = value;
+}
+
+float Tube::getdPnorm() {
+    return dPnorm;
+}
+
+void Tube::setdPnorm(float value) {
+    dPnorm = value;
+}
+
+float Tube::getCytoplasmAmount() {
+    return CytoplasmAmount;
+}
+
+void Tube::setCytoplasmAmount(float value) {
+    CytoplasmAmount = value;
 }

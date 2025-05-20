@@ -15,6 +15,8 @@ private:
 
     Plasmodium plasmodium;
     FoodField foodField;
+
+    RenderMode currentMode = RenderMode::Food;
     std::unique_ptr<MapRenderer> renderer;
 
 

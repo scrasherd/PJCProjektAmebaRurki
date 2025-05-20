@@ -26,6 +26,8 @@ public:
 
 	Plasmodium(const Vec2& startPosition, float tubeLength, FoodField& foodField);
 
+	void addStartStructure(const Vec2& centerPos, float radius, float tubeDiameter, float cytValue);
+
 	//Rozrost
 	void growOneStep(const FoodField& foodField);
 

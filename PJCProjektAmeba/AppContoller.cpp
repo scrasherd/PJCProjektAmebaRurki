@@ -6,7 +6,7 @@ AppController::AppController(int mapWidth, int mapHeight, float tubeLength) :
     window(sf::VideoMode({ static_cast<unsigned int>(mapWidth), static_cast<unsigned int>(mapHeight) }), "Plasmodium App"),
     foodField(mapHeight, mapWidth),
     plasmodium(Vec2(mapHeight / 2.0f, mapWidth / 2.0f), tubeLength, foodField),
-    renderer(std::make_unique<FoodGradientMapRenderer>())
+    renderer(MapRenderer::create(RenderMode::Food))
 {
     view = window.getDefaultView();
 
@@ -15,10 +15,52 @@ AppController::AppController(int mapWidth, int mapHeight, float tubeLength) :
 }
 
 void AppController::run() {
+    bool Pause = false;
+
     while (window.isOpen()) {
         while (std::optional<sf::Event> event = window.pollEvent()) {
+
             if (event->is<sf::Event::Closed>())
                 window.close();
+
+            //Pauzowanie
+            if (event->is<sf::Event::KeyPressed>() && auto key = event->getIf<sf::Event::KeyPressed>()->code) {
+                auto key = event->getIf<sf::Event::KeyPressed>()->code;
+
+                if (key == sf::Keyboard::Key::Numpad2) {
+                    currentMode = RenderMode::Food;
+                    renderer = MapRenderer::create(currentMode);
+                }
+                else if (key == sf::Keyboard::Key::Numpad1) {
+                    currentMode = RenderMode::Vector;
+                    renderer = MapRenderer::create(currentMode);
+                }
+                else if (key == sf::Keyboard::Key::Numpad3) {
+                    currentMode = RenderMode::Pressure;
+                    renderer = MapRenderer::create(currentMode);
+                }
+
+            }
+
+            //Zmiana trybu mapy
+
+            if (event->is<sf::Event::KeyPressed>()) {
+                auto key = event->getIf<sf::Event::KeyPressed>()->code;
+
+                if (key == sf::Keyboard::Key::Numpad2) {
+                    currentMode = RenderMode::Food;
+                    renderer = MapRenderer::create(currentMode);
+                }
+                else if (key == sf::Keyboard::Key::Numpad1) {
+                    currentMode = RenderMode::Vector;
+                    renderer = MapRenderer::create(currentMode);
+                }
+                else if (key == sf::Keyboard::Key::Numpad3) {
+                    currentMode = RenderMode::Pressure;
+                    renderer = MapRenderer::create(currentMode);
+                }
+                
+            }
 
             //Zoom
             if (const auto* mouseWheelScrolled = event->getIf<sf::Event::MouseWheelScrolled>()) {
@@ -59,6 +101,7 @@ void AppController::run() {
 
         if (clock.getElapsedTime().asMilliseconds() > 1) {
             plasmodium.growOneStep(foodField);
+            plasmodium.simulateFlow(0.01f);
             clock.restart();
         }
 

@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 class Plasmodium;
 class FoodField;
 class Node;
@@ -18,4 +19,18 @@ public:
     //void updateFlow(float dt); // jedna iteracja przep³ywu
 
     void updatePhasesAndPressures(float dt);
+
+    void computeDPinTubes();
+
+    void computeFlow();
+    void CytoplasmTransfer(Node* node);
+
+    bool checkNodeForCorrection(Node* node);
+    void correctNodePressure(Node* node);
+
+    void normalizedPinTubes(Node* node);
+
+
+
+    //bool isNodeA(Node* node, Tube* tube);
 };

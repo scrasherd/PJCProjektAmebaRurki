@@ -10,15 +10,37 @@
 Plasmodium::Plasmodium(const Vec2& startPosition, float tubeLength, FoodField& foodField)
     : rng(std::random_device{}()), tubeLength(tubeLength), flowModel(*this, foodField) {
     
-    auto startNode = std::make_unique<Node>(startPosition);
-    EndingNodes.push_back(startNode.get());
-    nodes.push_back(std::move(startNode));
+    addStartStructure(startPosition, tubeLength, 1.0f /*œrednica*/, 1000.0f /*cytoplazma*/);
 }
 
 Vec2 randomDirection(std::mt19937& rng) {
     std::uniform_real_distribution<float> angleDist(0.0f, 2.0f * 3.14159f);
     float angle = angleDist(rng);
     return Vec2(std::cos(angle), std::sin(angle));
+}
+
+void Plasmodium::addStartStructure(const Vec2& centerPos, float radius, float tubeDiameter, float cytValue) {
+    // Tworzenie wêz³a centralnego
+    auto center = std::make_unique<Node>(centerPos);
+    Node* centerPtr = center.get();
+    nodes.push_back(std::move(center));
+
+    // Rozmieszczanie 3 wêz³ów na okrêgu wokó³ centrum (k¹ty co 120 stopni)
+    for (int i = 0; i < 3; ++i) {
+        float angle = i * (2.0f * 3.1415926f / 3.0f); // 0, 120°, 240°
+        Vec2 offset{ radius * std::cos(angle), radius * std::sin(angle) };
+        Vec2 outerPos = centerPtr->getPosition() + offset;
+
+        auto outer = std::make_unique<Node>(outerPos);
+        Node* outerPtr = outer.get();
+        nodes.push_back(std::move(outer));
+
+        auto tube = std::make_unique<Tube>(centerPtr, outerPtr, tubeDiameter, cytValue);
+        tubes.push_back(std::move(tube));
+    }
+
+    // Dodanie centralnego wêz³a jako potencjalnego zakoñczenia
+    EndingNodes.push_back(centerPtr);
 }
 
 void Plasmodium::growOneStep(const FoodField& foodField) {
@@ -69,7 +91,7 @@ void Plasmodium::growOneStep(const FoodField& foodField) {
 
                 if (!tooClose) {
                     auto newNode = std::make_unique<Node>(newPos);
-                    auto newTube = std::make_unique<Tube>(parent, newNode.get(), 1.0f);
+                    auto newTube = std::make_unique<Tube>(parent, newNode.get(), 1.0f, 0.0f);
 
                     EndingNodes.push_back(newNode.get());
 
@@ -121,7 +143,6 @@ float Plasmodium::computeAngle(Node* parent) {
 }
 
 float Plasmodium::generateAngle(float baseAngle, int generated, int direction, const FoodField& foodField, const Vec2& position) {
-    float minOffset, maxOffset;
     float meanAngle = baseAngle;
     float spread = M_PI / 24;
     float newAngle = 0;
@@ -160,7 +181,8 @@ float Plasmodium::generateAngle(float baseAngle, int generated, int direction, c
 }
 
 void Plasmodium::simulateFlow(float dt) {
-    //flowModel.updateFlow(dt);
+    flowModel.updatePhasesAndPressures(dt);
+    flowModel.computeFlow();
 }
 
 

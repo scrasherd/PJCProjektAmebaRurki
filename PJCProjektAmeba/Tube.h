@@ -11,21 +11,29 @@ private:
 
 	float TubeDiameter;
 
-	bool isEnding;
+    float dP;
+    float dPnorm; //pole pomocniczne na umieszczenie znormalizowanej wartoœci dP dla ka¿dego wêz³a 
 
+    float CytoplasmAmount;
 public:
 
-    Tube(Node* a, Node* b, float diameter, bool isEnding = true);
+    Tube(Node* a, Node* b, float diameter, float CytValue);
 
     Node* getNodeA() const;
     Node* getNodeB() const;
+    Node* getOtherNode(Node* node) const;
 
     float getDiameter() const;
 
-    bool getIsEnding() const;
-    void setIsEnding(bool value);
+    Vec2 getDirection() const;
+    float getLength() const;
 
-    Vec2 direction() const;
-    float length() const;
+    float getdP();
+    void setdP(float value);
 
+    float getdPnorm();
+    void setdPnorm(float value);
+
+    float getCytoplasmAmount();
+    void setCytoplasmAmount(float value);
 };

@@ -12,25 +12,38 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
 
     sf::VertexArray FoodSourceArray(sf::PrimitiveType::Triangles);
 
-    sf::VertexArray gradient(sf::PrimitiveType::Points);
+    sf::VertexArray gradient(sf::PrimitiveType::Triangles);
 
-    for (int y = 0; y < foodField.getHeight(); ++y) {
-        for (int x = 0; x < foodField.getWidth(); ++x) {
-            float value = foodField.getValueAt(Vec2(y,x));
-            if (value > 0.0f) {
-                // jasnoœæ skaluje siê z wartoœci¹ po¿ywienia
-                int alpha = static_cast<int>(std::clamp(value * 255.0f, 0.0f, 255.0f));
-                sf::Color color(255, 140, 0, alpha); // pomarañczowy odcieñ
+    auto getValueAt = [&](const Vec2& pos) {
+        return foodField.getValueAt(pos);
+    };
 
-                gradient.append(sf::Vertex(sf::Vector2f(x, y), color));
-            }
-        }
+    auto colorFromValue = [](float value) -> sf::Color {
+        float t = std::clamp(value, 0.f, 1.f);
+        int alpha = static_cast<int>(t * 255.0f);
+        return sf::Color(255, 140, 0, alpha); // pomarañczowy z przejrzystoœci¹
+    };
+
+    const float radius = 100.0f;
+    const int resolution = 5;
+
+    for (const auto& src : foodField.getSources()) {
+        maker.drawCircleGradientVertexFull(
+            gradient,
+            src.getFoodSourcePosition(),
+            radius,
+            resolution,
+            [&](const Vec2& pos) {
+                return foodField.getValueAt(pos);
+            },
+            colorFromValue
+        );
     }
 
     for (const auto& FoodSource : foodField.getSources()) {
         Vec2 c = FoodSource.getFoodSourcePosition();
         sf::Color color = sf::Color::Red;
-        float Size = 10.f;
+        float Size = 3.f;
 
         maker.drawSquareVertex(FoodSourceArray, c, Size, color);
     }
