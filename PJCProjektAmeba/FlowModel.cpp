@@ -44,7 +44,7 @@ void FlowModel::updatePhasesAndPressures(float dt) {
         nodePtr->setPressure(0.5f * std::sin(newPhase)+ 2.5f - foodEffect);
 
         if (nodePtr->getPosition() == Vec2(500, 500)) {
-            std::cout << nodePtr->getPressure() << "\n";
+            //std::cout << nodePtr->getPressure() << "\n";
         }
     }
 }

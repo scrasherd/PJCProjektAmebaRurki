@@ -136,6 +136,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="AppContoller.cpp" />
+    <ClCompile Include="CollisionField.cpp" />
+    <ClCompile Include="CollisionField.h" />
+    <ClCompile Include="CollisionMapRenderer.cpp" />
     <ClCompile Include="FigureMaker.cpp" />
     <ClCompile Include="FlowModel.cpp" />
     <ClCompile Include="FoodField.cpp" />
@@ -151,6 +154,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppController.h" />
+    <ClInclude Include="CollisionMapRenderer.h" />
     <ClInclude Include="FigureMaker.h" />
     <ClInclude Include="FlowModel.h" />
     <ClInclude Include="FoodField.h" />

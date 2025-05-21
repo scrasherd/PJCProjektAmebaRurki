@@ -30,3 +30,19 @@ float Node::getPhase() {
 void Node::setPhase(float value) {
     phase = value;
 }
+
+bool Node::getAttemptedGrowthFlag() {
+    return AttemptedGrowthFlag;
+}
+
+void Node::setAttemptedGrowthFlag(bool value) {
+    AttemptedGrowthFlag = value;
+}
+
+float Node::getRankingValue() {
+    return RankingValue;
+}
+
+void Node::setRankingValue(float value) {
+    RankingValue = value;
+}

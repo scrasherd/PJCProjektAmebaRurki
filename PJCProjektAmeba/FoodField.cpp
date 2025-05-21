@@ -1,6 +1,7 @@
 #include "FoodField.h"
 #include <cmath>
 #include <algorithm>
+#include <iostream>
 
 FoodField::FoodField(int width, int height)
     : width(width), height(height), field(height, std::vector<float>(width, 0.0f)) {}

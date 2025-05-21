@@ -3,6 +3,7 @@
 #include "Plasmodium.h"
 #include "MapRenderer.h"
 #include "FoodField.h"
+#include "CollisionField.h"
 #include <memory>
 
 class AppController {
@@ -18,6 +19,8 @@ private:
 
     RenderMode currentMode = RenderMode::Food;
     std::unique_ptr<MapRenderer> renderer;
+
+
 
 
     sf::Clock clock;

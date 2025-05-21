@@ -8,10 +8,12 @@ enum class RenderMode {
     Food,
     Vector,
     Pressure,
+    Collision
 };
 
 class MapRenderer {
 public:
+    MapRenderer() = default;
     virtual ~MapRenderer() = default;
     virtual void draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) = 0;
 

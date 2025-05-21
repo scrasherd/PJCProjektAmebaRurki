@@ -17,6 +17,9 @@ private:
     float phase;
     float amplitude;
 
+    bool AttemptedGrowthFlag;
+    float RankingValue;
+
 public:
     Node(const Vec2& pos);
 
@@ -30,4 +33,10 @@ public:
 
     float getPhase();
     void setPhase(float value);
+
+    bool getAttemptedGrowthFlag();
+    void setAttemptedGrowthFlag(bool value);
+
+    float getRankingValue();
+    void setRankingValue(float value);
 };

@@ -15,6 +15,7 @@ private:
     float dPnorm; //pole pomocniczne na umieszczenie znormalizowanej wartoœci dP dla ka¿dego wêz³a 
 
     float CytoplasmAmount;
+
 public:
 
     Tube(Node* a, Node* b, float diameter, float CytValue);

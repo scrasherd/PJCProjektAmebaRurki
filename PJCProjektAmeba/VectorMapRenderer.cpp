@@ -32,15 +32,35 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
 
     for (const auto& node : plasmodium.getNodes()) {
         Vec2 p = node->getPosition();
-        sf::Color color = (node->getConnectedTubes().size() == 1) ?
-            sf::Color::Green : sf::Color(100, 100, 100);
-
+        float alpha = node->getRankingValue();
+        sf::Color color(255, 0, 0, alpha);
+        if (node->getConnectedTubes().size() != 1) {
+            color = sf::Color::Green;
+        }
+        //else if (node->getAttemptedGrowthFlag()) {
+        //    color = sf::Color::Blue;
+        //}
         float s = 1.f;
         maker.drawSquareVertex(nodeArray, p, s, color);
     }
 
+    //Vec2 topLeft(0.f, 0.f);
+    //Vec2 size(1000.f, 1000.f);
+
+    //sf::VertexArray border(sf::PrimitiveType::LineStrip, 5);
+    //border[0].position = sf::Vector2f(topLeft.getX(), topLeft.getY());
+    //border[1].position = sf::Vector2f(topLeft.getX() + size.getX(), topLeft.getY());
+    //border[2].position = sf::Vector2f(topLeft.getX() + size.getX(), topLeft.getY() + size.getY());
+    //border[3].position = sf::Vector2f(topLeft.getX(), topLeft.getY() + size.getY());
+    //border[4].position = border[0].position;
+
+    //for (int i = 0; i < 5; ++i) {
+    //    border[i].color = sf::Color::Yellow;
+    //}
+    //window.draw(border);
+
     window.draw(lineArray);
     window.draw(nodeArray);
-    window.draw(FoodSourceArray); // rysujemy jeden okr¹g
+    //window.draw(FoodSourceArray);
 }
 

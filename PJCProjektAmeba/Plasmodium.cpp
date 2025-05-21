@@ -3,13 +3,21 @@
 #include "Tube.h"
 #include "Node.h"
 #include "FoodField.h"
+#include "CollisionField.h"
 #include "math.h"
 #include <cmath>
 #include <memory>
+#include <iostream>
 
-Plasmodium::Plasmodium(const Vec2& startPosition, float tubeLength, FoodField& foodField)
-    : rng(std::random_device{}()), tubeLength(tubeLength), flowModel(*this, foodField) {
+Plasmodium::Plasmodium(const Vec2& startPosition, int fieldWidth, int fieldHeight, float tubeLength, FoodField& foodField)
+    : colField(*this, static_cast<int>(fieldHeight / 0.3f), static_cast<int>(fieldWidth / 0.3f), 0.3f),
+    flowModel(*this, foodField),
+    rng(std::random_device{}()),
+    tubeLength(tubeLength) {
     
+    colField.mark(Vec2(0.f, 0.f));         
+    //colField.mark(Vec2(999.9f, 999.9f));   
+    //colField.mark(Vec2(500.f, 500.f));
     addStartStructure(startPosition, tubeLength, 1.0f /*œrednica*/, 1000.0f /*cytoplazma*/);
 }
 
@@ -37,13 +45,18 @@ void Plasmodium::addStartStructure(const Vec2& centerPos, float radius, float tu
 
         auto tube = std::make_unique<Tube>(centerPtr, outerPtr, tubeDiameter, cytValue);
         tubes.push_back(std::move(tube));
+
+        EndingNodes.push_back(outerPtr);
     }
 
     // Dodanie centralnego wêz³a jako potencjalnego zakoñczenia
-    EndingNodes.push_back(centerPtr);
 }
 
 void Plasmodium::growOneStep(const FoodField& foodField) {
+    for (const auto& node : nodes) {
+        //node->setAttemptedGrowthFlag(false);
+    }
+
     if (EndingNodes.empty()) return;
 
     sortEndings(foodField);
@@ -57,9 +70,11 @@ void Plasmodium::growOneStep(const FoodField& foodField) {
         Node* parent = EndingNodes[i];
 
         // 5% szans na pominiêcie danego node'a
-        bool shouldGrow = skipChance(rng) >= 0.05f;
+        bool shouldGrow = skipChance(rng) >= 0.1f;
 
         if (shouldGrow) {
+            std::cout << "próbuje rosn¹c" << std::endl;
+            parent->setAttemptedGrowthFlag(true);
             Vec2 parentPos = parent->getPosition();
 
             std::discrete_distribution<int> branchDist({ 50, 25, 25 });
@@ -93,6 +108,8 @@ void Plasmodium::growOneStep(const FoodField& foodField) {
                     auto newNode = std::make_unique<Node>(newPos);
                     auto newTube = std::make_unique<Tube>(parent, newNode.get(), 1.0f, 0.0f);
 
+                    colField.markTube(Vec2(parentPos.getY(), parentPos.getX()), Vec2(newPos.getY(), newPos.getX()));
+
                     EndingNodes.push_back(newNode.get());
 
                     auto it = std::find(EndingNodes.begin(), EndingNodes.end(), parent);
@@ -122,6 +139,17 @@ void Plasmodium::sortEndings(const FoodField& foodField) {
 
             return valueA > valueB; // malej¹co — najwy¿sze wartoœci na górze
         });
+
+    //Kolor ranking
+    int total = static_cast<int>(EndingNodes.size());
+    if (total == 0) return;
+
+    for (int i = 0; i < total; ++i) {
+        float rank = 1.0f - static_cast<float>(i) / (total - 1); // 1.0 ? najlepszy
+        float value255 = rank * 255.0f;
+        EndingNodes[i]->setRankingValue(value255);
+    }
+
 }
 
 float Plasmodium::computeAngle(Node* parent) {
@@ -172,8 +200,13 @@ float Plasmodium::generateAngle(float baseAngle, int generated, int direction, c
         float foodAngle = std::atan2(grad.getY(),grad.getX());
 
         //Przesuñ œrodek rozk³adu trochê w stronê gradientu
-        float influence = 0.5f; // 0 = ignoruj jedzenie, 1 = tylko jedzenie
+        float influence = 0.1f; // 0 = ignoruj jedzenie, 1 = tylko jedzenie
         meanAngle = std::lerp(meanAngle, foodAngle, influence);
+    }
+    else {
+        spread = M_PI / 3.f; // wiêkszy rozrzut
+        meanAngle = baseAngle + std::uniform_real_distribution<float>(-M_PI / 2.f, M_PI / 2.f)(rng);
+        //std::cout << meanAngle << "\n";
     }
 
     std::normal_distribution<float> angleDist(meanAngle, spread);
@@ -192,4 +225,12 @@ const std::vector<std::unique_ptr<Node>>& Plasmodium::getNodes() const {
 
 const std::vector<std::unique_ptr<Tube>>& Plasmodium::getTubes() const {
     return tubes;
+}
+
+const CollisionField& Plasmodium::getCollisionField() const {
+    return colField;
+}
+
+float Plasmodium::getTubeLength() const {
+    return tubeLength;
 }
