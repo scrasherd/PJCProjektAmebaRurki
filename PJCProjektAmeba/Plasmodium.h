@@ -32,6 +32,7 @@ public:
     void sortEndings(const FoodField& foodField);
     float computeAngle(Node* parent);
     float generateAngle(float baseAngle, int generated, int direction, const FoodField& foodField, const Vec2& position);
+    float normalizeAngle(float angle);
 
     // Przep³yw
     void simulateFlow(float dt);

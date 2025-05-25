@@ -20,13 +20,18 @@ std::pair<int, int> CollisionField::toGridCoords(const Vec2& pos) const {
 }
 
 
-void CollisionField::mark(const Vec2& pos) {
+void CollisionField::mark(const Vec2& pos, float value) {
     auto [gy, gx] = toGridCoords(pos);
-    //std::cout << "toGridCoords: pos=(" << pos.getX() << "," << pos.getY()
-    //    << ") -> grid=(" << gx << "," << gy << ")\n";
-    if (gx >= 0 && gy >= 0 && gx < width && gy < height) {
-        ColField[gy][gx] = 1.0f;
-        std::cout << "Marking cell (" << gx << ", " << gy << ") = " << ColField[gy][gx] << std::endl;
+
+    for (int dy = -1; dy <= 1; ++dy) {
+        for (int dx = -1; dx <= 1; ++dx) {
+            int ny = gy + dy;
+            int nx = gx + dx;
+
+            if (nx >= 0 && ny >= 0 && nx < width && ny < height) {
+                ColField[ny][nx] = value;
+            }
+        }
     }
 }
 
@@ -39,7 +44,7 @@ void CollisionField::markTube(const Vec2& a, const Vec2& b) {
     for (int i = 0; i <= steps; ++i) {
         float t = static_cast<float>(i) / steps;
         Vec2 point = a + (b - a) * t;
-        mark(point);
+        mark(point,1.0f);
     }
 }
 
@@ -79,12 +84,12 @@ int CollisionField::getHeight() const {
     return height;
 }
 
-std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(Vec2(pos), float baseAngle) const {
+std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(Vec2(pos), float baseAngle) {
     const float length = plasmodium.getTubeLength() / cellSize;
-    const float AngleStep = 1 / length;
-    const float CollisionThreshold = 0.9f;
+    const float AngleStep = 1 / 180.f;
+    const float CollisionThreshold = 0.5f;
 
-    std::vector<std::pair<float, float>> AvailableRenges;
+    std::vector<std::pair<float, float>> AvailableRanges;
     bool InFreeRange = false;
     float StartRange = 0;
 
@@ -101,20 +106,31 @@ std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(Vec2(pos
         }
         else {
             if (InFreeRange) {
-                AvailableRenges.emplace_back(StartRange, angle);
+                AvailableRanges.emplace_back(StartRange, angle);
                 InFreeRange = false;
             }
         }
     }
 
-    return AvailableRenges;
+    if (InFreeRange) {
+        AvailableRanges.emplace_back(StartRange, baseAngle + M_PI_2);
+    }
+
+    return AvailableRanges;
 }
 
-bool CollisionField::LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) const {
+bool CollisionField::LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) {
 
     for (float i = 0; i < range; i += cellSize * 0.5f) {
         Vec2 PointOnCollisionLine = pos + dir * i;
-        if (getDensity(PointOnCollisionLine) > CollisionThreshold) { return true;}
+        if (getDensity(PointOnCollisionLine) > CollisionThreshold) { return true; }
     }
     return false;
+}
+
+bool CollisionField::isTubePathFree(const Vec2& from, const Vec2& to) {
+    Vec2 dir = (to - from).normalized();
+    float length = (to - from).length() / cellSize;
+    const float threshold = 0.5f; // dostosuj do czu³oœci
+    return !LineCollisionCheck(from, dir, length, threshold);
 }

@@ -14,7 +14,7 @@ void CollisionMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plas
 
     float cellSize = colField.getCellSize();
 
-    int zakres = colField.getHeight() * (0.35);
+    int zakres = colField.getHeight() * (0.40);
     //int zakres = 4500;
 
     for (int x = zakres; x < colField.getHeight() - zakres; ++x) {
@@ -23,7 +23,7 @@ void CollisionMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plas
             float py = (y + 0.5f) * cellSize;
             float density = colField.getDensity(Vec2(py, px));
 
-            if (density > 0.0f) {
+            if (density > 0.1f) {
                 //std::cout << "Density at (0,0): " << colField.getDensity(Vec2(px, py)) << std::endl;
                 // Im wiêksza gêstoœæ, tym ciemniejszy kolor
                 float clamped = std::min(density / 5.f, 1.f);

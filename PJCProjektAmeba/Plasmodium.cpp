@@ -10,12 +10,12 @@
 #include <iostream>
 
 Plasmodium::Plasmodium(const Vec2& startPosition, int fieldWidth, int fieldHeight, float tubeLength, FoodField& foodField)
-    : colField(*this, static_cast<int>(fieldHeight / 0.3f), static_cast<int>(fieldWidth / 0.3f), 0.3f),
+    : colField(*this, static_cast<int>(fieldHeight / 0.1f), static_cast<int>(fieldWidth / 0.1f), 0.1f),
     flowModel(*this, foodField),
     rng(std::random_device{}()),
     tubeLength(tubeLength) {
     
-    colField.mark(Vec2(0.f, 0.f));         
+    //colField.mark(Vec2(0.f, 0.f));         
     //colField.mark(Vec2(999.9f, 999.9f));   
     //colField.mark(Vec2(500.f, 500.f));
     addStartStructure(startPosition, tubeLength, 1.0f /*œrednica*/, 1000.0f /*cytoplazma*/);
@@ -92,13 +92,20 @@ void Plasmodium::growOneStep(const FoodField& foodField) {
 
             while (successful < newBranches && attempts < 10) {
                 float newAngle = generateAngle(baseAngle, successful, direction, foodField, parentPos);
+                std::cout << newAngle << std::endl;
+                //if (newAngle < 0.f) break;
                 Vec2 dir(std::cos(newAngle), std::sin(newAngle));
                 Vec2 newPos = parentPos + dir * tubeLength;
+
+                if (!colField.isTubePathFree(parentPos, newPos)) {
+                    ++attempts;
+                    continue; // œcie¿ka kolizyjna – odrzucamy
+                }
 
                 // SprawdŸ czy nowy wêze³ nie jest za blisko innych
                 bool tooClose = false;
                 for (const auto& node : nodes) {
-                    if (node->getPosition().distanceTo(newPos) < tubeLength * 0.9f) {
+                    if (node->getPosition().distanceTo(newPos) < tubeLength * 0.1f) {
                         tooClose = true;
                         break;
                     }
@@ -200,7 +207,7 @@ float Plasmodium::generateAngle(float baseAngle, int generated, int direction, c
         float foodAngle = std::atan2(grad.getY(),grad.getX());
 
         //Przesuñ œrodek rozk³adu trochê w stronê gradientu
-        float influence = 0.1f; // 0 = ignoruj jedzenie, 1 = tylko jedzenie
+        float influence = 0.9f; // 0 = ignoruj jedzenie, 1 = tylko jedzenie
         meanAngle = std::lerp(meanAngle, foodAngle, influence);
     }
     else {
@@ -209,8 +216,55 @@ float Plasmodium::generateAngle(float baseAngle, int generated, int direction, c
         //std::cout << meanAngle << "\n";
     }
 
-    std::normal_distribution<float> angleDist(meanAngle, spread);
-    return angleDist(rng);
+    auto availableRanges = colField.getAvailableAngles(position, baseAngle);
+    std::cout << "Dostêpne k¹ty: ";
+    for (auto& [start, end] : availableRanges)
+        std::cout << "[" << start << ", " << end << "] ";
+    std::cout << std::endl
+        << baseAngle << std::endl;
+
+    if (availableRanges.empty()) return -1.f;
+
+    // 3. ZnajdŸ zakres najbli¿szy meanAngle
+    auto bestRange = availableRanges.front();
+    float bestDistance = std::abs(normalizeAngle(meanAngle - (bestRange.first + bestRange.second) * 0.5f));
+
+    for (const auto& range : availableRanges) {
+        float center = (range.first + range.second) * 0.5f;
+        float dist = std::abs(meanAngle - center);
+        if (dist < bestDistance) {
+            bestDistance = dist;
+            bestRange = range;
+        }
+    }
+
+    float clampedMean = std::clamp(meanAngle, bestRange.first, bestRange.second);
+    float effectiveSpread = (bestRange.second - bestRange.first) * 0.25f;
+
+    std::normal_distribution<float> angleDist(clampedMean, effectiveSpread);
+
+    const int maxTries = 10;
+    for (int i = 0; i < maxTries; ++i) {
+        float candidate = normalizeAngle(angleDist(rng));
+        float normStart = normalizeAngle(bestRange.first);
+        float normEnd = normalizeAngle(bestRange.second);
+
+        if (normStart < normEnd) {
+            if (candidate >= normStart && candidate <= normEnd) return candidate;
+        }
+        else {
+            // zakres zawiniêty np. [170°, -170°]
+            if (candidate >= normStart || candidate <= normEnd) return candidate;
+        }
+    }
+
+    return -1.f; // nie uda³o siê wygenerowaæ w zakresie
+}
+
+float Plasmodium::normalizeAngle(float angle) {
+    while (angle <= -M_PI) angle += 2.0f * M_PI;
+    while (angle > M_PI)  angle -= 2.0f * M_PI;
+    return angle;
 }
 
 void Plasmodium::simulateFlow(float dt) {
