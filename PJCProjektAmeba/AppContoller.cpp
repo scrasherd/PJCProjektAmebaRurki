@@ -16,6 +16,9 @@ AppController::AppController(int mapWidth, int mapHeight, float tubeLength) :
 void AppController::run() {
     bool Pause = true;
 
+    static sf::Clock phaseClock;
+    static bool growPhase = false;
+
     while (window.isOpen()) {
         while (std::optional<sf::Event> event = window.pollEvent()) {
 
@@ -93,11 +96,28 @@ void AppController::run() {
 
         }
 
-            if (!Pause && clock.getElapsedTime().asMilliseconds() > 1) {
-                plasmodium.growOneStep(foodField);
+        if (!Pause && clock.getElapsedTime().asMilliseconds() > 1) {
+            float elapsed = phaseClock.getElapsedTime().asSeconds();
+
+            if (!growPhase) {
                 plasmodium.simulateFlow(0.01f);
-                clock.restart();
+
+                if (elapsed >= 0.5f) {
+                    growPhase = true; // przechodzimy do fazy wzrostu
+                }
             }
+            else {
+                
+                plasmodium.growOneStep(foodField);
+                
+
+                // reset fazy
+                phaseClock.restart();
+                growPhase = false;
+            }
+
+            clock.restart();
+        }
 
             window.clear();
             renderer->draw(window, plasmodium, foodField);

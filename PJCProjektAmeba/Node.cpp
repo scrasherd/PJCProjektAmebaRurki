@@ -31,12 +31,12 @@ void Node::setPhase(float value) {
     phase = value;
 }
 
-bool Node::getAttemptedGrowthFlag() {
-    return AttemptedGrowthFlag;
+int Node::getFailedGrowthFlag() {
+    return FailedGrowthFlag;
 }
 
-void Node::setAttemptedGrowthFlag(bool value) {
-    AttemptedGrowthFlag = value;
+void Node::setFailedGrowthFlag(int value) {
+    FailedGrowthFlag = value;
 }
 
 float Node::getRankingValue() {

@@ -67,6 +67,6 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
 
     window.draw(gradient);
     window.draw(lineArray);
-    window.draw(nodeArray);
+    //window.draw(nodeArray);
     window.draw(FoodSourceArray);
 }

@@ -17,7 +17,7 @@ private:
     float phase;
     float amplitude;
 
-    bool AttemptedGrowthFlag;
+    bool FailedGrowthFlag;
     float RankingValue;
 
 public:
@@ -34,8 +34,8 @@ public:
     float getPhase();
     void setPhase(float value);
 
-    bool getAttemptedGrowthFlag();
-    void setAttemptedGrowthFlag(bool value);
+    int getFailedGrowthFlag();
+    void setFailedGrowthFlag(int value);
 
     float getRankingValue();
     void setRankingValue(float value);
