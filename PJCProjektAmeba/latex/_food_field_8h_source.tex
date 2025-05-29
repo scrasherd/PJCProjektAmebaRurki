@@ -1,0 +1,34 @@
+\doxysection{Food\+Field.\+h}
+\hypertarget{_food_field_8h_source}{}\label{_food_field_8h_source}\mbox{\hyperlink{_food_field_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vec2_8h}{Vec2.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_food_source_8h}{FoodSource.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_food_field_a81f66270289887f6864365e0a7caa67d}{FoodField}}\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ std::vector<std::vector<float>>\ field;}
+\DoxyCodeLine{00010\ \ \ \ \ std::vector<FoodSource>\ sources;}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ width,\ height;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_food_field_a81f66270289887f6864365e0a7caa67d}{FoodField}}(\textcolor{keywordtype}{int}\ width,\ \textcolor{keywordtype}{int}\ height);}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_food_field_a97b93a99f77ecc748e60dcf11826357a}{addSource}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ pos,\ \textcolor{keywordtype}{float}\ intensity,\ \textcolor{keywordtype}{float}\ radius);}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_food_field_a106fc0abad10ab141b5294a0d9e685b1}{clearField}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_food_field_a33c3e84a67643db4190d014f7cff8060}{updateField}}();}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<FoodSource>\&\ \mbox{\hyperlink{class_food_field_a87b13b7fd8c64b6259fa6a5e88e28237}{getSources}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00021\ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_food_field_adc6cadac13ff150bb4bf062763a1a88c}{isInside}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ pos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_food_field_a92623e98ce59d8d16912c8f4e8e8107a}{getValueAt}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ pos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_food_field_af8a99929695d66d70c4e251785a47fb2}{getWidth}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ width;\ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_food_field_a1cd5aa9d0910fab222744f40c5d91a90}{getHeight}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ height;\ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\ \mbox{\hyperlink{class_food_field_af5cee7cc34c168a5170fea2569095ee7}{getFoodGradient}}(\mbox{\hyperlink{class_vec2}{Vec2}}\ pos)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \};}
+
+\end{DoxyCode}

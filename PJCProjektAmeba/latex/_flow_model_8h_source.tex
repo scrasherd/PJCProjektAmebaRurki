@@ -1,0 +1,41 @@
+\doxysection{Flow\+Model.\+h}
+\hypertarget{_flow_model_8h_source}{}\label{_flow_model_8h_source}\mbox{\hyperlink{_flow_model_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_plasmodium}{Plasmodium}};}
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_food_field}{FoodField}};}
+\DoxyCodeLine{00005\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_node}{Node}};}
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tube}{Tube}};}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_flow_model_a028e322e74c89aa49e3700dac1dcd945}{FlowModel}}\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_plasmodium}{Plasmodium}}\&\ plasmodium;}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_food_field}{FoodField}}\&\ foodField;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ resistanceFactor\ =\ 1.0f;\ \textcolor{comment}{//\ opór rurki\ \string~\ 1\ /\ (œrednica\string^2)}}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ damping\ =\ 0.2f;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ jak\ szybko\ zmienia\ siê ciœnienie}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_flow_model_a028e322e74c89aa49e3700dac1dcd945}{FlowModel}}(\mbox{\hyperlink{class_plasmodium}{Plasmodium}}\&\ owner,\ \mbox{\hyperlink{class_food_field}{FoodField}}\&\ foodField);}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//void\ updateFlow(float\ dt);\ //\ jedna\ iteracja\ przep³ywu}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flow_model_a79c2bc26a314f05918366f293e0ac279}{updatePhasesAndPressures}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flow_model_ac4682863c2c63ed303644c69ed42f85b}{computeDPinTubes}}();}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flow_model_acd9d131ffb9cd9f6c1255fb3668805a8}{computeFlow}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flow_model_aec29614b661b15990dc2f5655474411f}{CytoplasmTransfer}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_flow_model_afc28a31ba397dfcd5e51119c3f05c4d2}{checkNodeForCorrection}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flow_model_a54b5f0bf0f8b37469029603ac3b820ce}{correctNodePressure}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_flow_model_aec26dd6e012646910abdb48242de5d9c}{normalizedPinTubes}}(\mbox{\hyperlink{class_node}{Node}}*\ node);}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//bool\ isNodeA(Node*\ node,\ Tube*\ tube);}}
+\DoxyCodeLine{00036\ \};}
+
+\end{DoxyCode}

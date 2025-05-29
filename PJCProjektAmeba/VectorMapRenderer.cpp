@@ -22,7 +22,7 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
         maker.drawSquareVertex(FoodSourceArray, c, Size, color);
     }
 
-    for (const auto& tube : plasmodium.getTubes()) {
+    for (const auto& tube : plasmodium.getStaticTubes()) {
         Vec2 a = tube->getNodeA()->getPosition();
         Vec2 b = tube->getNodeB()->getPosition();
 
@@ -30,7 +30,7 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
         lineArray.append(sf::Vertex(sf::Vector2f(b.getX(), b.getY()), sf::Color::White));
     }
 
-    for (const auto& node : plasmodium.getNodes()) {
+    for (const auto& node : plasmodium.getStaticNodes()) {
         Vec2 p = node->getPosition();
         float alpha = node->getRankingValue();
         sf::Color color(255, 0, 0, alpha);

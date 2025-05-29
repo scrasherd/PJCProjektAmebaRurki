@@ -1,0 +1,131 @@
+\doxysection{Node Class Reference}
+\hypertarget{class_node}{}\label{class_node}\index{Node@{Node}}
+
+
+{\ttfamily \#include $<$Node.\+h$>$}
+
+
+
+Collaboration diagram for Node\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=194pt]{class_node__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_node_ac2fe68bc00e33d8057c9a112a02308eb}{Node}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos)
+\item 
+const \mbox{\hyperlink{class_vec2}{Vec2}} \& \mbox{\hyperlink{class_node_a1c78c6feace91b27b6cbb12ee16e8eb0}{get\+Position}} () const
+\item 
+float \mbox{\hyperlink{class_node_aadcf38be013c636db76ad2b9be25ec57}{get\+Pressure}} () const
+\item 
+void \mbox{\hyperlink{class_node_ac1ce8d491788a2e38891a9cb256164c3}{set\+Pressure}} (float p)
+\item 
+void \mbox{\hyperlink{class_node_a32f1e31ce6c36389378ed90f81a6582f}{connect\+Tube}} (\mbox{\hyperlink{class_tube}{Tube}} \texorpdfstring{$\ast$}{*}tube)
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_tube}{Tube}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{class_node_a9b8af299634996bd6f323438a2e04f4b}{get\+Connected\+Tubes}} () const
+\item 
+float \mbox{\hyperlink{class_node_a0dbe24dddea6cd8792b612b2c994fdd9}{get\+Phase}} ()
+\item 
+void \mbox{\hyperlink{class_node_a1f61c68a79a071e8187bc449ac64df2f}{set\+Phase}} (float value)
+\item 
+int \mbox{\hyperlink{class_node_a3f0b291abe9d6d3500ba18e6b92927e4}{get\+Failed\+Growth\+Flag}} ()
+\item 
+void \mbox{\hyperlink{class_node_a30871e5c936b1c00f2176cdfa23a7873}{set\+Failed\+Growth\+Flag}} (int value)
+\item 
+float \mbox{\hyperlink{class_node_ad6ef99c293016476ede5f4815411d0f9}{get\+Ranking\+Value}} ()
+\item 
+void \mbox{\hyperlink{class_node_a3019d7d7a4a36f7c98db7a411098f509}{set\+Ranking\+Value}} (float value)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_node_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_node_ac2fe68bc00e33d8057c9a112a02308eb}\index{Node@{Node}!Node@{Node}}
+\index{Node@{Node}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{Node()}{Node()}}
+{\footnotesize\ttfamily \label{class_node_ac2fe68bc00e33d8057c9a112a02308eb} 
+Node\+::\+Node (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_node_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_node_a32f1e31ce6c36389378ed90f81a6582f}\index{Node@{Node}!connectTube@{connectTube}}
+\index{connectTube@{connectTube}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{connectTube()}{connectTube()}}
+{\footnotesize\ttfamily \label{class_node_a32f1e31ce6c36389378ed90f81a6582f} 
+void Node\+::connect\+Tube (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_tube}{Tube}} \texorpdfstring{$\ast$}{*}}]{tube}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_node_a9b8af299634996bd6f323438a2e04f4b}\index{Node@{Node}!getConnectedTubes@{getConnectedTubes}}
+\index{getConnectedTubes@{getConnectedTubes}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getConnectedTubes()}{getConnectedTubes()}}
+{\footnotesize\ttfamily \label{class_node_a9b8af299634996bd6f323438a2e04f4b} 
+const std\+::vector$<$ \mbox{\hyperlink{class_tube}{Tube}} \texorpdfstring{$\ast$}{*} $>$ \& Node\+::get\+Connected\+Tubes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_node_a3f0b291abe9d6d3500ba18e6b92927e4}\index{Node@{Node}!getFailedGrowthFlag@{getFailedGrowthFlag}}
+\index{getFailedGrowthFlag@{getFailedGrowthFlag}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getFailedGrowthFlag()}{getFailedGrowthFlag()}}
+{\footnotesize\ttfamily \label{class_node_a3f0b291abe9d6d3500ba18e6b92927e4} 
+int Node\+::get\+Failed\+Growth\+Flag (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_node_a0dbe24dddea6cd8792b612b2c994fdd9}\index{Node@{Node}!getPhase@{getPhase}}
+\index{getPhase@{getPhase}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getPhase()}{getPhase()}}
+{\footnotesize\ttfamily \label{class_node_a0dbe24dddea6cd8792b612b2c994fdd9} 
+float Node\+::get\+Phase (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_node_a1c78c6feace91b27b6cbb12ee16e8eb0}\index{Node@{Node}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \label{class_node_a1c78c6feace91b27b6cbb12ee16e8eb0} 
+const \mbox{\hyperlink{class_vec2}{Vec2}} \& Node\+::get\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_node_aadcf38be013c636db76ad2b9be25ec57}\index{Node@{Node}!getPressure@{getPressure}}
+\index{getPressure@{getPressure}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getPressure()}{getPressure()}}
+{\footnotesize\ttfamily \label{class_node_aadcf38be013c636db76ad2b9be25ec57} 
+float Node\+::get\+Pressure (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_node_ad6ef99c293016476ede5f4815411d0f9}\index{Node@{Node}!getRankingValue@{getRankingValue}}
+\index{getRankingValue@{getRankingValue}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{getRankingValue()}{getRankingValue()}}
+{\footnotesize\ttfamily \label{class_node_ad6ef99c293016476ede5f4815411d0f9} 
+float Node\+::get\+Ranking\+Value (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_node_a30871e5c936b1c00f2176cdfa23a7873}\index{Node@{Node}!setFailedGrowthFlag@{setFailedGrowthFlag}}
+\index{setFailedGrowthFlag@{setFailedGrowthFlag}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setFailedGrowthFlag()}{setFailedGrowthFlag()}}
+{\footnotesize\ttfamily \label{class_node_a30871e5c936b1c00f2176cdfa23a7873} 
+void Node\+::set\+Failed\+Growth\+Flag (\begin{DoxyParamCaption}\item[{int}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_node_a1f61c68a79a071e8187bc449ac64df2f}\index{Node@{Node}!setPhase@{setPhase}}
+\index{setPhase@{setPhase}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setPhase()}{setPhase()}}
+{\footnotesize\ttfamily \label{class_node_a1f61c68a79a071e8187bc449ac64df2f} 
+void Node\+::set\+Phase (\begin{DoxyParamCaption}\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_node_ac1ce8d491788a2e38891a9cb256164c3}\index{Node@{Node}!setPressure@{setPressure}}
+\index{setPressure@{setPressure}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setPressure()}{setPressure()}}
+{\footnotesize\ttfamily \label{class_node_ac1ce8d491788a2e38891a9cb256164c3} 
+void Node\+::set\+Pressure (\begin{DoxyParamCaption}\item[{float}]{p}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_node_a3019d7d7a4a36f7c98db7a411098f509}\index{Node@{Node}!setRankingValue@{setRankingValue}}
+\index{setRankingValue@{setRankingValue}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{setRankingValue()}{setRankingValue()}}
+{\footnotesize\ttfamily \label{class_node_a3019d7d7a4a36f7c98db7a411098f509} 
+void Node\+::set\+Ranking\+Value (\begin{DoxyParamCaption}\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_node_8h}{Node.\+h}}\item 
+\mbox{\hyperlink{_node_8cpp}{Node.\+cpp}}\end{DoxyCompactItemize}

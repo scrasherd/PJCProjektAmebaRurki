@@ -11,19 +11,21 @@ void CollisionMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plas
 
     sf::VertexArray RadarArray(sf::PrimitiveType::Triangles);
 
-    const CollisionField& colField = plasmodium.getCollisionField();
+    const CollisionField& colField = plasmodium.getStaticCollisionField();
+    const RadarField& radarField = plasmodium.getStaticRadarField();
+
     float cellSize = colField.getCellSize();
 
     const auto& sparse = colField.getSparseGrid();
     const int blockSize = 8;
 
-    for (const auto& [blockCoord, block] : sparse) {
+    for (const auto& [blockCoord, gridBlock] : sparse) {
         int blockX = blockCoord.first;
         int blockY = blockCoord.second;
         
         for (int by = 0; by < blockSize; ++by) {
             for (int bx = 0; bx < blockSize; ++bx) {
-                float density = block.values[bx][by];
+                float density = gridBlock.get(bx,by);
                 if (density > 0.1f) {
                     float px = (blockX * blockSize + bx + 0.5f) * cellSize;
                     float py = (blockY * blockSize + by + 0.5f) * cellSize;
@@ -37,15 +39,15 @@ void CollisionMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plas
         }
     }
 
-    const auto& radar = colField.getRadarGrid();
+    const auto& radar = radarField.getRadarGrid();
 
-    for (const auto& [blockCoord, block] : radar) {
+    for (const auto& [blockCoord, gridBlock] : radar) {
         int blockX = blockCoord.first;
         int blockY = blockCoord.second;
 
         for (int by = 0; by < blockSize; ++by) {
             for (int bx = 0; bx < blockSize; ++bx) {
-                float density = block.values[bx][by];
+                float density = gridBlock.get(bx,by);
                 if (density > 0.1f) {
                     float px = (blockX * blockSize + bx + 0.5f) * cellSize;
                     float py = (blockY * blockSize + by + 0.5f) * cellSize;

@@ -13,6 +13,21 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\GridFields">
+      <UniqueIdentifier>{89d6ba05-254d-45bb-9c35-ee4356ae2f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\RenderModes">
+      <UniqueIdentifier>{6f94f939-5a66-4a2f-b55f-484184af253f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GridFields">
+      <UniqueIdentifier>{74cacdac-88c7-4268-9100-17bdb707ce5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RenderModes">
+      <UniqueIdentifier>{3f90ea3b-2c21-40db-bd51-03d742f5a6ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Util">
+      <UniqueIdentifier>{65179d08-2bc8-4bac-bfc6-b98589a75c1d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -30,16 +45,10 @@
     <ClCompile Include="AppContoller.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="VectorMapRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FoodField.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FoodSource.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="FoodGradientMapRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="FlowModel.cpp">
@@ -51,20 +60,41 @@
     <ClCompile Include="MapRenderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PressureMapRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionField.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="CollisionField.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="CollisionMapRenderer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\RenderModes</Filter>
+    </ClCompile>
+    <ClCompile Include="FoodGradientMapRenderer.cpp">
+      <Filter>Source Files\RenderModes</Filter>
+    </ClCompile>
+    <ClCompile Include="PressureMapRenderer.cpp">
+      <Filter>Source Files\RenderModes</Filter>
+    </ClCompile>
+    <ClCompile Include="VectorMapRenderer.cpp">
+      <Filter>Source Files\RenderModes</Filter>
+    </ClCompile>
+    <ClCompile Include="RadarField.cpp">
+      <Filter>Source Files\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="GrowthModel.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files\GridFields</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionLogic.cpp">
+      <Filter>Source Files\GridFields</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeField.cpp">
+      <Filter>Source Files\GridFields</Filter>
+    </ClCompile>
+    <ClCompile Include="NodeGridMapRenderer.cpp">
+      <Filter>Source Files\RenderModes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -72,9 +102,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Tube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Vec2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Node.h">
@@ -86,13 +113,7 @@
     <ClInclude Include="MapRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="VectorMapRenderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FoodField.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="FoodGradientMapRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FoodSource.h">
@@ -104,17 +125,44 @@
     <ClInclude Include="FigureMaker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PressureMapRenderer.h">
+    <ClInclude Include="GrowthModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CollisionMapRenderer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\RenderModes</Filter>
+    </ClInclude>
+    <ClInclude Include="FoodGradientMapRenderer.h">
+      <Filter>Header Files\RenderModes</Filter>
+    </ClInclude>
+    <ClInclude Include="PressureMapRenderer.h">
+      <Filter>Header Files\RenderModes</Filter>
+    </ClInclude>
+    <ClInclude Include="VectorMapRenderer.h">
+      <Filter>Header Files\RenderModes</Filter>
+    </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="Vec2i.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="GrowthModel.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="RadarField.h">
+      <Filter>Header Files\GridFields</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionLogic.h">
+      <Filter>Header Files\GridFields</Filter>
+    </ClInclude>
+    <ClInclude Include="Grid.h">
+      <Filter>Header Files\GridFields</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeField.h">
+      <Filter>Header Files\GridFields</Filter>
+    </ClInclude>
+    <ClInclude Include="NodeGridMapRenderer.h">
+      <Filter>Header Files\RenderModes</Filter>
+    </ClInclude>
+    <ClInclude Include="LineInteresction.h">
+      <Filter>Header Files\Util</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

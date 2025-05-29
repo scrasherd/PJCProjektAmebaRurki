@@ -1,0 +1,98 @@
+[
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\AppContoller.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\AppContoller.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\AppContoller.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\AppContoller.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\CollisionField.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\CollisionField.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\CollisionField.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\CollisionField.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\CollisionMapRenderer.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\CollisionMapRenderer.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\CollisionMapRenderer.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\CollisionMapRenderer.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\FigureMaker.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FigureMaker.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FigureMaker.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\FigureMaker.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\FlowModel.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FlowModel.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FlowModel.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\FlowModel.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\FoodField.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FoodField.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FoodField.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\FoodField.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\FoodGradientMapRenderer.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FoodGradientMapRenderer.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FoodGradientMapRenderer.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\FoodGradientMapRenderer.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\FoodSource.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FoodSource.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\FoodSource.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\FoodSource.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\GrowthModel.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\GrowthModel.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\GrowthModel.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\GrowthModel.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\MapRenderer.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\MapRenderer.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\MapRenderer.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\MapRenderer.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\Node.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\Node.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\Node.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\Node.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\Plasmodium.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\Plasmodium.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\Plasmodium.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\Plasmodium.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\PressureMapRenderer.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\PressureMapRenderer.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\PressureMapRenderer.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\PressureMapRenderer.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\Tube.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\Tube.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\Tube.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\Tube.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\VectorMapRenderer.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\VectorMapRenderer.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\VectorMapRenderer.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\VectorMapRenderer.cpp.obj"
+},
+{
+  "directory": "C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build",
+  "command": "C:\\PROGRA~1\\LLVM\\bin\\CLANG_~1.EXE -IC:/SFML/source/repos/PJCProjektAmebaRurki/External/include -O0 -g -Xclang -gcodeview -std=gnu++20 -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles\\AmebaRurki.dir\\main.cpp.obj -c C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\main.cpp",
+  "file": "C:\\SFML\\source\\repos\\PJCProjektAmebaRurki\\PJCProjektAmeba\\main.cpp",
+  "output": "CMakeFiles\\AmebaRurki.dir\\main.cpp.obj"
+}
+]

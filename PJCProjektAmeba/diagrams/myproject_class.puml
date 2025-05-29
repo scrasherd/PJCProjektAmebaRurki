@@ -1,0 +1,2839 @@
+@startuml
+class "sf::BlendMode" as C_0003074180387135171260
+class C_0003074180387135171260 {
++BlendMode() = default : void
++BlendMode(Factor sourceFactor, Factor destinationFactor, Equation blendEquation = Equation::Add) : void
++BlendMode(Factor colorSourceFactor, Factor colorDestinationFactor, Equation colorBlendEquation, Factor alphaSourceFactor, Factor alphaDestinationFactor, Equation alphaBlendEquation) : void
+__
++alphaDstFactor : Factor
++alphaEquation : Equation
++alphaSrcFactor : Factor
++colorDstFactor : Factor
++colorEquation : Equation
++colorSrcFactor : Factor
+}
+enum "sf::BlendMode::Factor" as C_0016212772533335028029
+enum C_0016212772533335028029 {
+Zero
+One
+SrcColor
+OneMinusSrcColor
+DstColor
+OneMinusDstColor
+SrcAlpha
+OneMinusSrcAlpha
+DstAlpha
+OneMinusDstAlpha
+}
+enum "sf::BlendMode::Equation" as C_0008370861180587341432
+enum C_0008370861180587341432 {
+Add
+Subtract
+ReverseSubtract
+Min
+Max
+}
+class "sf::Color" as C_0006364063690316776255
+class C_0006364063690316776255 {
++Color() = default : void
++Color(std::uint8_t red, std::uint8_t green, std::uint8_t blue, std::uint8_t alpha = 255) : void
++Color(std::uint32_t color) : void
+..
++toInteger() constexpr const : std::uint32_t
+__
+{static} +Black : const Color
+{static} +Blue : const Color
+{static} +Cyan : const Color
+{static} +Green : const Color
+{static} +Magenta : const Color
+{static} +Red : const Color
+{static} +Transparent : const Color
+{static} +White : const Color
+{static} +Yellow : const Color
++a : std::uint8_t
++b : std::uint8_t
++g : std::uint8_t
++r : std::uint8_t
+}
+abstract "sf::Drawable" as C_0013984197135307140142
+abstract C_0013984197135307140142 {
++~Drawable() constexpr = default : void
+..
+{abstract} #draw(RenderTarget & target, RenderStates states) const = 0 : void
+__
+}
+enum "sf::PrimitiveType" as C_0010922010982087413329
+enum C_0010922010982087413329 {
+Points
+Lines
+LineStrip
+Triangles
+TriangleStrip
+TriangleFan
+}
+class "sf::Angle" as C_0002026489175357543755
+class C_0002026489175357543755 {
++Angle() = default : void
+-Angle(float radians) : void
+..
++asDegrees() constexpr const : float
++asRadians() constexpr const : float
++wrapSigned() constexpr const : Angle
++wrapUnsigned() constexpr const : Angle
+__
+{static} +Zero : const Angle
+-m_radians : float
+}
+class "sf::priv::OverloadSet<Ts...>" as C_0012219262091572669182
+class C_0012219262091572669182 {
+__
+}
+class "sf::priv::DelayOverloadResolution" as C_0015072457375721195820
+class C_0015072457375721195820 {
++DelayOverloadResolution<T>(const T &) : void
+__
+}
+class "sf::priv::Matrix<std::size_t Columns,std::size_t Rows>" as C_0004788288537053971142
+class C_0004788288537053971142 {
++Matrix(const float * pointer) : void
++Matrix(const Transform & transform) : void
+__
++array : std::array<float,Columns * Rows>
+}
+class "sf::priv::Vector4<T>" as C_0016433549472661232464
+class C_0016433549472661232464 {
++Vector4() = default : void
++Vector4(T x, T y, T z, T w) : void
++Vector4(Color color) : void
+..
++operator Vector4<U>() constexpr const : Vector4<U>
+__
++w : T
++x : T
++y : T
++z : T
+}
+class "sf::priv::Vector4<float>" as C_0012886995261601095246
+class C_0012886995261601095246 {
+__
+}
+class "sf::priv::Vector4<int>" as C_0005437076248621562611
+class C_0005437076248621562611 {
+__
+}
+class "sf::priv::Vector4<bool>" as C_0013504916287078799316
+class C_0013504916287078799316 {
+__
+}
+class "sf::priv::Matrix<3,3>" as C_0014136004349340772178
+class C_0014136004349340772178 {
+__
+}
+class "sf::priv::Matrix<4,4>" as C_0015274480225465552346
+class C_0015274480225465552346 {
+__
+}
+class "sf::priv::GlContext" as C_0000025662795513792797
+class C_0000025662795513792797 {
+__
+}
+class "sf::priv::CursorImpl" as C_0002043947907008310613
+class C_0002043947907008310613 {
+__
+}
+class "sf::priv::WindowImpl" as C_0002866703196460454683
+class C_0002866703196460454683 {
+__
+}
+class "sf::priv::RenderTextureImpl" as C_0011120643883825079166
+class C_0011120643883825079166 {
+__
+}
+class "sf::Vector2<T>" as C_0004627585467457410747
+class C_0004627585467457410747 {
++Vector2() = default : void
++Vector2(T x, T y) : void
++Vector2(T r, Angle phi) : void
+..
++angle() const : Angle
++angleTo(Vector2<T> rhs) const : Angle
++componentWiseDiv(Vector2<T> rhs) constexpr const : Vector2<T>
++componentWiseMul(Vector2<T> rhs) constexpr const : Vector2<T>
++cross(Vector2<T> rhs) constexpr const : T
++dot(Vector2<T> rhs) constexpr const : T
++length() const : T
++lengthSquared() constexpr const : T
++normalized() const : Vector2<T>
++operator Vector2<U>() constexpr const : Vector2<U>
++perpendicular() constexpr const : Vector2<T>
++projectedOnto(Vector2<T> axis) const : Vector2<T>
++rotatedBy(Angle phi) const : Vector2<T>
+__
++x : T
++y : T
+}
+class "sf::Rect<T>" as C_0006391259665838256528
+class C_0006391259665838256528 {
++Rect() = default : void
++Rect(Vector2<T> position, Vector2<T> size) : void
+..
++contains(Vector2<T> point) constexpr const : bool
++findIntersection(const Rect<T> & rectangle) constexpr const : std::optional<Rect<T>>
++getCenter() constexpr const : Vector2<T>
++operator Rect<U>() constexpr const : Rect<U>
+__
++position : Vector2<T>
++size : Vector2<T>
+}
+enum "sf::CoordinateType" as C_0005968636569752299326
+enum C_0005968636569752299326 {
+Normalized
+Pixels
+}
+enum "sf::StencilComparison" as C_0000810974863779692389
+enum C_0000810974863779692389 {
+Never
+Less
+LessEqual
+Greater
+GreaterEqual
+Equal
+NotEqual
+Always
+}
+enum "sf::StencilUpdateOperation" as C_0003650065682444817958
+enum C_0003650065682444817958 {
+Keep
+Zero
+Replace
+Increment
+Decrement
+Invert
+}
+class "sf::StencilValue" as C_0012545167759553504157
+class C_0012545167759553504157 {
++StencilValue(int theValue) : void
++StencilValue(unsigned int theValue) : void
++StencilValue<T>(T) = deleted : void
+__
++value : unsigned int
+}
+class "sf::StencilMode" as C_0001913950764470282663
+class C_0001913950764470282663 {
+__
++stencilComparison : StencilComparison
++stencilMask : StencilValue
++stencilOnly : bool
++stencilReference : StencilValue
++stencilUpdateOperation : StencilUpdateOperation
+}
+class "sf::Vector2<float>" as C_0008543305591873088061
+class C_0008543305591873088061 {
+__
+}
+class "sf::Rect<float>" as C_0000561765358476177806
+class C_0000561765358476177806 {
+__
+}
+class "sf::Transform" as C_0016252567771201985908
+class C_0016252567771201985908 {
++Transform() = default : void
++Transform(float a00, float a01, float a02, float a10, float a11, float a12, float a20, float a21, float a22) : void
+..
++combine(const Transform & transform) constexpr : Transform &
++getInverse() constexpr const : Transform
++getMatrix() constexpr const : const float *
++rotate(Angle angle) : Transform &
++rotate(Angle angle, Vector2f center) : Transform &
++scale(Vector2f factors) constexpr : Transform &
++scale(Vector2f factors, Vector2f center) constexpr : Transform &
++transformPoint(Vector2f point) constexpr const : Vector2f
++transformRect(const FloatRect & rectangle) constexpr const : FloatRect
++translate(Vector2f offset) constexpr : Transform &
+__
+{static} +Identity : const Transform
+-m_matrix : std::array<float,16>
+}
+class "sf::RenderStates" as C_0016663939089539785978
+class C_0016663939089539785978 {
++RenderStates() = default : void
++RenderStates(const BlendMode & theBlendMode) : void
++RenderStates(const StencilMode & theStencilMode) : void
++RenderStates(const Transform & theTransform) : void
++RenderStates(const Texture * theTexture) : void
++RenderStates(const Shader * theShader) : void
++RenderStates(const BlendMode & theBlendMode, const StencilMode & theStencilMode, const Transform & theTransform, CoordinateType theCoordinateType, const Texture * theTexture, const Shader * theShader) : void
+__
+{static} +Default : const RenderStates
++blendMode : BlendMode
++coordinateType : CoordinateType
++shader : const Shader *
++stencilMode : StencilMode
++texture : const Texture *
++transform : Transform
+}
+class "sf::Transformable" as C_0003956842734882681644
+class C_0003956842734882681644 {
++Transformable() = default : void
++~Transformable() constexpr = default : void
+..
++getInverseTransform() const : const Transform &
++getOrigin() const : Vector2f
++getPosition() const : Vector2f
++getRotation() const : Angle
++getScale() const : Vector2f
++getTransform() const : const Transform &
++move(Vector2f offset) : void
++rotate(Angle angle) : void
++scale(Vector2f factor) : void
++setOrigin(Vector2f origin) : void
++setPosition(Vector2f position) : void
++setRotation(Angle angle) : void
++setScale(Vector2f factors) : void
+__
+-m_inverseTransform : Transform
+-m_inverseTransformNeedUpdate : bool
+-m_origin : Vector2f
+-m_position : Vector2f
+-m_rotation : Angle
+-m_scale : Vector2f
+-m_transform : Transform
+-m_transformNeedUpdate : bool
+}
+class "sf::Vertex" as C_0008284998712082697286
+class C_0008284998712082697286 {
+__
++color : Color
++position : Vector2f
++texCoords : Vector2f
+}
+class "sf::VertexArray" as C_0002831652694864716719
+class C_0002831652694864716719 {
++VertexArray() = default : void
++VertexArray(PrimitiveType type, std::size_t vertexCount = 0) : void
+..
++operator[](std::size_t index) : Vertex &
++operator[](std::size_t index) const : const Vertex &
+..
++append(const Vertex & vertex) : void
++clear() : void
+-draw(RenderTarget & target, RenderStates states) const : void
++getBounds() const : FloatRect
++getPrimitiveType() const : PrimitiveType
++getVertexCount() const : std::size_t
++resize(std::size_t vertexCount) : void
++setPrimitiveType(PrimitiveType type) : void
+__
+-m_primitiveType : PrimitiveType
+-m_vertices : std::vector<Vertex>
+}
+class "sf::Rect<int>" as C_0013221485562044746291
+class C_0013221485562044746291 {
+__
+}
+abstract "sf::Shape" as C_0017612815662001477533
+abstract C_0017612815662001477533 {
+-draw(RenderTarget & target, RenderStates states) const : void
++getFillColor() const : Color
++getGeometricCenter() const : Vector2f
++getGlobalBounds() const : FloatRect
++getLocalBounds() const : FloatRect
++getOutlineColor() const : Color
++getOutlineThickness() const : float
+{abstract} +getPoint(std::size_t index) const = 0 : Vector2f
+{abstract} +getPointCount() const = 0 : std::size_t
++getTexture() const : const Texture *
++getTextureRect() const : const IntRect &
++setFillColor(Color color) : void
++setOutlineColor(Color color) : void
++setOutlineThickness(float thickness) : void
++setTexture(const Texture * texture, bool resetRect = false) : void
++setTextureRect(const IntRect & rect) : void
+#update() : void
+-updateFillColors() : void
+-updateOutline() : void
+-updateOutlineColors() : void
+-updateTexCoords() : void
+__
+-m_bounds : FloatRect
+-m_fillColor : Color
+-m_insideBounds : FloatRect
+-m_outlineColor : Color
+-m_outlineThickness : float
+-m_outlineVertices : VertexArray
+-m_texture : const Texture *
+-m_textureRect : IntRect
+-m_vertices : VertexArray
+}
+class "sf::CircleShape" as C_0014390207501825380033
+class C_0014390207501825380033 {
++CircleShape(float radius = 0, std::size_t pointCount = 30) : void
+..
++getGeometricCenter() const : Vector2f
++getPoint(std::size_t index) const : Vector2f
++getPointCount() const : std::size_t
++getRadius() const : float
++setPointCount(std::size_t count) : void
++setRadius(float radius) : void
+__
+-m_pointCount : std::size_t
+-m_radius : float
+}
+class "sf::ConvexShape" as C_0017808527445379357924
+class C_0017808527445379357924 {
++ConvexShape(std::size_t pointCount = 0) : void
+..
++getPoint(std::size_t index) const : Vector2f
++getPointCount() const : std::size_t
++setPoint(std::size_t index, Vector2f point) : void
++setPointCount(std::size_t count) : void
+__
+-m_points : std::vector<Vector2f>
+}
+class "sf::Glyph" as C_0009471121563566894646
+class C_0009471121563566894646 {
+__
++advance : float
++bounds : FloatRect
++lsbDelta : int
++rsbDelta : int
++textureRect : IntRect
+}
+class "sf::GlResource" as C_0017569898583733429903
+class C_0017569898583733429903 {
+#GlResource() : void
+..
+{static} #registerUnsharedGlObject(std::shared_ptr<void> object) : void
+{static} #unregisterUnsharedGlObject(std::shared_ptr<void> object) : void
+__
+-m_sharedContext : std::shared_ptr<void>
+}
+class "sf::GlResource::TransientContextLock" as C_0016179854348609808155
+class C_0016179854348609808155 {
++operator=(const TransientContextLock &) = deleted : TransientContextLock &
+..
++TransientContextLock() : void
++TransientContextLock(const TransientContextLock &) = deleted : void
++~TransientContextLock() : void
+__
+}
+class "sf::Vector2<unsigned int>" as C_0003841765540882482867
+class C_0003841765540882482867 {
+__
+}
+class "sf::Texture" as C_0005023859050657617283
+class C_0005023859050657617283 {
++Texture() : void
++Texture(const Texture & copy) : void
++Texture(Texture &&) noexcept : void
++Texture(const std::filesystem::path & filename, bool sRgb = false) : void
++Texture(const std::filesystem::path & filename, bool sRgb, const IntRect & area) : void
++Texture(const void * data, std::size_t size, bool sRgb = false) : void
++Texture(const void * data, std::size_t size, bool sRgb, const IntRect & area) : void
++Texture(InputStream & stream, bool sRgb = false) : void
++Texture(InputStream & stream, bool sRgb, const IntRect & area) : void
++Texture(const Image & image, bool sRgb = false) : void
++Texture(const Image & image, bool sRgb, const IntRect & area) : void
++Texture(Vector2u size, bool sRgb = false) : void
++~Texture() : void
+..
++operator=(const Texture &) : Texture &
++operator=(Texture &&) noexcept : Texture &
+..
+{static} +bind(const Texture * texture, CoordinateType coordinateType = CoordinateType::Normalized) : void
++copyToImage() const : Image
++generateMipmap() : bool
+{static} +getMaximumSize() : unsigned int
++getNativeHandle() const : unsigned int
++getSize() const : Vector2u
+{static} -getValidSize(unsigned int size) : unsigned int
+-invalidateMipmap() : void
++isRepeated() const : bool
++isSmooth() const : bool
++isSrgb() const : bool
++loadFromFile(const std::filesystem::path & filename, bool sRgb = false, const IntRect & area = = {}) : bool
++loadFromImage(const Image & image, bool sRgb = false, const IntRect & area = = {}) : bool
++loadFromMemory(const void * data, std::size_t size, bool sRgb = false, const IntRect & area = = {}) : bool
++loadFromStream(InputStream & stream, bool sRgb = false, const IntRect & area = = {}) : bool
++resize(Vector2u size, bool sRgb = false) : bool
++setRepeated(bool repeated) : void
++setSmooth(bool smooth) : void
++swap(Texture & right) noexcept : void
++update(const std::uint8_t * pixels) : void
++update(const std::uint8_t * pixels, Vector2u size, Vector2u dest) : void
++update(const Texture & texture) : void
++update(const Texture & texture, Vector2u dest) : void
++update(const Image & image) : void
++update(const Image & image, Vector2u dest) : void
++update(const Window & window) : void
++update(const Window & window, Vector2u dest) : void
+__
+-m_actualSize : Vector2u
+-m_cacheId : std::uint64_t
+-m_fboAttachment : bool
+-m_hasMipmap : bool
+-m_isRepeated : bool
+-m_isSmooth : bool
+-m_pixelsFlipped : bool
+-m_sRgb : bool
+-m_size : Vector2u
+-m_texture : unsigned int
+}
+class "sf::Font" as C_0006097649296905328085
+class C_0006097649296905328085 {
++Font() = default : void
++Font(const std::filesystem::path & filename) : void
++Font(const void * data, std::size_t sizeInBytes) : void
++Font(InputStream & stream) : void
+..
+-cleanup() : void
+-findGlyphRect(Page & page, Vector2u size) const : IntRect
++getGlyph(char32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness = 0) const : const Glyph &
++getInfo() const : const Info &
++getKerning(std::uint32_t first, std::uint32_t second, unsigned int characterSize, bool bold = false) const : float
++getLineSpacing(unsigned int characterSize) const : float
++getTexture(unsigned int characterSize) const : const Texture &
++getUnderlinePosition(unsigned int characterSize) const : float
++getUnderlineThickness(unsigned int characterSize) const : float
++hasGlyph(char32_t codePoint) const : bool
++isSmooth() const : bool
+-loadGlyph(char32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness) const : Glyph
+-loadPage(unsigned int characterSize) const : Page &
++openFromFile(const std::filesystem::path & filename) : bool
++openFromMemory(const void * data, std::size_t sizeInBytes) : bool
++openFromStream(InputStream & stream) : bool
+-setCurrentSize(unsigned int characterSize) const : bool
++setSmooth(bool smooth) : void
+__
+-m_fontHandles : std::shared_ptr<FontHandles>
+-m_info : Info
+-m_isSmooth : bool
+-m_pages : PageTable
+-m_pixelBuffer : std::vector<std::uint8_t>
+}
+class "sf::Font::Info" as C_0005744260319301666599
+class C_0005744260319301666599 {
+__
++family : std::string
+}
+class "sf::Font::Row" as C_0016854293995285939641
+class C_0016854293995285939641 {
++Row(unsigned int rowTop, unsigned int rowHeight) : void
+__
++height : unsigned int
++top : unsigned int
++width : unsigned int
+}
+class "sf::Font::Page" as C_0009968250023979719176
+class C_0009968250023979719176 {
++Page(bool smooth) : void
+__
++glyphs : GlyphTable
++nextRow : unsigned int
++rows : std::vector<Row>
++texture : Texture
+}
+class "sf::Image" as C_0014177987467599921909
+class C_0014177987467599921909 {
++Image() = default : void
++Image(Vector2u size, Color color = = Color::Black) : void
++Image(Vector2u size, const std::uint8_t * pixels) : void
++Image(const std::filesystem::path & filename) : void
++Image(const void * data, std::size_t size) : void
++Image(InputStream & stream) : void
+..
++copy(const Image & source, Vector2u dest, const IntRect & sourceRect = = {}, bool applyAlpha = false) : bool
++createMaskFromColor(Color color, std::uint8_t alpha = 0) : void
++flipHorizontally() : void
++flipVertically() : void
++getPixel(Vector2u coords) const : Color
++getPixelsPtr() const : const std::uint8_t *
++getSize() const : Vector2u
++loadFromFile(const std::filesystem::path & filename) : bool
++loadFromMemory(const void * data, std::size_t size) : bool
++loadFromStream(InputStream & stream) : bool
++resize(Vector2u size, Color color = = Color::Black) : void
++resize(Vector2u size, const std::uint8_t * pixels) : void
++saveToFile(const std::filesystem::path & filename) const : bool
++saveToMemory(std::string_view format) const : std::optional<std::vector<std::uint8_t>>
++setPixel(Vector2u coords, Color color) : void
+__
+-m_pixels : std::vector<std::uint8_t>
+-m_size : Vector2u
+}
+class "sf::RectangleShape" as C_0005035598942010409694
+class C_0005035598942010409694 {
++RectangleShape(Vector2f size = = {}) : void
+..
++getGeometricCenter() const : Vector2f
++getPoint(std::size_t index) const : Vector2f
++getPointCount() const : std::size_t
++getSize() const : Vector2f
++setSize(Vector2f size) : void
+__
+-m_size : Vector2f
+}
+class "sf::View" as C_0001788491171793798153
+class C_0001788491171793798153 {
++View() = default : void
++View(const FloatRect & rectangle) : void
++View(Vector2f center, Vector2f size) : void
+..
++getCenter() const : Vector2f
++getInverseTransform() const : const Transform &
++getRotation() const : Angle
++getScissor() const : const FloatRect &
++getSize() const : Vector2f
++getTransform() const : const Transform &
++getViewport() const : const FloatRect &
++move(Vector2f offset) : void
++rotate(Angle angle) : void
++setCenter(Vector2f center) : void
++setRotation(Angle angle) : void
++setScissor(const FloatRect & scissor) : void
++setSize(Vector2f size) : void
++setViewport(const FloatRect & viewport) : void
++zoom(float factor) : void
+__
+-m_center : Vector2f
+-m_invTransformUpdated : bool
+-m_inverseTransform : Transform
+-m_rotation : Angle
+-m_scissor : FloatRect
+-m_size : Vector2f
+-m_transform : Transform
+-m_transformUpdated : bool
+-m_viewport : FloatRect
+}
+class "sf::Vector2<int>" as C_0006838269797574136908
+class C_0006838269797574136908 {
+__
+}
+abstract "sf::RenderTarget" as C_0017453742283676695345
+abstract C_0017453742283676695345 {
++RenderTarget(const RenderTarget &) = deleted : void
++RenderTarget(RenderTarget &&) noexcept = default : void
+#RenderTarget() = default : void
++~RenderTarget() constexpr = default : void
+..
++operator=(const RenderTarget &) = deleted : RenderTarget &
++operator=(RenderTarget &&) noexcept = default : RenderTarget &
+..
+-applyBlendMode(const BlendMode & mode) : void
+-applyCurrentView() : void
+-applyShader(const Shader * shader) : void
+-applyStencilMode(const StencilMode & mode) : void
+-applyTexture(const Texture * texture, CoordinateType coordinateType = CoordinateType::Pixels) : void
+-applyTransform(const Transform & transform) : void
+-cleanupDraw(const RenderStates & states) : void
++clear(Color color = = Color::Black) : void
++clear(Color color, StencilValue stencilValue) : void
++clearStencil(StencilValue stencilValue) : void
++draw(const Drawable & drawable, const RenderStates & states = RenderStates::Default) : void
++draw(const Vertex * vertices, std::size_t vertexCount, PrimitiveType type, const RenderStates & states = RenderStates::Default) : void
++draw(const VertexBuffer & vertexBuffer, const RenderStates & states = RenderStates::Default) : void
++draw(const VertexBuffer & vertexBuffer, std::size_t firstVertex, std::size_t vertexCount, const RenderStates & states = RenderStates::Default) : void
+-drawPrimitives(PrimitiveType type, std::size_t firstVertex, std::size_t vertexCount) : void
++getDefaultView() const : const View &
++getScissor(const View & view) const : IntRect
+{abstract} +getSize() const = 0 : Vector2u
++getView() const : const View &
++getViewport(const View & view) const : IntRect
+#initialize() : void
++isSrgb() const : bool
++mapCoordsToPixel(Vector2f point) const : Vector2i
++mapCoordsToPixel(Vector2f point, const View & view) const : Vector2i
++mapPixelToCoords(Vector2i point) const : Vector2f
++mapPixelToCoords(Vector2i point, const View & view) const : Vector2f
++popGLStates() : void
++pushGLStates() : void
++resetGLStates() : void
++setActive(bool active = true) : bool
++setView(const View & view) : void
+-setupDraw(bool useVertexCache, const RenderStates & states) : void
+__
+-m_cache : StatesCache
+-m_defaultView : View
+-m_id : std::uint64_t
+-m_view : View
+}
+class "sf::RenderTarget::StatesCache" as C_0012755645351991045337
+class C_0012755645351991045337 {
+__
++enable : bool
++glStatesSet : bool
++lastBlendMode : BlendMode
++lastCoordinateType : CoordinateType
++lastStencilMode : StencilMode
++lastTextureId : std::uint64_t
++scissorEnabled : bool
++stencilEnabled : bool
++texCoordsArrayEnabled : bool
++useVertexCache : bool
++vertexCache : std::array<Vertex,4>
++viewChanged : bool
+}
+class "sf::ContextSettings" as C_0005464725295519758502
+class C_0005464725295519758502 {
+__
++antiAliasingLevel : unsigned int
++attributeFlags : std::uint32_t
++depthBits : unsigned int
++majorVersion : unsigned int
++minorVersion : unsigned int
++sRgbCapable : bool
++stencilBits : unsigned int
+}
+enum "sf::ContextSettings::Attribute" as C_0015636552616476636468
+enum C_0015636552616476636468 {
+Default
+Core
+Debug
+}
+class "sf::RenderTexture" as C_0015081239011663861955
+class C_0015081239011663861955 {
++RenderTexture() : void
++RenderTexture(Vector2u size, const ContextSettings & settings = {}) : void
++RenderTexture(const RenderTexture &) = deleted : void
++RenderTexture(RenderTexture &&) noexcept : void
++~RenderTexture() : void
+..
++operator=(const RenderTexture &) = deleted : RenderTexture &
++operator=(RenderTexture &&) noexcept : RenderTexture &
+..
++display() : void
++generateMipmap() : bool
+{static} +getMaximumAntiAliasingLevel() : unsigned int
++getSize() const : Vector2u
++getTexture() const : const Texture &
++isRepeated() const : bool
++isSmooth() const : bool
++isSrgb() const : bool
++resize(Vector2u size, const ContextSettings & settings = {}) : bool
++setActive(bool active = true) : bool
++setRepeated(bool repeated) : void
++setSmooth(bool smooth) : void
+__
+-m_impl : std::unique_ptr<priv::RenderTextureImpl>
+-m_texture : Texture
+}
+class "sf::VideoMode" as C_0005972210110727440196
+class C_0005972210110727440196 {
++VideoMode() = default : void
++VideoMode(Vector2u modeSize, unsigned int modeBitsPerPixel = 32) : void
+..
+{static} +getDesktopMode() : VideoMode
+{static} +getFullscreenModes() : const std::vector<VideoMode> &
++isValid() const : bool
+__
++bitsPerPixel : unsigned int
++size : Vector2u
+}
+enum "sf::State" as C_0011336319940463587373
+enum C_0011336319940463587373 {
+Windowed
+Fullscreen
+}
+class "sf::Time" as C_0004052049087251117377
+class C_0004052049087251117377 {
++Time() = default : void
++Time<Rep,Period>(const std::chrono::duration<Rep,Period> & duration) : void
+..
++asMicroseconds() constexpr const : std::int64_t
++asMilliseconds() constexpr const : std::int32_t
++asSeconds() constexpr const : float
++operator duration<Rep,Period>() constexpr const : std::chrono::duration<Rep, Period>
++toDuration() constexpr const : std::chrono::microseconds
+__
+{static} +Zero : const Time
+-m_microseconds : std::chrono::microseconds
+}
+class "sf::WindowBase" as C_0000573202853016915041
+class C_0000573202853016915041 {
++WindowBase() : void
++WindowBase(VideoMode mode, const String & title, std::uint32_t style = Style::Default, State state = State::Windowed) : void
++WindowBase(VideoMode mode, const String & title, State state) : void
++WindowBase(WindowHandle handle) : void
++WindowBase(const WindowBase &) = deleted : void
++WindowBase(WindowBase &&) noexcept : void
++~WindowBase() : void
+..
++operator=(const WindowBase &) = deleted : WindowBase &
++operator=(WindowBase &&) noexcept : WindowBase &
+..
++close() : void
++create(VideoMode mode, const String & title, std::uint32_t style = Style::Default, State state = State::Windowed) : void
++create(VideoMode mode, const String & title, State state) : void
++create(WindowHandle handle) : void
++createVulkanSurface(const VkInstance & instance, VkSurfaceKHR & surface, const VkAllocationCallbacks * allocator = nullptr) : bool
+-filterEvent(const Event & event) : void
++getNativeHandle() const : WindowHandle
++getPosition() const : Vector2i
++getSize() const : Vector2u
++handleEvents<Ts...>(Ts &&... handlers) : void
++hasFocus() const : bool
+-initialize() : void
++isOpen() const : bool
+#onCreate() : void
+#onResize() : void
++pollEvent() : std::optional<Event>
++requestFocus() : void
++setIcon(Vector2u size, const std::uint8_t * pixels) : void
++setJoystickThreshold(float threshold) : void
++setKeyRepeatEnabled(bool enabled) : void
++setMaximumSize(const std::optional<Vector2u> & maximumSize) : void
++setMinimumSize(const std::optional<Vector2u> & minimumSize) : void
++setMouseCursor(const Cursor & cursor) : void
++setMouseCursorGrabbed(bool grabbed) : void
++setMouseCursorVisible(bool visible) : void
++setPosition(Vector2i position) : void
++setSize(Vector2u size) : void
++setTitle(const String & title) : void
++setVisible(bool visible) : void
++waitEvent(Time timeout = = Time::Zero) : std::optional<Event>
+__
+-m_impl : std::unique_ptr<priv::WindowImpl>
+-m_size : Vector2u
+}
+class "sf::Utf<8>" as C_0007763293854646364765
+class C_0007763293854646364765 {
+{static} +count<In>(In begin, In end) : std::size_t
+{static} +decode<In>(In begin, In end, char32_t & output, char32_t replacement = 0) : In
+{static} +encode<Out>(char32_t input, Out output, std::uint8_t replacement = 0) : Out
+{static} +fromAnsi<In,Out>(In begin, In end, Out output, const std::locale & locale = = {}) : Out
+{static} +fromLatin1<In,Out>(In begin, In end, Out output) : Out
+{static} +fromWide<In,Out>(In begin, In end, Out output) : Out
+{static} +next<In>(In begin, In end) : In
+{static} +toAnsi<In,Out>(In begin, In end, Out output, char replacement = 0, const std::locale & locale = = {}) : Out
+{static} +toLatin1<In,Out>(In begin, In end, Out output, char replacement = 0) : Out
+{static} +toUtf16<In,Out>(In begin, In end, Out output) : Out
+{static} +toUtf32<In,Out>(In begin, In end, Out output) : Out
+{static} +toUtf8<In,Out>(In begin, In end, Out output) : Out
+{static} +toWide<In,Out>(In begin, In end, Out output, wchar_t replacement = 0) : Out
+__
+}
+class "sf::Utf<16>" as C_0017247845018098508010
+class C_0017247845018098508010 {
+{static} +count<In>(In begin, In end) : std::size_t
+{static} +decode<In>(In begin, In end, char32_t & output, char32_t replacement = 0) : In
+{static} +encode<Out>(char32_t input, Out output, char16_t replacement = 0) : Out
+{static} +fromAnsi<In,Out>(In begin, In end, Out output, const std::locale & locale = = {}) : Out
+{static} +fromLatin1<In,Out>(In begin, In end, Out output) : Out
+{static} +fromWide<In,Out>(In begin, In end, Out output) : Out
+{static} +next<In>(In begin, In end) : In
+{static} +toAnsi<In,Out>(In begin, In end, Out output, char replacement = 0, const std::locale & locale = = {}) : Out
+{static} +toLatin1<In,Out>(In begin, In end, Out output, char replacement = 0) : Out
+{static} +toUtf16<In,Out>(In begin, In end, Out output) : Out
+{static} +toUtf32<In,Out>(In begin, In end, Out output) : Out
+{static} +toUtf8<In,Out>(In begin, In end, Out output) : Out
+{static} +toWide<In,Out>(In begin, In end, Out output, wchar_t replacement = 0) : Out
+__
+}
+class "sf::Utf<32>" as C_0015945933090683018808
+class C_0015945933090683018808 {
+{static} +count<In>(In begin, In end) : std::size_t
+{static} +decode<In>(In begin, In end, char32_t & output, char32_t replacement = 0) : In
+{static} +decodeAnsi<In>(In input, const std::locale & locale = = {}) : char32_t
+{static} +decodeWide<In>(In input) : char32_t
+{static} +encode<Out>(char32_t input, Out output, char32_t replacement = 0) : Out
+{static} +encodeAnsi<Out>(char32_t codepoint, Out output, char replacement = 0, const std::locale & locale = = {}) : Out
+{static} +encodeWide<Out>(char32_t codepoint, Out output, wchar_t replacement = 0) : Out
+{static} +fromAnsi<In,Out>(In begin, In end, Out output, const std::locale & locale = = {}) : Out
+{static} +fromLatin1<In,Out>(In begin, In end, Out output) : Out
+{static} +fromWide<In,Out>(In begin, In end, Out output) : Out
+{static} +next<In>(In begin, In end) : In
+{static} +toAnsi<In,Out>(In begin, In end, Out output, char replacement = 0, const std::locale & locale = = {}) : Out
+{static} +toLatin1<In,Out>(In begin, In end, Out output, char replacement = 0) : Out
+{static} +toUtf16<In,Out>(In begin, In end, Out output) : Out
+{static} +toUtf32<In,Out>(In begin, In end, Out output) : Out
+{static} +toUtf8<In,Out>(In begin, In end, Out output) : Out
+{static} +toWide<In,Out>(In begin, In end, Out output, wchar_t replacement = 0) : Out
+__
+}
+class "sf::U8StringCharTraits" as C_0007794319109000220929
+class C_0007794319109000220929 {
+{static} +assign(char_type & c1, char_type c2) noexcept : void
+{static} +assign(char_type * s, std::size_t n, char_type c) : char_type *
+{static} +compare(const char_type * s1, const char_type * s2, std::size_t n) : int
+{static} +copy(char_type * s1, const char_type * s2, std::size_t n) : char_type *
+{static} +eof() noexcept : int_type
+{static} +eq(char_type c1, char_type c2) noexcept : bool
+{static} +eq_int_type(int_type i1, int_type i2) noexcept : bool
+{static} +find(const char_type * s, std::size_t n, const char_type & c) : const char_type *
+{static} +length(const char_type * s) : std::size_t
+{static} +lt(char_type c1, char_type c2) noexcept : bool
+{static} +move(char_type * s1, const char_type * s2, std::size_t n) : char_type *
+{static} +not_eof(int_type i) noexcept : int_type
+{static} +to_char_type(int_type i) noexcept : char_type
+{static} +to_int_type(char_type c) noexcept : int_type
+__
+}
+class "sf::String" as C_0014249186020470552177
+class C_0014249186020470552177 {
++String() = default : void
++String(std::nullptr_t, const std::locale &  = = {}) = deleted : void
++String(char ansiChar, const std::locale & locale = = {}) : void
++String(wchar_t wideChar) : void
++String(char32_t utf32Char) : void
++String(const char * ansiString, const std::locale & locale = = {}) : void
++String(const std::string & ansiString, const std::locale & locale = = {}) : void
++String(const wchar_t * wideString) : void
++String(const std::wstring & wideString) : void
++String(const char32_t * utf32String) : void
++String(std::u32string utf32String) : void
+..
++operator+=(const String & right) : String &
++operator[](std::size_t index) const : char32_t
++operator[](std::size_t index) : char32_t &
+..
++begin() : Iterator
++begin() const : ConstIterator
++clear() : void
++end() : Iterator
++end() const : ConstIterator
++erase(std::size_t position, std::size_t count = 1) : void
++find(const String & str, std::size_t start = 0) const : std::size_t
+{static} +fromUtf16<T>(T begin, T end) : String
+{static} +fromUtf32<T>(T begin, T end) : String
+{static} +fromUtf8<T>(T begin, T end) : String
++getData() const : const char32_t *
++getSize() const : std::size_t
++insert(std::size_t position, const String & str) : void
++isEmpty() const : bool
++operator basic_string() const : std::string
++operator basic_string() const : std::wstring
++replace(std::size_t position, std::size_t length, const String & replaceWith) : void
++replace(const String & searchFor, const String & replaceWith) : void
++substring(std::size_t position, std::size_t length = InvalidPos) const : String
++toAnsiString(const std::locale & locale = = {}) const : std::string
++toUtf16() const : std::u16string
++toUtf32() const : std::u32string
++toUtf8() const : sf::U8String
++toWideString() const : std::wstring
+__
+{static} +InvalidPos : const std::size_t
+-m_string : std::u32string
+}
+enum "sf::Joystick::Axis" as C_0007576751538219509015
+enum C_0007576751538219509015 {
+X
+Y
+Z
+R
+U
+V
+PovX
+PovY
+}
+class "sf::Joystick::Identification" as C_0007987725088769355268
+class C_0007987725088769355268 {
+__
++name : String
++productId : unsigned int
++vendorId : unsigned int
+}
+enum "sf::Keyboard::Key" as C_0017836616830871656524
+enum C_0017836616830871656524 {
+Unknown
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+Num0
+Num1
+Num2
+Num3
+Num4
+Num5
+Num6
+Num7
+Num8
+Num9
+Escape
+LControl
+LShift
+LAlt
+LSystem
+RControl
+RShift
+RAlt
+RSystem
+Menu
+LBracket
+RBracket
+Semicolon
+Comma
+Period
+Apostrophe
+Slash
+Backslash
+Grave
+Equal
+Hyphen
+Space
+Enter
+Backspace
+Tab
+PageUp
+PageDown
+End
+Home
+Insert
+Delete
+Add
+Subtract
+Multiply
+Divide
+Left
+Right
+Up
+Down
+Numpad0
+Numpad1
+Numpad2
+Numpad3
+Numpad4
+Numpad5
+Numpad6
+Numpad7
+Numpad8
+Numpad9
+F1
+F2
+F3
+F4
+F5
+F6
+F7
+F8
+F9
+F10
+F11
+F12
+F13
+F14
+F15
+Pause
+}
+enum "sf::Keyboard::Scan" as C_0014176913867754105928
+enum C_0014176913867754105928 {
+Unknown
+A
+B
+C
+D
+E
+F
+G
+H
+I
+J
+K
+L
+M
+N
+O
+P
+Q
+R
+S
+T
+U
+V
+W
+X
+Y
+Z
+Num1
+Num2
+Num3
+Num4
+Num5
+Num6
+Num7
+Num8
+Num9
+Num0
+Enter
+Escape
+Backspace
+Tab
+Space
+Hyphen
+Equal
+LBracket
+RBracket
+Backslash
+Semicolon
+Apostrophe
+Grave
+Comma
+Period
+Slash
+F1
+F2
+F3
+F4
+F5
+F6
+F7
+F8
+F9
+F10
+F11
+F12
+F13
+F14
+F15
+F16
+F17
+F18
+F19
+F20
+F21
+F22
+F23
+F24
+CapsLock
+PrintScreen
+ScrollLock
+Pause
+Insert
+Home
+PageUp
+Delete
+End
+PageDown
+Right
+Left
+Down
+Up
+NumLock
+NumpadDivide
+NumpadMultiply
+NumpadMinus
+NumpadPlus
+NumpadEqual
+NumpadEnter
+NumpadDecimal
+Numpad1
+Numpad2
+Numpad3
+Numpad4
+Numpad5
+Numpad6
+Numpad7
+Numpad8
+Numpad9
+Numpad0
+NonUsBackslash
+Application
+Execute
+ModeChange
+Help
+Menu
+Select
+Redo
+Undo
+Cut
+Copy
+Paste
+VolumeMute
+VolumeUp
+VolumeDown
+MediaPlayPause
+MediaStop
+MediaNextTrack
+MediaPreviousTrack
+LControl
+LShift
+LAlt
+LSystem
+RControl
+RShift
+RAlt
+RSystem
+Back
+Forward
+Refresh
+Stop
+Search
+Favorites
+HomePage
+LaunchApplication1
+LaunchApplication2
+LaunchMail
+LaunchMediaSelect
+}
+enum "sf::Mouse::Button" as C_0000371831408720995659
+enum C_0000371831408720995659 {
+Left
+Right
+Middle
+Extra1
+Extra2
+}
+enum "sf::Mouse::Wheel" as C_0001956163154644856194
+enum C_0001956163154644856194 {
+Vertical
+Horizontal
+}
+class "sf::Vector3<T>" as C_0010020091828933076678
+class C_0010020091828933076678 {
++Vector3() = default : void
++Vector3(T x, T y, T z) : void
+..
++componentWiseDiv(const Vector3<T> & rhs) constexpr const : Vector3<T>
++componentWiseMul(const Vector3<T> & rhs) constexpr const : Vector3<T>
++cross(const Vector3<T> & rhs) constexpr const : Vector3<T>
++dot(const Vector3<T> & rhs) constexpr const : T
++length() const : T
++lengthSquared() constexpr const : T
++normalized() const : Vector3<T>
++operator Vector3<U>() constexpr const : Vector3<U>
+__
++x : T
++y : T
++z : T
+}
+enum "sf::Sensor::Type" as C_0014837423559189292762
+enum C_0014837423559189292762 {
+Accelerometer
+Gyroscope
+Magnetometer
+Gravity
+UserAcceleration
+Orientation
+}
+class "sf::Event" as C_0012092096987439068400
+class C_0012092096987439068400 {
++Event<TEventSubtype>(const TEventSubtype & eventSubtype) : void
+..
++getIf<TEventSubtype>() const : const TEventSubtype *
++is<TEventSubtype>() const : _Bool
+{static} -isInParameterPack<T,Ts...>(const std::variant<Ts...> *) constexpr : _Bool
++visit<T>(T && visitor) const : decltype(auto)
+__
+-m_data : std::variant<Closed,Resized,FocusLost,FocusGained,TextEntered,KeyPressed,KeyReleased,MouseWheelScrolled,MouseButtonPressed,MouseButtonReleased,MouseMoved,MouseMovedRaw,MouseEntered,MouseLeft,JoystickButtonPressed,JoystickButtonReleased,JoystickMoved,JoystickConnected,JoystickDisconnected,TouchBegan,TouchMoved,TouchEnded,SensorChanged>
+}
+class "sf::Event::Closed" as C_0016295996685553266474
+class C_0016295996685553266474 {
+__
+}
+class "sf::Event::Resized" as C_0005233919757528432482
+class C_0005233919757528432482 {
+__
++size : Vector2u
+}
+class "sf::Event::FocusLost" as C_0018111630361467734480
+class C_0018111630361467734480 {
+__
+}
+class "sf::Event::FocusGained" as C_0008056665084550290700
+class C_0008056665084550290700 {
+__
+}
+class "sf::Event::TextEntered" as C_0002884857421837348684
+class C_0002884857421837348684 {
+__
++unicode : char32_t
+}
+class "sf::Event::KeyPressed" as C_0010929786102410158981
+class C_0010929786102410158981 {
+__
++alt : bool
++code : Keyboard::Key
++control : bool
++scancode : Keyboard::Scancode
++shift : bool
++system : bool
+}
+class "sf::Event::KeyReleased" as C_0005480025000997675406
+class C_0005480025000997675406 {
+__
++alt : bool
++code : Keyboard::Key
++control : bool
++scancode : Keyboard::Scancode
++shift : bool
++system : bool
+}
+class "sf::Event::MouseWheelScrolled" as C_0017123314098984180028
+class C_0017123314098984180028 {
+__
++delta : float
++position : Vector2i
++wheel : Mouse::Wheel
+}
+class "sf::Event::MouseButtonPressed" as C_0000783761061781403025
+class C_0000783761061781403025 {
+__
++button : Mouse::Button
++position : Vector2i
+}
+class "sf::Event::MouseButtonReleased" as C_0004757976800047737282
+class C_0004757976800047737282 {
+__
++button : Mouse::Button
++position : Vector2i
+}
+class "sf::Event::MouseMoved" as C_0014928590627532885744
+class C_0014928590627532885744 {
+__
++position : Vector2i
+}
+class "sf::Event::MouseMovedRaw" as C_0009237324577035067382
+class C_0009237324577035067382 {
+__
++delta : Vector2i
+}
+class "sf::Event::MouseEntered" as C_0003285079620837678836
+class C_0003285079620837678836 {
+__
+}
+class "sf::Event::MouseLeft" as C_0001234293007418176048
+class C_0001234293007418176048 {
+__
+}
+class "sf::Event::JoystickButtonPressed" as C_0009810901103772707034
+class C_0009810901103772707034 {
+__
++button : unsigned int
++joystickId : unsigned int
+}
+class "sf::Event::JoystickButtonReleased" as C_0010180502787767778695
+class C_0010180502787767778695 {
+__
++button : unsigned int
++joystickId : unsigned int
+}
+class "sf::Event::JoystickMoved" as C_0018382043566121750555
+class C_0018382043566121750555 {
+__
++axis : Joystick::Axis
++joystickId : unsigned int
++position : float
+}
+class "sf::Event::JoystickConnected" as C_0001124990282888069511
+class C_0001124990282888069511 {
+__
++joystickId : unsigned int
+}
+class "sf::Event::JoystickDisconnected" as C_0016112803728470677339
+class C_0016112803728470677339 {
+__
++joystickId : unsigned int
+}
+class "sf::Event::TouchBegan" as C_0008867698318818663618
+class C_0008867698318818663618 {
+__
++finger : unsigned int
++position : Vector2i
+}
+class "sf::Event::TouchMoved" as C_0002085006478571733836
+class C_0002085006478571733836 {
+__
++finger : unsigned int
++position : Vector2i
+}
+class "sf::Event::TouchEnded" as C_0002637438351666072935
+class C_0002637438351666072935 {
+__
++finger : unsigned int
++position : Vector2i
+}
+class "sf::Vector3<float>" as C_0013347722572445600300
+class C_0013347722572445600300 {
+__
+}
+class "sf::Event::SensorChanged" as C_0010001727113198020108
+class C_0010001727113198020108 {
+__
++type : Sensor::Type
++value : Vector3f
+}
+class "sf::Clock" as C_0007237100060826648862
+class C_0007237100060826648862 {
++getElapsedTime() const : Time
++isRunning() const : bool
++reset() : Time
++restart() : Time
++start() : void
++stop() : void
+__
+-m_refPoint : priv::ClockImpl::time_point
+-m_stopPoint : priv::ClockImpl::time_point
+}
+class "sf::Window" as C_0014138533580693507060
+class C_0014138533580693507060 {
++Window() : void
++Window(VideoMode mode, const String & title, std::uint32_t style = Style::Default, State state = State::Windowed, const ContextSettings & settings = {}) : void
++Window(VideoMode mode, const String & title, State state, const ContextSettings & settings = {}) : void
++Window(WindowHandle handle, const ContextSettings & settings = {}) : void
++Window(const Window &) = deleted : void
++Window(Window &&) noexcept : void
++~Window() : void
+..
++operator=(const Window &) = deleted : Window &
++operator=(Window &&) noexcept : Window &
+..
++close() : void
++create(VideoMode mode, const String & title, std::uint32_t style = Style::Default, State state = State::Windowed) : void
++create(VideoMode mode, const String & title, std::uint32_t style, State state, const ContextSettings & settings) : void
++create(VideoMode mode, const String & title, State state) : void
++create(VideoMode mode, const String & title, State state, const ContextSettings & settings) : void
++create(WindowHandle handle) : void
++create(WindowHandle handle, const ContextSettings & settings) : void
++display() : void
++getSettings() const : const ContextSettings &
+-initialize() : void
++setActive(bool active = true) const : bool
++setFramerateLimit(unsigned int limit) : void
++setVerticalSyncEnabled(bool enabled) : void
+__
+-m_clock : Clock
+-m_context : std::unique_ptr<priv::GlContext>
+-m_frameTimeLimit : Time
+}
+class "sf::RenderWindow" as C_0002399246345708626484
+class C_0002399246345708626484 {
++RenderWindow() = default : void
++RenderWindow(VideoMode mode, const String & title, std::uint32_t style = Style::Default, State state = State::Windowed, const ContextSettings & settings = {}) : void
++RenderWindow(VideoMode mode, const String & title, State state, const ContextSettings & settings = {}) : void
++RenderWindow(WindowHandle handle, const ContextSettings & settings = {}) : void
+..
++getSize() const : Vector2u
++isSrgb() const : bool
+#onCreate() : void
+#onResize() : void
++setActive(bool active = true) : bool
++setIcon(const Image & icon) : void
+__
+-m_defaultFrameBuffer : unsigned int
+}
+class "sf::Vector3<int>" as C_0015268752206312885917
+class C_0015268752206312885917 {
+__
+}
+class "sf::Vector2<bool>" as C_0012856025446106692613
+class C_0012856025446106692613 {
+__
+}
+class "sf::Vector3<bool>" as C_0009506125723074071770
+class C_0009506125723074071770 {
+__
+}
+class "sf::Shader" as C_0014111860805299664473
+class C_0014111860805299664473 {
++Shader() = default : void
++Shader(const Shader &) = deleted : void
++Shader(Shader && source) noexcept : void
++Shader(const std::filesystem::path & filename, Type type) : void
++Shader(const std::filesystem::path & vertexShaderFilename, const std::filesystem::path & fragmentShaderFilename) : void
++Shader(const std::filesystem::path & vertexShaderFilename, const std::filesystem::path & geometryShaderFilename, const std::filesystem::path & fragmentShaderFilename) : void
++Shader(std::string_view shader, Type type) : void
++Shader(std::string_view vertexShader, std::string_view fragmentShader) : void
++Shader(std::string_view vertexShader, std::string_view geometryShader, std::string_view fragmentShader) : void
++Shader(InputStream & stream, Type type) : void
++Shader(InputStream & vertexShaderStream, InputStream & fragmentShaderStream) : void
++Shader(InputStream & vertexShaderStream, InputStream & geometryShaderStream, InputStream & fragmentShaderStream) : void
++~Shader() : void
+..
++operator=(const Shader &) = deleted : Shader &
++operator=(Shader && right) noexcept : Shader &
+..
+{static} +bind(const Shader * shader) : void
+-bindTextures() const : void
+-compile(std::string_view vertexShaderCode, std::string_view geometryShaderCode, std::string_view fragmentShaderCode) : bool
++getNativeHandle() const : unsigned int
+-getUniformLocation(const std::string & name) : int
+{static} +isAvailable() : bool
+{static} +isGeometryAvailable() : bool
++loadFromFile(const std::filesystem::path & vertexShaderFilename, const std::filesystem::path & fragmentShaderFilename) : bool
++loadFromFile(const std::filesystem::path & vertexShaderFilename, const std::filesystem::path & geometryShaderFilename, const std::filesystem::path & fragmentShaderFilename) : bool
++loadFromFile(const std::filesystem::path & filename, Type type) : bool
++loadFromMemory(std::string_view shader, Type type) : bool
++loadFromMemory(std::string_view vertexShader, std::string_view fragmentShader) : bool
++loadFromMemory(std::string_view vertexShader, std::string_view geometryShader, std::string_view fragmentShader) : bool
++loadFromStream(InputStream & stream, Type type) : bool
++loadFromStream(InputStream & vertexShaderStream, InputStream & fragmentShaderStream) : bool
++loadFromStream(InputStream & vertexShaderStream, InputStream & geometryShaderStream, InputStream & fragmentShaderStream) : bool
++setUniform(const std::string & name, float x) : void
++setUniform(const std::string & name, Glsl::Vec2 vector) : void
++setUniform(const std::string & name, const Glsl::Vec3 & vector) : void
++setUniform(const std::string & name, const Glsl::Vec4 & vector) : void
++setUniform(const std::string & name, const Glsl::Bvec4 & vector) : void
++setUniform(const std::string & name, const Glsl::Mat3 & matrix) : void
++setUniform(const std::string & name, const Glsl::Mat4 & matrix) : void
++setUniform(const std::string & name, const Texture & texture) : void
++setUniform(const std::string & name, const Texture && texture) = deleted : void
++setUniform(const std::string & name, CurrentTextureType) : void
++setUniform(const std::string & name, Glsl::Bvec2 vector) : void
++setUniform(const std::string & name, bool x) : void
++setUniform(const std::string & name, const Glsl::Ivec4 & vector) : void
++setUniform(const std::string & name, const Glsl::Ivec3 & vector) : void
++setUniform(const std::string & name, Glsl::Ivec2 vector) : void
++setUniform(const std::string & name, int x) : void
++setUniform(const std::string & name, const Glsl::Bvec3 & vector) : void
++setUniformArray(const std::string & name, const float * scalarArray, std::size_t length) : void
++setUniformArray(const std::string & name, const Glsl::Vec2 * vectorArray, std::size_t length) : void
++setUniformArray(const std::string & name, const Glsl::Vec3 * vectorArray, std::size_t length) : void
++setUniformArray(const std::string & name, const Glsl::Vec4 * vectorArray, std::size_t length) : void
++setUniformArray(const std::string & name, const Glsl::Mat3 * matrixArray, std::size_t length) : void
++setUniformArray(const std::string & name, const Glsl::Mat4 * matrixArray, std::size_t length) : void
+__
+{static} +CurrentTexture : CurrentTextureType
+-m_currentTexture : int
+-m_shaderProgram : unsigned int
+-m_textures : TextureTable
+-m_uniforms : UniformTable
+}
+enum "sf::Shader::Type" as C_0014339838897691555791
+enum C_0014339838897691555791 {
+Vertex
+Geometry
+Fragment
+}
+class "sf::Shader::CurrentTextureType" as C_0016746748646961779163
+class C_0016746748646961779163 {
+__
+}
+class "sf::Sprite" as C_0013825101276781138625
+class C_0013825101276781138625 {
++Sprite(const Texture & texture) : void
++Sprite(const Texture && texture) = deleted : void
++Sprite(const Texture & texture, const IntRect & rectangle) : void
++Sprite(const Texture && texture, const IntRect & rectangle) = deleted : void
+..
+-draw(RenderTarget & target, RenderStates states) const : void
++getColor() const : Color
++getGlobalBounds() const : FloatRect
++getLocalBounds() const : FloatRect
++getTexture() const : const Texture &
++getTextureRect() const : const IntRect &
++setColor(Color color) : void
++setTexture(const Texture & texture, bool resetRect = false) : void
++setTexture(const Texture && texture, bool resetRect = false) = deleted : void
++setTextureRect(const IntRect & rectangle) : void
+-updateVertices() : void
+__
+-m_texture : const Texture *
+-m_textureRect : IntRect
+-m_vertices : std::array<Vertex,4>
+}
+class "sf::Text" as C_0014967632190420031407
+class C_0014967632190420031407 {
++Text(const Font & font, String string = "", unsigned int characterSize = 30) : void
++Text(const Font && font, String string = "", unsigned int characterSize = 30) = deleted : void
+..
+-draw(RenderTarget & target, RenderStates states) const : void
+-ensureGeometryUpdate() const : void
++findCharacterPos(std::size_t index) const : Vector2f
++getCharacterSize() const : unsigned int
++getFillColor() const : Color
++getFont() const : const Font &
++getGlobalBounds() const : FloatRect
++getLetterSpacing() const : float
++getLineSpacing() const : float
++getLocalBounds() const : FloatRect
++getOutlineColor() const : Color
++getOutlineThickness() const : float
++getString() const : const String &
++getStyle() const : std::uint32_t
++setCharacterSize(unsigned int size) : void
++setFillColor(Color color) : void
++setFont(const Font & font) : void
++setFont(const Font && font) = deleted : void
++setLetterSpacing(float spacingFactor) : void
++setLineSpacing(float spacingFactor) : void
++setOutlineColor(Color color) : void
++setOutlineThickness(float thickness) : void
++setString(const String & string) : void
++setStyle(std::uint32_t style) : void
+__
+-m_bounds : FloatRect
+-m_characterSize : unsigned int
+-m_fillColor : Color
+-m_font : const Font *
+-m_fontTextureId : std::uint64_t
+-m_geometryNeedUpdate : bool
+-m_letterSpacingFactor : float
+-m_lineSpacingFactor : float
+-m_outlineColor : Color
+-m_outlineThickness : float
+-m_outlineVertices : VertexArray
+-m_string : String
+-m_style : std::uint32_t
+-m_vertices : VertexArray
+}
+enum "sf::Text::Style" as C_0005299786318393312598
+enum C_0005299786318393312598 {
+Regular
+Bold
+Italic
+Underlined
+StrikeThrough
+}
+class "sf::VertexBuffer" as C_0008771614762830500528
+class C_0008771614762830500528 {
++VertexBuffer() = default : void
++VertexBuffer(PrimitiveType type) : void
++VertexBuffer(Usage usage) : void
++VertexBuffer(PrimitiveType type, Usage usage) : void
++VertexBuffer(const VertexBuffer & copy) : void
++~VertexBuffer() : void
+..
++operator=(const VertexBuffer & right) : VertexBuffer &
+..
+{static} +bind(const VertexBuffer * vertexBuffer) : void
++create(std::size_t vertexCount) : bool
+-draw(RenderTarget & target, RenderStates states) const : void
++getNativeHandle() const : unsigned int
++getPrimitiveType() const : PrimitiveType
++getUsage() const : Usage
++getVertexCount() const : std::size_t
+{static} +isAvailable() : bool
++setPrimitiveType(PrimitiveType type) : void
++setUsage(Usage usage) : void
++swap(VertexBuffer & right) noexcept : void
++update(const Vertex * vertices) : bool
++update(const Vertex * vertices, std::size_t vertexCount, unsigned int offset) : bool
++update(const VertexBuffer & vertexBuffer) : bool
+__
+-m_buffer : unsigned int
+-m_primitiveType : PrimitiveType
+-m_size : std::size_t
+-m_usage : Usage
+}
+enum "sf::VertexBuffer::Usage" as C_0012489082243466622233
+enum C_0012489082243466622233 {
+Stream
+Dynamic
+Static
+}
+class "sf::Context" as C_0004010060986876949083
+class C_0004010060986876949083 {
++Context() : void
++Context(const Context &) = deleted : void
++Context(Context && context) noexcept : void
++Context(const ContextSettings & settings, Vector2u size) : void
++~Context() : void
+..
++operator=(const Context &) = deleted : Context &
++operator=(Context && context) noexcept : Context &
+..
+{static} +getActiveContext() : const Context *
+{static} +getActiveContextId() : std::uint64_t
+{static} +getFunction(const char * name) : GlFunctionPointer
++getSettings() const : const ContextSettings &
+{static} +isExtensionAvailable(std::string_view name) : bool
++setActive(bool active) : bool
+__
+-m_context : std::unique_ptr<priv::GlContext>
+}
+class "sf::Cursor" as C_0007296429146479980602
+class C_0007296429146479980602 {
++Cursor(const Cursor &) = deleted : void
++Cursor(Cursor &&) noexcept : void
++Cursor(const std::uint8_t * pixels, Vector2u size, Vector2u hotspot) : void
++Cursor(Type type) : void
+-Cursor() : void
++~Cursor() : void
+..
++operator=(const Cursor &) = deleted : Cursor &
++operator=(Cursor &&) noexcept : Cursor &
+..
+{static} +createFromPixels(const std::uint8_t * pixels, Vector2u size, Vector2u hotspot) : std::optional<Cursor>
+{static} +createFromSystem(Type type) : std::optional<Cursor>
+-getImpl() const : const priv::CursorImpl &
+__
+-m_impl : std::unique_ptr<priv::CursorImpl>
+}
+enum "sf::Cursor::Type" as C_0006417185019745945088
+enum C_0006417185019745945088 {
+Arrow
+ArrowWait
+Wait
+Text
+Hand
+SizeHorizontal
+SizeVertical
+SizeTopLeftBottomRight
+SizeBottomLeftTopRight
+SizeLeft
+SizeRight
+SizeTop
+SizeBottom
+SizeTopLeft
+SizeBottomRight
+SizeBottomLeft
+SizeTopRight
+SizeAll
+Cross
+Help
+NotAllowed
+}
+class "sf::Exception" as C_0017153146191397932649
+class C_0017153146191397932649 {
+__
+}
+abstract "sf::InputStream" as C_0005706095096769181412
+abstract C_0005706095096769181412 {
++~InputStream() constexpr = default : void
+..
+{abstract} +getSize() = 0 : std::optional<std::size_t>
+{abstract} +read(void * data, std::size_t size) = 0 : std::optional<std::size_t>
+{abstract} +seek(std::size_t position) = 0 : std::optional<std::size_t>
+{abstract} +tell() = 0 : std::optional<std::size_t>
+__
+}
+class "sf::FileInputStream" as C_0001290544337320484346
+class C_0001290544337320484346 {
++FileInputStream() : void
++FileInputStream(const FileInputStream &) = deleted : void
++FileInputStream(FileInputStream &&) noexcept : void
++FileInputStream(const std::filesystem::path & filename) : void
++~FileInputStream() : void
+..
++operator=(const FileInputStream &) = deleted : FileInputStream &
++operator=(FileInputStream &&) noexcept : FileInputStream &
+..
++getSize() : std::optional<std::size_t>
++open(const std::filesystem::path & filename) : bool
++read(void * data, std::size_t size) : std::optional<std::size_t>
++seek(std::size_t position) : std::optional<std::size_t>
++tell() : std::optional<std::size_t>
+__
+-m_file : std::unique_ptr<std::FILE,FileCloser>
+}
+class "sf::FileInputStream::FileCloser" as C_0014718410648199103944
+class C_0014718410648199103944 {
++operator()(std::FILE * file) : void
+__
+}
+class "sf::MemoryInputStream" as C_0008479469970146060577
+class C_0008479469970146060577 {
++MemoryInputStream(const void * data, std::size_t sizeInBytes) : void
+..
++getSize() : std::optional<std::size_t>
++read(void * data, std::size_t size) : std::optional<std::size_t>
++seek(std::size_t position) : std::optional<std::size_t>
++tell() : std::optional<std::size_t>
+__
+-m_data : const std::byte *
+-m_offset : std::size_t
+-m_size : std::size_t
+}
+class "sf::Shader::UniformBinder" as C_0001418807236127488477
+class C_0001418807236127488477 {
+__
+}
+class "sf::Utf<unsigned int N>" as C_0014119529965320642527
+class C_0014119529965320642527 {
+__
+}
+class "sf::Font::FontHandles" as C_0015615547629925050901
+class C_0015615547629925050901 {
+__
+}
+class "std::optional<sf::Rect<T>>" as C_0018444691886310758853
+class C_0018444691886310758853 {
+__
+}
+class "std::array<float,16>" as C_0013275175646841620102
+class C_0013275175646841620102 {
+__
+}
+class "std::vector<sf::Vertex>" as C_0013263861469944568942
+class C_0013263861469944568942 {
+__
+}
+class "std::vector<sf::Vector2<float>>" as C_0004222513172212951887
+class C_0004222513172212951887 {
+__
+}
+class "std::shared_ptr<void>" as C_0004769082386285629818
+class C_0004769082386285629818 {
+__
+}
+class "std::chrono::duration<long long,std::ratio<1,1000000>>" as C_0001160335022694842563
+class C_0001160335022694842563 {
+__
+}
+class "std::chrono::duration<Rep,Period>" as C_0006039718976614322723
+class C_0006039718976614322723 {
+__
+}
+class "std::chrono::time_point<std::chrono::steady_clock>" as C_0007266598699661834830
+class C_0007266598699661834830 {
+__
+}
+class "std::shared_ptr<sf::Font::FontHandles>" as C_0008045575982315436104
+class C_0008045575982315436104 {
+__
+}
+class "std::unordered_map<unsigned int,sf::Font::Page>" as C_0006448016853590831352
+class C_0006448016853590831352 {
+__
+}
+class "std::vector<uint8_t>" as C_0007888167979440707716
+class C_0007888167979440707716 {
+__
+}
+class "std::char_traits<char>" as C_0007500688229146332176
+class C_0007500688229146332176 {
+__
+}
+class "std::allocator<char>" as C_0000465838628272370621
+class C_0000465838628272370621 {
+__
+}
+class "std::string" as C_0005016775666417918015
+class C_0005016775666417918015 {
+__
+}
+class "std::unordered_map<uint64_t,sf::Glyph>" as C_0014772861858876244989
+class C_0014772861858876244989 {
+__
+}
+class "std::vector<sf::Font::Row>" as C_0013062918525800559681
+class C_0013062918525800559681 {
+__
+}
+class "std::basic_string_view<char>" as C_0012008603185729621422
+class C_0012008603185729621422 {
+__
+}
+class "std::optional<std::vector<uint8_t>>" as C_0006466687139639692051
+class C_0006466687139639692051 {
+__
+}
+class "std::array<sf::Vertex,4>" as C_0004093487010804050284
+class C_0004093487010804050284 {
+__
+}
+class "std::unique_ptr<sf::priv::RenderTextureImpl>" as C_0006813625634615768985
+class C_0006813625634615768985 {
+__
+}
+class "std::vector<sf::VideoMode>" as C_0008360501141588095780
+class C_0008360501141588095780 {
+__
+}
+class "std::ratio<1,1000000>" as C_0017274142416883719633
+class C_0017274142416883719633 {
+__
+}
+class "std::optional<sf::Event>" as C_0012856352251434789389
+class C_0012856352251434789389 {
+__
+}
+class "std::optional<sf::Vector2<unsigned int>>" as C_0000483964159203829572
+class C_0000483964159203829572 {
+__
+}
+class "std::unique_ptr<sf::priv::WindowImpl>" as C_0008608455925299514796
+class C_0008608455925299514796 {
+__
+}
+class "std::char_traits<wchar_t>" as C_0000182050653298951142
+class C_0000182050653298951142 {
+__
+}
+class "std::allocator<wchar_t>" as C_0015503406542504525345
+class C_0015503406542504525345 {
+__
+}
+class "std::basic_string<wchar_t,std::char_traits<wchar_t>,std::allocator<wchar_t>>" as C_0001050142891919128217
+class C_0001050142891919128217 {
+__
+}
+class "std::char_traits<char32_t>" as C_0008792676161493445654
+class C_0008792676161493445654 {
+__
+}
+class "std::allocator<char32_t>" as C_0015354739066386411691
+class C_0015354739066386411691 {
+__
+}
+class "std::basic_string<char32_t,std::char_traits<char32_t>,std::allocator<char32_t>>" as C_0006212277660823769789
+class C_0006212277660823769789 {
+__
+}
+class "std::basic_string<uint8_t,sf::U8StringCharTraits>" as C_0017016809883158589461
+class C_0017016809883158589461 {
+__
+}
+class "std::char_traits<char16_t>" as C_0003387090420559434652
+class C_0003387090420559434652 {
+__
+}
+class "std::allocator<char16_t>" as C_0015294789323284750933
+class C_0015294789323284750933 {
+__
+}
+class "std::basic_string<char16_t,std::char_traits<char16_t>,std::allocator<char16_t>>" as C_0007500678651826424523
+class C_0007500678651826424523 {
+__
+}
+class "std::_Simple_types<char32_t>" as C_0013598730427395022751
+class C_0013598730427395022751 {
+__
+}
+class "std::_String_iter_types<char32_t,std::_Default_allocator_traits<std::allocator<char32_t>>::size_type,std::_Default_allocator_traits<std::allocator<char32_t>>::difference_type,std::_Default_allocator_traits<std::allocator<char32_t>>::pointer,std::_Default_allocator_traits<std::allocator<char32_t>>::const_pointer>" as C_0007287986385498481005
+class C_0007287986385498481005 {
+__
+}
+class "std::conditional_t<_Is_simple_alloc_v<_Alty>,std::_Simple_types<char32_t>,std::_String_iter_types<char32_t,std::_Default_allocator_traits<std::allocator<char32_t>>::size_type,std::_Default_allocator_traits<std::allocator<char32_t>>::difference_type,std::_Default_allocator_traits<std::allocator<char32_t>>::pointer,std::_Default_allocator_traits<std::allocator<char32_t>>::const_pointer>>" as C_0011286859754489166101
+class C_0011286859754489166101 {
+__
+}
+class "std::_String_val<std::conditional_t<_Is_simple_alloc_v<_Alty>,std::_Simple_types<char32_t>,std::_String_iter_types<char32_t,std::_Default_allocator_traits<std::allocator<char32_t>>::size_type,std::_Default_allocator_traits<std::allocator<char32_t>>::difference_type,std::_Default_allocator_traits<std::allocator<char32_t>>::pointer,std::_Default_allocator_traits<std::allocator<char32_t>>::const_pointer>>>" as C_0015465697182839500212
+class C_0015465697182839500212 {
+__
+}
+class "std::_String_iterator<std::_String_val<std::conditional_t<_Is_simple_alloc_v<_Alty>,std::_Simple_types<char32_t>,std::_String_iter_types<char32_t,std::_Default_allocator_traits<std::allocator<char32_t>>::size_type,std::_Default_allocator_traits<std::allocator<char32_t>>::difference_type,std::_Default_allocator_traits<std::allocator<char32_t>>::pointer,std::_Default_allocator_traits<std::allocator<char32_t>>::const_pointer>>>>" as C_0000264155013471040524
+class C_0000264155013471040524 {
+__
+}
+class "std::_String_const_iterator<std::_String_val<std::conditional_t<_Is_simple_alloc_v<_Alty>,std::_Simple_types<char32_t>,std::_String_iter_types<char32_t,std::_Default_allocator_traits<std::allocator<char32_t>>::size_type,std::_Default_allocator_traits<std::allocator<char32_t>>::difference_type,std::_Default_allocator_traits<std::allocator<char32_t>>::pointer,std::_Default_allocator_traits<std::allocator<char32_t>>::const_pointer>>>>" as C_0004344338839720125132
+class C_0004344338839720125132 {
+__
+}
+class "std::variant<sf::Event::Closed,sf::Event::Resized,sf::Event::FocusLost,sf::Event::FocusGained,sf::Event::TextEntered,sf::Event::KeyPressed,sf::Event::KeyReleased,sf::Event::MouseWheelScrolled,sf::Event::MouseButtonPressed,sf::Event::MouseButtonReleased,sf::Event::MouseMoved,sf::Event::MouseMovedRaw,sf::Event::MouseEntered,sf::Event::MouseLeft,sf::Event::JoystickButtonPressed,sf::Event::JoystickButtonReleased,sf::Event::JoystickMoved,sf::Event::JoystickConnected,sf::Event::JoystickDisconnected,sf::Event::TouchBegan,sf::Event::TouchMoved,sf::Event::TouchEnded,sf::Event::SensorChanged>" as C_0014476235050978089069
+class C_0014476235050978089069 {
+__
+}
+class "std::unique_ptr<sf::priv::GlContext>" as C_0012055251728844210996
+class C_0012055251728844210996 {
+__
+}
+class "std::array<float,Columns * Rows>" as C_0017723178424505390941
+class C_0017723178424505390941 {
+__
+}
+class "std::unordered_map<int,Texture const*>" as C_0006003388310072178238
+class C_0006003388310072178238 {
+__
+}
+class "std::unordered_map<std::string,int>" as C_0013753860319685090164
+class C_0013753860319685090164 {
+__
+}
+class "std::optional<sf::Cursor>" as C_0012393890318119356605
+class C_0012393890318119356605 {
+__
+}
+class "std::unique_ptr<sf::priv::CursorImpl>" as C_0015772288026045250954
+class C_0015772288026045250954 {
+__
+}
+class "std::optional<size_t>" as C_0007236679419709927622
+class C_0007236679419709927622 {
+__
+}
+class "std::unique_ptr<FILE,sf::FileInputStream::FileCloser>" as C_0001001965169868044143
+class C_0001001965169868044143 {
+__
+}
+class "std::vector<FoodSource>" as C_0009499404279620006288
+class C_0009499404279620006288 {
+__
+}
+class "std::vector<float>" as C_0006372026272121092795
+class C_0006372026272121092795 {
+__
+}
+class "std::vector<std::vector<float>>" as C_0016887368902720553205
+class C_0016887368902720553205 {
+__
+}
+class "std::pair<int,int>" as C_0009301287866340846572
+class C_0009301287866340846572 {
+__
+}
+class "std::pair<float,float>" as C_0001317054499511099892
+class C_0001317054499511099892 {
+__
+}
+class "std::vector<std::pair<float,float>>" as C_0011758375830743961304
+class C_0011758375830743961304 {
+__
+}
+class "std::unordered_map<std::pair<int,int>,Block,PairHash>" as C_0014164157365260911915
+class C_0014164157365260911915 {
+__
+}
+class "std::vector<Node *>" as C_0001616597357922701861
+class C_0001616597357922701861 {
+__
+}
+class "std::unique_ptr<Node>" as C_0016850114018333360462
+class C_0016850114018333360462 {
+__
+}
+class "std::vector<std::unique_ptr<Node>>" as C_0010219503331567738918
+class C_0010219503331567738918 {
+__
+}
+class "std::unique_ptr<Tube>" as C_0016743490428923909620
+class C_0016743490428923909620 {
+__
+}
+class "std::vector<std::unique_ptr<Tube>>" as C_0007968853927910456848
+class C_0007968853927910456848 {
+__
+}
+class "std::mersenne_twister_engine<unsigned int,32,624,397,31,0x9908b0df,11,0xffffffff,7,0x9d2c5680,15,0xefc60000,18,1812433253>" as C_0003048801440335063312
+class C_0003048801440335063312 {
+__
+}
+class "std::vector<Tube *>" as C_0010585633978118769831
+class C_0010585633978118769831 {
+__
+}
+class "std::function<float(Vec2 const&)>" as C_0011258302761973297276
+class C_0011258302761973297276 {
+__
+}
+class "std::function<sf::Color(float)>" as C_0011504060725768378383
+class C_0011504060725768378383 {
+__
+}
+class "std::unique_ptr<MapRenderer>" as C_0011547555201703379537
+class C_0011547555201703379537 {
+__
+}
+class "Vec2" as C_0016480947060394780245
+class C_0016480947060394780245 {
++Vec2() : void
++Vec2(float x, float y) : void
+..
++operator*(float scalar) const : Vec2
++operator+(const Vec2 & other) const : Vec2
++operator-(const Vec2 & other) const : Vec2
++operator==(const Vec2 & other) const : bool
+..
++distanceTo(const Vec2 & other) const : float
++getX() const : float
++getY() const : float
++length() const : float
++normalized() const : Vec2
+__
+-x : float
+-y : float
+}
+class "FoodSource" as C_0005056025782815520436
+class C_0005056025782815520436 {
++FoodSource(const Vec2 & pos, float intensity, float radius) : void
+..
++getFoodSourcePosition() const : const Vec2 &
++getIntensity() const : float
++getRadius() const : float
+__
+-FoodSourcePosition : Vec2
+-Intensity : float
+-Radius : float
+}
+class "FoodField" as C_0004084601524436809123
+class C_0004084601524436809123 {
++FoodField(int width, int height) : void
+..
++addSource(const Vec2 & pos, float intensity, float radius) : void
++clearField() : void
++getFoodGradient(Vec2 pos) const : const Vec2
++getHeight() const : int
++getSources() const : const std::vector<FoodSource> &
++getValueAt(const Vec2 & pos) const : float
++getWidth() const : int
++isInside(const Vec2 & pos) const : bool
++updateField() : void
+__
+-field : std::vector<std::vector<float>>
+-height : int
+-sources : std::vector<FoodSource>
+-width : int
+}
+class "Vec2i" as C_0009093800923266332660
+class C_0009093800923266332660 {
++Vec2i() : void
++Vec2i(int x, int y) : void
+..
++operator*(int scalar) const : Vec2i
++operator+(const Vec2i & other) const : Vec2i
++operator-(const Vec2i & other) const : Vec2i
++operator==(const Vec2i & other) const : bool
+..
++getXi() const : int
++getYi() const : int
+__
+-x : int
+-y : int
+}
+class "Block" as C_0003110547038768958146
+class C_0003110547038768958146 {
+__
++values : float[8][8]
+}
+class "PairHash" as C_0003799383185565239901
+class C_0003799383185565239901 {
++operator()(const std::pair<int,int> & p) const : std::size_t
+__
+}
+class "CollisionField" as C_0006459798591512347185
+class C_0006459798591512347185 {
++CollisionField(Plasmodium & plasmodium, int width, int height, float cellSize) : void
+..
++LineCollisionCheck(const Vec2 & pos, const Vec2 & dir, float range, float CollisionThreshold) : bool
++clearRadarGrid() : void
++getAvailableAngles(Vec2 pos, float baseAngle) : std::vector<std::pair<float,float>>
++getCellRef(const Vec2i & pos) : float &
++getCellRefRadar(const Vec2i & pos) : float &
++getCellSize() const : float
++getCellVal(const Vec2i & posy) const : float
++getCellValRadar(const Vec2i & posy) const : float
++getDensity(const Vec2 & pos) const : float
++getHeight() const : int
++getRadarGrid() const : const std::unordered_map<std::pair<int,int>,Block,PairHash> &
++getSparseGrid() const : const std::unordered_map<std::pair<int,int>,Block,PairHash> &
++getWidth() const : int
++isInside(const Vec2i & gridPos) const : bool
++mark(const Vec2 & pos, float value) : void
++markNode(const Vec2 & pos) : void
++markRadar(const Vec2 & pos, float value) : void
++markTube(const Vec2 & a, const Vec2 & b) : void
++toGridCoords(const Vec2 & pos) const : Vec2i
+__
+-RadarGrid : std::unordered_map<std::pair<int,int>,Block,PairHash>
+-cellSize : float
+-height : int
+-plasmodium : Plasmodium &
+-sparseGrid : std::unordered_map<std::pair<int,int>,Block,PairHash>
+-width : int
+}
+class "FlowModel" as C_0005360776180851071242
+class C_0005360776180851071242 {
++FlowModel(Plasmodium & owner, FoodField & foodField) : void
+..
++CytoplasmTransfer(Node * node) : void
++checkNodeForCorrection(Node * node) : bool
++computeDPinTubes() : void
++computeFlow() : void
++correctNodePressure(Node * node) : void
++normalizedPinTubes(Node * node) : void
++updatePhasesAndPressures(float dt) : void
+__
+-damping : float
+-foodField : FoodField &
+-plasmodium : Plasmodium &
+-resistanceFactor : float
+}
+class "GrowthModel" as C_0013121732307053645363
+class C_0013121732307053645363 {
++GrowthModel(Plasmodium & owner, FoodField & foodField) : void
+..
++computeAngle(Node * parent) : float
++decreaseFailedGrowthFlag(std::vector<Node *> & endingNodes) : void
++generateAngle(float baseAngle, int generated, int direction, const FoodField & foodField, CollisionField & colField, const Vec2 & pos) : float
++getActiveCount(std::vector<Node *> & endingNodes) : int
++growOneStep() : void
++growSingleNode(Node * parent, std::vector<Node *> & endingNodes, CollisionField & colField, std::vector<std::unique_ptr<Node>> & nodes, std::vector<std::unique_ptr<Tube>> & tubes) : void
++howManyBranches() : int
++leftOrRight() : int
++normalizeAngle(float angle) : float
++shouldGrow() : bool
++sortEndings(const FoodField & foodField, std::vector<Node *> & endingNodes) : void
+__
+-branchesDistribution : double[3]
+-foodField : FoodField &
+-foodInfluence : float
+-growthPrecentage : float
+-plasmodium : Plasmodium &
+-rng : std::mt19937
+-skipThreshold : int
+-spread : float
+-timeoutFromGrowing : int
+}
+class "Tube" as C_0012750362327011368383
+class C_0012750362327011368383 {
++Tube(Node * a, Node * b, float diameter, float CytValue) : void
+..
++getCytoplasmAmount() : float
++getDiameter() const : float
++getDirection() const : Vec2
++getLength() const : float
++getNodeA() const : Node *
++getNodeB() const : Node *
++getOtherNode(Node * node) const : Node *
++getdP() : float
++getdPnorm() : float
++setCytoplasmAmount(float value) : void
++setdP(float value) : void
++setdPnorm(float value) : void
+__
+-CytoplasmAmount : float
+-NodeA : Node *
+-NodeB : Node *
+-TubeDiameter : float
+-dP : float
+-dPnorm : float
+}
+class "Node" as C_0007403105002735449741
+class C_0007403105002735449741 {
++Node(const Vec2 & pos) : void
+..
++connectTube(Tube * tube) : void
++getConnectedTubes() const : const std::vector<Tube *> &
++getFailedGrowthFlag() : int
++getPhase() : float
++getPosition() const : const Vec2 &
++getPressure() const : float
++getRankingValue() : float
++setFailedGrowthFlag(int value) : void
++setPhase(float value) : void
++setPressure(float p) : void
++setRankingValue(float value) : void
+__
+-ConnectedTubes : std::vector<Tube *>
+-FailedGrowthFlag : int
+-NodePosition : Vec2
+-RankingValue : float
+-amplitude : float
+-isEnding : bool
+-phase : float
+-pressure : float
+}
+class "Plasmodium" as C_0014658748710652468536
+class C_0014658748710652468536 {
++Plasmodium(const Vec2 & startPosition, int fieldWidth, int fieldHeight, float tubeLength, FoodField & foodField) : void
+..
++addGridStructure(float spacing, float tubeDiameter, float cytValue) : void
++addStartStructure(const Vec2 & centerPos, float radius, float tubeDiameter, float cytValue) : void
++getCollisionField() : CollisionField &
++getEndingNodes() : std::vector<Node *> &
++getNodes() : std::vector<std::unique_ptr<Node>> &
++getStaticCollisionField() const : const CollisionField &
++getStaticEndingNodes() const : const std::vector<Node *> &
++getStaticNodes() const : const std::vector<std::unique_ptr<Node>> &
++getStaticTubes() const : const std::vector<std::unique_ptr<Tube>> &
++getTubeLength() const : float
++getTubes() : std::vector<std::unique_ptr<Tube>> &
++simulateFlow(float dt) : void
++simulateGrowth() : void
+__
+-branchesDistribution : double[3]
+-colField : CollisionField
+-endingNodes : std::vector<Node *>
+-fieldHeight : int
+-fieldWidth : int
+-flowModel : FlowModel
+-growthModel : GrowthModel
+-growthPrecentage : int
+-nodes : std::vector<std::unique_ptr<Node>>
+-skipThreshold : int
+-tubeLength : float
+-tubes : std::vector<std::unique_ptr<Tube>>
+}
+class "FigureMaker" as C_0018075009245413928483
+class C_0018075009245413928483 {
++drawCircleGradientVertexFull(sf::VertexArray & array, const Vec2 & center, float radius, int resolution, std::function<float (const Vec2 &)> getValueAt, std::function<sf::Color (float)> colorFromValue) : void
++drawCircleGradientVertexPart(sf::VertexArray & array, const Vec2 & center, float innerRadius, float outerRadius, sf::Color centerColor, sf::Color outerColor, int segments) : void
++drawSquareVertex(sf::VertexArray & array, const Vec2 & pos, float size, sf::Color color) : void
+__
+}
+enum "RenderMode" as C_0004057557302311585018
+enum C_0004057557302311585018 {
+Food
+Vector
+Pressure
+Collision
+}
+abstract "MapRenderer" as C_0010437762039581943202
+abstract C_0010437762039581943202 {
++MapRenderer() = default : void
++~MapRenderer() constexpr = default : void
+..
+{static} +create(RenderMode mode) : std::unique_ptr<MapRenderer>
+{abstract} +draw(sf::RenderWindow & window, const Plasmodium & plasmodium, const FoodField & foodField) = 0 : void
+__
+}
+class "AppController" as C_0007310296898495958844
+class C_0007310296898495958844 {
++AppController(int mapWidth, int mapHeight, float tubeLength) : void
+..
++run() : void
+__
+-clock : sf::Clock
+-currentMode : RenderMode
+-foodField : FoodField
++isDragging : bool
++lastMousePos : sf::Vector2i
+-mapHeight : int
+-mapWidth : int
+-plasmodium : Plasmodium
+-renderer : std::unique_ptr<MapRenderer>
+-view : sf::View
+-window : sf::RenderWindow
+}
+class "VkAllocationCallbacks" as C_0005803364313622802684
+class C_0005803364313622802684 {
+__
+}
+class "VkSurfaceKHR_T" as C_0005847180061233807991
+class C_0005847180061233807991 {
+__
+}
+class "VkInstance_T" as C_0008330084255853699818
+class C_0008330084255853699818 {
+__
+}
+class "HWND__" as C_0011662571118906908976
+class C_0011662571118906908976 {
+__
+}
+class "CollisionMapRenderer" as C_0017087671444243636288
+class C_0017087671444243636288 {
++draw(sf::RenderWindow & window, const Plasmodium & plasmodium, const FoodField & foodField) : void
+__
+-cachedTexture : sf::RenderTexture
+-textureReady : bool
+}
+class "FoodGradientMapRenderer" as C_0003406718983237376102
+class C_0003406718983237376102 {
++draw(sf::RenderWindow & window, const Plasmodium & plasmodium, const FoodField & foodField) : void
+__
+}
+class "VectorMapRenderer" as C_0002025117861210496523
+class C_0002025117861210496523 {
++draw(sf::RenderWindow & window, const Plasmodium & plasmodium, const FoodField & foodField) : void
+__
+}
+class "PressureMapRenderer" as C_0018071489646731810475
+class C_0018071489646731810475 {
++draw(sf::RenderWindow & window, const Plasmodium & plasmodium, const FoodField & foodField) : void
+__
+}
+C_0003074180387135171260 o-- C_0016212772533335028029 : +colorSrcFactor
+C_0003074180387135171260 o-- C_0016212772533335028029 : +colorDstFactor
+C_0003074180387135171260 o-- C_0008370861180587341432 : +colorEquation
+C_0003074180387135171260 o-- C_0016212772533335028029 : +alphaSrcFactor
+C_0003074180387135171260 o-- C_0016212772533335028029 : +alphaDstFactor
+C_0003074180387135171260 o-- C_0008370861180587341432 : +alphaEquation
+C_0016212772533335028029 --+ C_0003074180387135171260
+C_0008370861180587341432 --+ C_0003074180387135171260
+C_0006364063690316776255 --> C_0006364063690316776255 : +Black
+C_0006364063690316776255 --> C_0006364063690316776255 : +White
+C_0006364063690316776255 --> C_0006364063690316776255 : +Red
+C_0006364063690316776255 --> C_0006364063690316776255 : +Green
+C_0006364063690316776255 --> C_0006364063690316776255 : +Blue
+C_0006364063690316776255 --> C_0006364063690316776255 : +Yellow
+C_0006364063690316776255 --> C_0006364063690316776255 : +Magenta
+C_0006364063690316776255 --> C_0006364063690316776255 : +Cyan
+C_0006364063690316776255 --> C_0006364063690316776255 : +Transparent
+C_0013984197135307140142 ..> C_0016663939089539785978
+C_0013984197135307140142 <.. C_0017453742283676695345 : +<<friend>>
+C_0002026489175357543755 --> C_0002026489175357543755 : +Zero
+C_0004788288537053971142 ..> C_0016252567771201985908
+C_0004788288537053971142 o-- C_0017723178424505390941 : +array
+C_0016433549472661232464 ..> C_0006364063690316776255
+C_0012886995261601095246 ..|> C_0016433549472661232464
+C_0005437076248621562611 ..|> C_0016433549472661232464
+C_0013504916287078799316 ..|> C_0016433549472661232464
+C_0014136004349340772178 ..|> C_0004788288537053971142
+C_0015274480225465552346 ..|> C_0004788288537053971142
+C_0004627585467457410747 ..> C_0002026489175357543755
+C_0006391259665838256528 ..|> C_0006391259665838256528
+C_0006391259665838256528 ..> C_0018444691886310758853
+C_0006391259665838256528 o-- C_0004627585467457410747 : +position
+C_0006391259665838256528 o-- C_0004627585467457410747 : +size
+C_0001913950764470282663 o-- C_0000810974863779692389 : +stencilComparison
+C_0001913950764470282663 o-- C_0003650065682444817958 : +stencilUpdateOperation
+C_0001913950764470282663 o-- C_0012545167759553504157 : +stencilReference
+C_0001913950764470282663 o-- C_0012545167759553504157 : +stencilMask
+C_0008543305591873088061 ..|> C_0004627585467457410747
+C_0000561765358476177806 ..|> C_0006391259665838256528
+C_0016252567771201985908 ..> C_0008543305591873088061
+C_0016252567771201985908 ..> C_0004627585467457410747
+C_0016252567771201985908 ..> C_0000561765358476177806
+C_0016252567771201985908 ..> C_0006391259665838256528
+C_0016252567771201985908 ..> C_0002026489175357543755
+C_0016252567771201985908 o-- C_0013275175646841620102 : -m_matrix
+C_0016252567771201985908 --> C_0016252567771201985908 : +Identity
+C_0016663939089539785978 o-- C_0003074180387135171260 : +blendMode
+C_0016663939089539785978 o-- C_0001913950764470282663 : +stencilMode
+C_0016663939089539785978 o-- C_0016252567771201985908 : +transform
+C_0016663939089539785978 o-- C_0005968636569752299326 : +coordinateType
+C_0016663939089539785978 --> C_0005023859050657617283 : +texture
+C_0016663939089539785978 --> C_0014111860805299664473 : +shader
+C_0016663939089539785978 --> C_0016663939089539785978 : +Default
+C_0003956842734882681644 ..> C_0004627585467457410747
+C_0003956842734882681644 o-- C_0008543305591873088061 : -m_origin
+C_0003956842734882681644 o-- C_0008543305591873088061 : -m_position
+C_0003956842734882681644 o-- C_0002026489175357543755 : -m_rotation
+C_0003956842734882681644 o-- C_0008543305591873088061 : -m_scale
+C_0003956842734882681644 o-- C_0016252567771201985908 : -m_transform
+C_0003956842734882681644 o-- C_0016252567771201985908 : -m_inverseTransform
+C_0008284998712082697286 o-- C_0008543305591873088061 : +position
+C_0008284998712082697286 o-- C_0006364063690316776255 : +color
+C_0008284998712082697286 o-- C_0008543305591873088061 : +texCoords
+C_0002831652694864716719 ..> C_0008284998712082697286
+C_0002831652694864716719 ..> C_0000561765358476177806
+C_0002831652694864716719 ..> C_0006391259665838256528
+C_0002831652694864716719 ..> C_0017453742283676695345
+C_0002831652694864716719 ..> C_0016663939089539785978
+C_0002831652694864716719 o-- C_0013263861469944568942 : -m_vertices
+C_0002831652694864716719 o-- C_0010922010982087413329 : -m_primitiveType
+C_0013984197135307140142 <|-- C_0002831652694864716719
+C_0013221485562044746291 ..|> C_0006391259665838256528
+C_0017612815662001477533 ..> C_0006391259665838256528
+C_0017612815662001477533 ..> C_0008543305591873088061
+C_0017612815662001477533 ..> C_0004627585467457410747
+C_0017612815662001477533 ..> C_0017453742283676695345
+C_0017612815662001477533 ..> C_0016663939089539785978
+C_0017612815662001477533 --> C_0005023859050657617283 : -m_texture
+C_0017612815662001477533 o-- C_0013221485562044746291 : -m_textureRect
+C_0017612815662001477533 o-- C_0006364063690316776255 : -m_fillColor
+C_0017612815662001477533 o-- C_0006364063690316776255 : -m_outlineColor
+C_0017612815662001477533 o-- C_0002831652694864716719 : -m_vertices
+C_0017612815662001477533 o-- C_0002831652694864716719 : -m_outlineVertices
+C_0017612815662001477533 o-- C_0000561765358476177806 : -m_insideBounds
+C_0017612815662001477533 o-- C_0000561765358476177806 : -m_bounds
+C_0013984197135307140142 <|-- C_0017612815662001477533
+C_0003956842734882681644 <|-- C_0017612815662001477533
+C_0014390207501825380033 ..> C_0008543305591873088061
+C_0014390207501825380033 ..> C_0004627585467457410747
+C_0017612815662001477533 <|-- C_0014390207501825380033
+C_0017808527445379357924 ..> C_0008543305591873088061
+C_0017808527445379357924 ..> C_0004627585467457410747
+C_0017808527445379357924 o-- C_0004222513172212951887 : -m_points
+C_0017612815662001477533 <|-- C_0017808527445379357924
+C_0009471121563566894646 o-- C_0000561765358476177806 : +bounds
+C_0009471121563566894646 o-- C_0013221485562044746291 : +textureRect
+C_0017569898583733429903 --> C_0004769082386285629818 : -m_sharedContext
+C_0016179854348609808155 --+ C_0017569898583733429903
+C_0003841765540882482867 ..|> C_0004627585467457410747
+C_0005023859050657617283 ..> C_0013221485562044746291
+C_0005023859050657617283 ..> C_0006391259665838256528
+C_0005023859050657617283 ..> C_0005706095096769181412
+C_0005023859050657617283 ..> C_0014177987467599921909
+C_0005023859050657617283 ..> C_0004627585467457410747
+C_0005023859050657617283 ..> C_0014138533580693507060
+C_0005023859050657617283 ..> C_0005968636569752299326
+C_0005023859050657617283 o-- C_0003841765540882482867 : -m_size
+C_0005023859050657617283 o-- C_0003841765540882482867 : -m_actualSize
+C_0005023859050657617283 <.. C_0017453742283676695345 : +<<friend>>
+C_0005023859050657617283 <.. C_0015081239011663861955 : +<<friend>>
+C_0005023859050657617283 <.. C_0014967632190420031407 : +<<friend>>
+C_0017569898583733429903 <|-- C_0005023859050657617283
+C_0006097649296905328085 ..> C_0005706095096769181412
+C_0006097649296905328085 ..> C_0009471121563566894646
+C_0006097649296905328085 ..> C_0005023859050657617283
+C_0006097649296905328085 ..> C_0009968250023979719176
+C_0006097649296905328085 ..> C_0003841765540882482867
+C_0006097649296905328085 ..> C_0004627585467457410747
+C_0006097649296905328085 ..> C_0013221485562044746291
+C_0006097649296905328085 ..> C_0006391259665838256528
+C_0006097649296905328085 --> C_0008045575982315436104 : -m_fontHandles
+C_0006097649296905328085 --> C_0015615547629925050901 : -m_fontHandles
+C_0006097649296905328085 o-- C_0005744260319301666599 : -m_info
+C_0006097649296905328085 o-- C_0006448016853590831352 : -m_pages
+C_0006097649296905328085 o-- C_0007888167979440707716 : -m_pixelBuffer
+C_0005744260319301666599 --+ C_0006097649296905328085
+C_0005744260319301666599 o-- C_0005016775666417918015 : +family
+C_0016854293995285939641 --+ C_0006097649296905328085
+C_0009968250023979719176 --+ C_0006097649296905328085
+C_0009968250023979719176 o-- C_0014772861858876244989 : +glyphs
+C_0009968250023979719176 o-- C_0005023859050657617283 : +texture
+C_0009968250023979719176 o-- C_0013062918525800559681 : +rows
+C_0014177987467599921909 ..> C_0004627585467457410747
+C_0014177987467599921909 ..> C_0006364063690316776255
+C_0014177987467599921909 ..> C_0005706095096769181412
+C_0014177987467599921909 ..> C_0012008603185729621422
+C_0014177987467599921909 ..> C_0006466687139639692051
+C_0014177987467599921909 ..> C_0013221485562044746291
+C_0014177987467599921909 ..> C_0006391259665838256528
+C_0014177987467599921909 o-- C_0003841765540882482867 : -m_size
+C_0014177987467599921909 o-- C_0007888167979440707716 : -m_pixels
+C_0005035598942010409694 ..> C_0004627585467457410747
+C_0005035598942010409694 o-- C_0008543305591873088061 : -m_size
+C_0017612815662001477533 <|-- C_0005035598942010409694
+C_0001788491171793798153 ..> C_0006391259665838256528
+C_0001788491171793798153 ..> C_0004627585467457410747
+C_0001788491171793798153 o-- C_0008543305591873088061 : -m_center
+C_0001788491171793798153 o-- C_0008543305591873088061 : -m_size
+C_0001788491171793798153 o-- C_0002026489175357543755 : -m_rotation
+C_0001788491171793798153 o-- C_0000561765358476177806 : -m_viewport
+C_0001788491171793798153 o-- C_0000561765358476177806 : -m_scissor
+C_0001788491171793798153 o-- C_0016252567771201985908 : -m_transform
+C_0001788491171793798153 o-- C_0016252567771201985908 : -m_inverseTransform
+C_0006838269797574136908 ..|> C_0004627585467457410747
+C_0017453742283676695345 ..> C_0006364063690316776255
+C_0017453742283676695345 ..> C_0012545167759553504157
+C_0017453742283676695345 ..> C_0013221485562044746291
+C_0017453742283676695345 ..> C_0006391259665838256528
+C_0017453742283676695345 ..> C_0006838269797574136908
+C_0017453742283676695345 ..> C_0004627585467457410747
+C_0017453742283676695345 ..> C_0008543305591873088061
+C_0017453742283676695345 ..> C_0013984197135307140142
+C_0017453742283676695345 ..> C_0016663939089539785978
+C_0017453742283676695345 ..> C_0008284998712082697286
+C_0017453742283676695345 ..> C_0010922010982087413329
+C_0017453742283676695345 ..> C_0008771614762830500528
+C_0017453742283676695345 ..> C_0003841765540882482867
+C_0017453742283676695345 ..> C_0003074180387135171260
+C_0017453742283676695345 ..> C_0001913950764470282663
+C_0017453742283676695345 ..> C_0016252567771201985908
+C_0017453742283676695345 ..> C_0005023859050657617283
+C_0017453742283676695345 ..> C_0005968636569752299326
+C_0017453742283676695345 ..> C_0014111860805299664473
+C_0017453742283676695345 o-- C_0001788491171793798153 : -m_defaultView
+C_0017453742283676695345 o-- C_0001788491171793798153 : -m_view
+C_0017453742283676695345 o-- C_0012755645351991045337 : -m_cache
+C_0012755645351991045337 --+ C_0017453742283676695345
+C_0012755645351991045337 o-- C_0003074180387135171260 : +lastBlendMode
+C_0012755645351991045337 o-- C_0001913950764470282663 : +lastStencilMode
+C_0012755645351991045337 o-- C_0005968636569752299326 : +lastCoordinateType
+C_0012755645351991045337 o-- C_0004093487010804050284 : +vertexCache
+C_0015636552616476636468 --+ C_0005464725295519758502
+C_0015081239011663861955 ..> C_0003841765540882482867
+C_0015081239011663861955 ..> C_0004627585467457410747
+C_0015081239011663861955 ..> C_0005464725295519758502
+C_0015081239011663861955 o-- C_0006813625634615768985 : -m_impl
+C_0015081239011663861955 o-- C_0005023859050657617283 : -m_texture
+C_0017453742283676695345 <|-- C_0015081239011663861955
+C_0005972210110727440196 ..> C_0004627585467457410747
+C_0005972210110727440196 ..> C_0008360501141588095780
+C_0005972210110727440196 o-- C_0003841765540882482867 : +size
+C_0004052049087251117377 ..> C_0006039718976614322723
+C_0004052049087251117377 o-- C_0001160335022694842563 : -m_microseconds
+C_0004052049087251117377 --> C_0004052049087251117377 : +Zero
+C_0000573202853016915041 ..> C_0005972210110727440196
+C_0000573202853016915041 ..> C_0014249186020470552177
+C_0000573202853016915041 ..> C_0011336319940463587373
+C_0000573202853016915041 ..> C_0011662571118906908976
+C_0000573202853016915041 ..> C_0012856352251434789389
+C_0000573202853016915041 ..> C_0012092096987439068400
+C_0000573202853016915041 ..> C_0004052049087251117377
+C_0000573202853016915041 ..> C_0006838269797574136908
+C_0000573202853016915041 ..> C_0004627585467457410747
+C_0000573202853016915041 ..> C_0000483964159203829572
+C_0000573202853016915041 ..> C_0007296429146479980602
+C_0000573202853016915041 ..> C_0008330084255853699818
+C_0000573202853016915041 ..> C_0005847180061233807991
+C_0000573202853016915041 ..> C_0005803364313622802684
+C_0000573202853016915041 o-- C_0008608455925299514796 : -m_impl
+C_0000573202853016915041 o-- C_0003841765540882482867 : -m_size
+C_0000573202853016915041 <.. C_0014138533580693507060 : +<<friend>>
+C_0007763293854646364765 ..|> C_0014119529965320642527
+C_0017247845018098508010 ..|> C_0014119529965320642527
+C_0015945933090683018808 ..|> C_0014119529965320642527
+C_0014249186020470552177 ..> C_0005016775666417918015
+C_0014249186020470552177 ..> C_0001050142891919128217
+C_0014249186020470552177 ..> C_0017016809883158589461
+C_0014249186020470552177 ..> C_0007794319109000220929
+C_0014249186020470552177 ..> C_0007500678651826424523
+C_0014249186020470552177 ..> C_0000264155013471040524
+C_0014249186020470552177 ..> C_0004344338839720125132
+C_0014249186020470552177 o-- C_0006212277660823769789 : -m_string
+C_0007987725088769355268 o-- C_0014249186020470552177 : +name
+C_0012092096987439068400 o-- C_0014476235050978089069 : -m_data
+C_0016295996685553266474 --+ C_0012092096987439068400
+C_0005233919757528432482 --+ C_0012092096987439068400
+C_0005233919757528432482 o-- C_0003841765540882482867 : +size
+C_0018111630361467734480 --+ C_0012092096987439068400
+C_0008056665084550290700 --+ C_0012092096987439068400
+C_0002884857421837348684 --+ C_0012092096987439068400
+C_0010929786102410158981 --+ C_0012092096987439068400
+C_0010929786102410158981 o-- C_0017836616830871656524 : +code
+C_0010929786102410158981 o-- C_0014176913867754105928 : +scancode
+C_0005480025000997675406 --+ C_0012092096987439068400
+C_0005480025000997675406 o-- C_0017836616830871656524 : +code
+C_0005480025000997675406 o-- C_0014176913867754105928 : +scancode
+C_0017123314098984180028 --+ C_0012092096987439068400
+C_0017123314098984180028 o-- C_0001956163154644856194 : +wheel
+C_0017123314098984180028 o-- C_0006838269797574136908 : +position
+C_0000783761061781403025 --+ C_0012092096987439068400
+C_0000783761061781403025 o-- C_0000371831408720995659 : +button
+C_0000783761061781403025 o-- C_0006838269797574136908 : +position
+C_0004757976800047737282 --+ C_0012092096987439068400
+C_0004757976800047737282 o-- C_0000371831408720995659 : +button
+C_0004757976800047737282 o-- C_0006838269797574136908 : +position
+C_0014928590627532885744 --+ C_0012092096987439068400
+C_0014928590627532885744 o-- C_0006838269797574136908 : +position
+C_0009237324577035067382 --+ C_0012092096987439068400
+C_0009237324577035067382 o-- C_0006838269797574136908 : +delta
+C_0003285079620837678836 --+ C_0012092096987439068400
+C_0001234293007418176048 --+ C_0012092096987439068400
+C_0009810901103772707034 --+ C_0012092096987439068400
+C_0010180502787767778695 --+ C_0012092096987439068400
+C_0018382043566121750555 --+ C_0012092096987439068400
+C_0018382043566121750555 o-- C_0007576751538219509015 : +axis
+C_0001124990282888069511 --+ C_0012092096987439068400
+C_0016112803728470677339 --+ C_0012092096987439068400
+C_0008867698318818663618 --+ C_0012092096987439068400
+C_0008867698318818663618 o-- C_0006838269797574136908 : +position
+C_0002085006478571733836 --+ C_0012092096987439068400
+C_0002085006478571733836 o-- C_0006838269797574136908 : +position
+C_0002637438351666072935 --+ C_0012092096987439068400
+C_0002637438351666072935 o-- C_0006838269797574136908 : +position
+C_0013347722572445600300 ..|> C_0010020091828933076678
+C_0010001727113198020108 --+ C_0012092096987439068400
+C_0010001727113198020108 o-- C_0014837423559189292762 : +type
+C_0010001727113198020108 o-- C_0013347722572445600300 : +value
+C_0007237100060826648862 ..> C_0004052049087251117377
+C_0007237100060826648862 o-- C_0007266598699661834830 : -m_refPoint
+C_0007237100060826648862 o-- C_0007266598699661834830 : -m_stopPoint
+C_0014138533580693507060 ..> C_0005972210110727440196
+C_0014138533580693507060 ..> C_0014249186020470552177
+C_0014138533580693507060 ..> C_0011336319940463587373
+C_0014138533580693507060 ..> C_0005464725295519758502
+C_0014138533580693507060 ..> C_0011662571118906908976
+C_0014138533580693507060 o-- C_0012055251728844210996 : -m_context
+C_0014138533580693507060 o-- C_0007237100060826648862 : -m_clock
+C_0014138533580693507060 o-- C_0004052049087251117377 : -m_frameTimeLimit
+C_0000573202853016915041 <|-- C_0014138533580693507060
+C_0017569898583733429903 <|-- C_0014138533580693507060
+C_0002399246345708626484 ..> C_0005972210110727440196
+C_0002399246345708626484 ..> C_0014249186020470552177
+C_0002399246345708626484 ..> C_0011336319940463587373
+C_0002399246345708626484 ..> C_0005464725295519758502
+C_0002399246345708626484 ..> C_0011662571118906908976
+C_0002399246345708626484 ..> C_0003841765540882482867
+C_0002399246345708626484 ..> C_0004627585467457410747
+C_0002399246345708626484 ..> C_0014177987467599921909
+C_0014138533580693507060 <|-- C_0002399246345708626484
+C_0017453742283676695345 <|-- C_0002399246345708626484
+C_0015268752206312885917 ..|> C_0010020091828933076678
+C_0012856025446106692613 ..|> C_0004627585467457410747
+C_0009506125723074071770 ..|> C_0010020091828933076678
+C_0014111860805299664473 ..> C_0014339838897691555791
+C_0014111860805299664473 ..> C_0012008603185729621422
+C_0014111860805299664473 ..> C_0005706095096769181412
+C_0014111860805299664473 ..> C_0005016775666417918015
+C_0014111860805299664473 ..> C_0008543305591873088061
+C_0014111860805299664473 ..> C_0004627585467457410747
+C_0014111860805299664473 ..> C_0013347722572445600300
+C_0014111860805299664473 ..> C_0010020091828933076678
+C_0014111860805299664473 ..> C_0012886995261601095246
+C_0014111860805299664473 ..> C_0016433549472661232464
+C_0014111860805299664473 ..> C_0006838269797574136908
+C_0014111860805299664473 ..> C_0015268752206312885917
+C_0014111860805299664473 ..> C_0005437076248621562611
+C_0014111860805299664473 ..> C_0012856025446106692613
+C_0014111860805299664473 ..> C_0009506125723074071770
+C_0014111860805299664473 ..> C_0013504916287078799316
+C_0014111860805299664473 ..> C_0014136004349340772178
+C_0014111860805299664473 ..> C_0004788288537053971142
+C_0014111860805299664473 ..> C_0015274480225465552346
+C_0014111860805299664473 ..> C_0005023859050657617283
+C_0014111860805299664473 o-- C_0006003388310072178238 : -m_textures
+C_0014111860805299664473 o-- C_0013753860319685090164 : -m_uniforms
+C_0014111860805299664473 --> C_0016746748646961779163 : +CurrentTexture
+C_0017569898583733429903 <|-- C_0014111860805299664473
+C_0014339838897691555791 --+ C_0014111860805299664473
+C_0016746748646961779163 --+ C_0014111860805299664473
+C_0013825101276781138625 ..> C_0006391259665838256528
+C_0013825101276781138625 ..> C_0006364063690316776255
+C_0013825101276781138625 ..> C_0000561765358476177806
+C_0013825101276781138625 ..> C_0017453742283676695345
+C_0013825101276781138625 ..> C_0016663939089539785978
+C_0013825101276781138625 o-- C_0004093487010804050284 : -m_vertices
+C_0013825101276781138625 --> C_0005023859050657617283 : -m_texture
+C_0013825101276781138625 o-- C_0013221485562044746291 : -m_textureRect
+C_0013984197135307140142 <|-- C_0013825101276781138625
+C_0003956842734882681644 <|-- C_0013825101276781138625
+C_0014967632190420031407 ..> C_0008543305591873088061
+C_0014967632190420031407 ..> C_0004627585467457410747
+C_0014967632190420031407 ..> C_0006391259665838256528
+C_0014967632190420031407 ..> C_0017453742283676695345
+C_0014967632190420031407 ..> C_0016663939089539785978
+C_0014967632190420031407 o-- C_0014249186020470552177 : -m_string
+C_0014967632190420031407 --> C_0006097649296905328085 : -m_font
+C_0014967632190420031407 o-- C_0006364063690316776255 : -m_fillColor
+C_0014967632190420031407 o-- C_0006364063690316776255 : -m_outlineColor
+C_0014967632190420031407 o-- C_0002831652694864716719 : -m_vertices
+C_0014967632190420031407 o-- C_0002831652694864716719 : -m_outlineVertices
+C_0014967632190420031407 o-- C_0000561765358476177806 : -m_bounds
+C_0013984197135307140142 <|-- C_0014967632190420031407
+C_0003956842734882681644 <|-- C_0014967632190420031407
+C_0005299786318393312598 --+ C_0014967632190420031407
+C_0008771614762830500528 ..> C_0008284998712082697286
+C_0008771614762830500528 ..> C_0017453742283676695345
+C_0008771614762830500528 ..> C_0016663939089539785978
+C_0008771614762830500528 o-- C_0010922010982087413329 : -m_primitiveType
+C_0008771614762830500528 o-- C_0012489082243466622233 : -m_usage
+C_0013984197135307140142 <|-- C_0008771614762830500528
+C_0017569898583733429903 <|-- C_0008771614762830500528
+C_0012489082243466622233 --+ C_0008771614762830500528
+C_0004010060986876949083 ..> C_0005464725295519758502
+C_0004010060986876949083 ..> C_0012008603185729621422
+C_0004010060986876949083 ..> C_0003841765540882482867
+C_0004010060986876949083 ..> C_0004627585467457410747
+C_0004010060986876949083 o-- C_0012055251728844210996 : -m_context
+C_0017569898583733429903 <|-- C_0004010060986876949083
+C_0007296429146479980602 ..> C_0003841765540882482867
+C_0007296429146479980602 ..> C_0004627585467457410747
+C_0007296429146479980602 ..> C_0006417185019745945088
+C_0007296429146479980602 ..> C_0012393890318119356605
+C_0007296429146479980602 ..> C_0002043947907008310613
+C_0007296429146479980602 o-- C_0015772288026045250954 : -m_impl
+C_0007296429146479980602 <.. C_0000573202853016915041 : +<<friend>>
+C_0006417185019745945088 --+ C_0007296429146479980602
+C_0005706095096769181412 ..> C_0007236679419709927622
+C_0001290544337320484346 ..> C_0007236679419709927622
+C_0001290544337320484346 o-- C_0001001965169868044143 : -m_file
+C_0005706095096769181412 <|-- C_0001290544337320484346
+C_0014718410648199103944 --+ C_0001290544337320484346
+C_0008479469970146060577 ..> C_0007236679419709927622
+C_0005706095096769181412 <|-- C_0008479469970146060577
+C_0001418807236127488477 --+ C_0014111860805299664473
+C_0015615547629925050901 --+ C_0006097649296905328085
+C_0018444691886310758853 ..> C_0006391259665838256528
+C_0013263861469944568942 ..> C_0008284998712082697286
+C_0004222513172212951887 ..> C_0008543305591873088061
+C_0001160335022694842563 ..> C_0017274142416883719633
+C_0005016775666417918015 ..> C_0007500688229146332176
+C_0005016775666417918015 ..> C_0000465838628272370621
+C_0014772861858876244989 ..> C_0009471121563566894646
+C_0006466687139639692051 ..> C_0007888167979440707716
+C_0004093487010804050284 ..> C_0008284998712082697286
+C_0006813625634615768985 ..> C_0011120643883825079166
+C_0008360501141588095780 ..> C_0005972210110727440196
+C_0012856352251434789389 ..> C_0012092096987439068400
+C_0000483964159203829572 ..> C_0003841765540882482867
+C_0008608455925299514796 ..> C_0002866703196460454683
+C_0001050142891919128217 ..> C_0000182050653298951142
+C_0001050142891919128217 ..> C_0015503406542504525345
+C_0006212277660823769789 ..> C_0008792676161493445654
+C_0006212277660823769789 ..> C_0015354739066386411691
+C_0017016809883158589461 ..> C_0007794319109000220929
+C_0007500678651826424523 ..> C_0003387090420559434652
+C_0007500678651826424523 ..> C_0015294789323284750933
+C_0011286859754489166101 ..> C_0013598730427395022751
+C_0011286859754489166101 ..> C_0007287986385498481005
+C_0015465697182839500212 ..> C_0011286859754489166101
+C_0000264155013471040524 ..> C_0015465697182839500212
+C_0004344338839720125132 ..> C_0015465697182839500212
+C_0012055251728844210996 ..> C_0000025662795513792797
+C_0013753860319685090164 ..> C_0005016775666417918015
+C_0012393890318119356605 ..> C_0007296429146479980602
+C_0015772288026045250954 ..> C_0002043947907008310613
+C_0009499404279620006288 ..> C_0005056025782815520436
+C_0016887368902720553205 ..> C_0006372026272121092795
+C_0011758375830743961304 ..> C_0001317054499511099892
+C_0014164157365260911915 ..> C_0009301287866340846572
+C_0014164157365260911915 ..> C_0003110547038768958146
+C_0014164157365260911915 ..> C_0003799383185565239901
+C_0001616597357922701861 ..> C_0007403105002735449741
+C_0016850114018333360462 ..> C_0007403105002735449741
+C_0010219503331567738918 ..> C_0016850114018333360462
+C_0016743490428923909620 ..> C_0012750362327011368383
+C_0007968853927910456848 ..> C_0016743490428923909620
+C_0010585633978118769831 ..> C_0012750362327011368383
+C_0011258302761973297276 ..> C_0016480947060394780245
+C_0011504060725768378383 ..> C_0006364063690316776255
+C_0011547555201703379537 ..> C_0010437762039581943202
+C_0005056025782815520436 o-- C_0016480947060394780245 : -FoodSourcePosition
+C_0004084601524436809123 ..> C_0016480947060394780245
+C_0004084601524436809123 ..> C_0005056025782815520436
+C_0004084601524436809123 o-- C_0016887368902720553205 : -field
+C_0004084601524436809123 o-- C_0009499404279620006288 : -sources
+C_0003799383185565239901 ..> C_0009301287866340846572
+C_0006459798591512347185 ..> C_0016480947060394780245
+C_0006459798591512347185 ..> C_0009093800923266332660
+C_0006459798591512347185 ..> C_0011758375830743961304
+C_0006459798591512347185 ..> C_0003110547038768958146
+C_0006459798591512347185 ..> C_0003799383185565239901
+C_0006459798591512347185 --> C_0014658748710652468536 : -plasmodium
+C_0006459798591512347185 o-- C_0014164157365260911915 : -sparseGrid
+C_0006459798591512347185 o-- C_0014164157365260911915 : -RadarGrid
+C_0005360776180851071242 ..> C_0007403105002735449741
+C_0005360776180851071242 --> C_0014658748710652468536 : -plasmodium
+C_0005360776180851071242 --> C_0004084601524436809123 : -foodField
+C_0013121732307053645363 ..> C_0007403105002735449741
+C_0013121732307053645363 ..> C_0001616597357922701861
+C_0013121732307053645363 ..> C_0006459798591512347185
+C_0013121732307053645363 ..> C_0010219503331567738918
+C_0013121732307053645363 ..> C_0007968853927910456848
+C_0013121732307053645363 ..> C_0012750362327011368383
+C_0013121732307053645363 ..> C_0016480947060394780245
+C_0013121732307053645363 --> C_0014658748710652468536 : -plasmodium
+C_0013121732307053645363 --> C_0004084601524436809123 : -foodField
+C_0013121732307053645363 o-- C_0003048801440335063312 : -rng
+C_0012750362327011368383 ..> C_0016480947060394780245
+C_0012750362327011368383 --> C_0007403105002735449741 : -NodeA
+C_0012750362327011368383 --> C_0007403105002735449741 : -NodeB
+C_0007403105002735449741 ..> C_0012750362327011368383
+C_0007403105002735449741 o-- C_0016480947060394780245 : -NodePosition
+C_0007403105002735449741 o-- C_0010585633978118769831 : -ConnectedTubes
+C_0014658748710652468536 ..> C_0016480947060394780245
+C_0014658748710652468536 ..> C_0004084601524436809123
+C_0014658748710652468536 ..> C_0007403105002735449741
+C_0014658748710652468536 ..> C_0012750362327011368383
+C_0014658748710652468536 o-- C_0006459798591512347185 : -colField
+C_0014658748710652468536 o-- C_0005360776180851071242 : -flowModel
+C_0014658748710652468536 o-- C_0013121732307053645363 : -growthModel
+C_0014658748710652468536 o-- C_0010219503331567738918 : -nodes
+C_0014658748710652468536 o-- C_0001616597357922701861 : -endingNodes
+C_0014658748710652468536 o-- C_0007968853927910456848 : -tubes
+C_0018075009245413928483 ..> C_0002831652694864716719
+C_0018075009245413928483 ..> C_0016480947060394780245
+C_0018075009245413928483 ..> C_0006364063690316776255
+C_0018075009245413928483 ..> C_0011258302761973297276
+C_0018075009245413928483 ..> C_0011504060725768378383
+C_0010437762039581943202 ..> C_0002399246345708626484
+C_0010437762039581943202 ..> C_0014658748710652468536
+C_0010437762039581943202 ..> C_0004084601524436809123
+C_0010437762039581943202 ..> C_0004057557302311585018
+C_0010437762039581943202 ..> C_0011547555201703379537
+C_0007310296898495958844 o-- C_0002399246345708626484 : -window
+C_0007310296898495958844 o-- C_0001788491171793798153 : -view
+C_0007310296898495958844 o-- C_0014658748710652468536 : -plasmodium
+C_0007310296898495958844 o-- C_0004084601524436809123 : -foodField
+C_0007310296898495958844 o-- C_0004057557302311585018 : -currentMode
+C_0007310296898495958844 o-- C_0011547555201703379537 : -renderer
+C_0007310296898495958844 o-- C_0007237100060826648862 : -clock
+C_0007310296898495958844 o-- C_0006838269797574136908 : +lastMousePos
+C_0017087671444243636288 ..> C_0002399246345708626484
+C_0017087671444243636288 ..> C_0014658748710652468536
+C_0017087671444243636288 ..> C_0004084601524436809123
+C_0017087671444243636288 o-- C_0015081239011663861955 : -cachedTexture
+C_0010437762039581943202 <|-- C_0017087671444243636288
+C_0003406718983237376102 ..> C_0002399246345708626484
+C_0003406718983237376102 ..> C_0014658748710652468536
+C_0003406718983237376102 ..> C_0004084601524436809123
+C_0010437762039581943202 <|-- C_0003406718983237376102
+C_0002025117861210496523 ..> C_0002399246345708626484
+C_0002025117861210496523 ..> C_0014658748710652468536
+C_0002025117861210496523 ..> C_0004084601524436809123
+C_0010437762039581943202 <|-- C_0002025117861210496523
+C_0018071489646731810475 ..> C_0002399246345708626484
+C_0018071489646731810475 ..> C_0014658748710652468536
+C_0018071489646731810475 ..> C_0004084601524436809123
+C_0010437762039581943202 <|-- C_0018071489646731810475
+
+'Generated with clang-uml, version 0.6.1
+'LLVM version clang version 19.1.3 (https://github.com/llvm/llvm-project.git ab51eccf88f5321e7c60591c5546b254b6afab99)
+@enduml

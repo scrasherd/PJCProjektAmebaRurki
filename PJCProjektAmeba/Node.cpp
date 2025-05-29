@@ -15,7 +15,7 @@ const std::vector<Tube*>& Node::getConnectedTubes() const {
     return ConnectedTubes;
 }
 
-float Node::getPressure() const {
+const float Node::getPressure() const {
     return pressure;
 }
 
@@ -23,7 +23,7 @@ void Node::setPressure(float p) {
     pressure = p;
 }
 
-float Node::getPhase() {
+const float Node::getPhase() const{
     return phase;
 }
 

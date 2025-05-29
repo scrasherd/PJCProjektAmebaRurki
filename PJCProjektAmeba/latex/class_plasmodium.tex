@@ -1,0 +1,147 @@
+\doxysection{Plasmodium Class Reference}
+\hypertarget{class_plasmodium}{}\label{class_plasmodium}\index{Plasmodium@{Plasmodium}}
+
+
+{\ttfamily \#include $<$Plasmodium.\+h$>$}
+
+
+
+Collaboration diagram for Plasmodium\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{class_plasmodium__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_plasmodium_ae93c64b51eefb2558861dc605bf02fa7}{Plasmodium}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&start\+Position, int field\+Width, int field\+Height, float tube\+Length, \mbox{\hyperlink{class_food_field}{Food\+Field}} \&food\+Field)
+\item 
+void \mbox{\hyperlink{class_plasmodium_a6eb18215ef821700bc606af20086836e}{add\+Start\+Structure}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&center\+Pos, float radius, float tube\+Diameter, float cyt\+Value)
+\item 
+void \mbox{\hyperlink{class_plasmodium_a526484a4905935e86ae2454056567528}{add\+Grid\+Structure}} (float spacing, float tube\+Diameter, float cyt\+Value)
+\item 
+void \mbox{\hyperlink{class_plasmodium_a2d80c36b2740d5f976337ea22fb33421}{simulate\+Growth}} ()
+\item 
+void \mbox{\hyperlink{class_plasmodium_a820404f320ba33fb8f08d2b25e0e273c}{simulate\+Flow}} (float dt)
+\item 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \& \mbox{\hyperlink{class_plasmodium_a0190fad139ba744ea2a1f26240401145}{get\+Static\+Nodes}} () const
+\item 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_tube}{Tube}} $>$ $>$ \& \mbox{\hyperlink{class_plasmodium_a65506b1e72fde257a370f7a73e4b778c}{get\+Static\+Tubes}} () const
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{class_plasmodium_a82c9b311215615ea618fa756d3119534}{get\+Static\+Ending\+Nodes}} () const
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \& \mbox{\hyperlink{class_plasmodium_afb38227d0cb14867a2c5654416de2905}{get\+Nodes}} ()
+\item 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_tube}{Tube}} $>$ $>$ \& \mbox{\hyperlink{class_plasmodium_af1096b6977c9f5471a7f79ddc0440c36}{get\+Tubes}} ()
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{class_plasmodium_a5721523294ea53b05981ad438b87f76e}{get\+Ending\+Nodes}} ()
+\item 
+float \mbox{\hyperlink{class_plasmodium_afa031e9a4e3a42d3cdedbda520b915bf}{get\+Tube\+Length}} () const
+\item 
+\mbox{\hyperlink{class_collision_field}{Collision\+Field}} \& \mbox{\hyperlink{class_plasmodium_ae9d9377e89267a016406d8c2e4b8b8e0}{get\+Collision\+Field}} ()
+\item 
+const \mbox{\hyperlink{class_collision_field}{Collision\+Field}} \& \mbox{\hyperlink{class_plasmodium_a58b82703d6fbd0f425239aa78c01d2cd}{get\+Static\+Collision\+Field}} () const
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_plasmodium_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_plasmodium_ae93c64b51eefb2558861dc605bf02fa7}\index{Plasmodium@{Plasmodium}!Plasmodium@{Plasmodium}}
+\index{Plasmodium@{Plasmodium}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{Plasmodium()}{Plasmodium()}}
+{\footnotesize\ttfamily \label{class_plasmodium_ae93c64b51eefb2558861dc605bf02fa7} 
+Plasmodium\+::\+Plasmodium (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{start\+Position}{, }\item[{int}]{field\+Width}{, }\item[{int}]{field\+Height}{, }\item[{float}]{tube\+Length}{, }\item[{\mbox{\hyperlink{class_food_field}{Food\+Field}} \&}]{food\+Field}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_plasmodium_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_plasmodium_a526484a4905935e86ae2454056567528}\index{Plasmodium@{Plasmodium}!addGridStructure@{addGridStructure}}
+\index{addGridStructure@{addGridStructure}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{addGridStructure()}{addGridStructure()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a526484a4905935e86ae2454056567528} 
+void Plasmodium\+::add\+Grid\+Structure (\begin{DoxyParamCaption}\item[{float}]{spacing}{, }\item[{float}]{tube\+Diameter}{, }\item[{float}]{cyt\+Value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_plasmodium_a6eb18215ef821700bc606af20086836e}\index{Plasmodium@{Plasmodium}!addStartStructure@{addStartStructure}}
+\index{addStartStructure@{addStartStructure}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{addStartStructure()}{addStartStructure()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a6eb18215ef821700bc606af20086836e} 
+void Plasmodium\+::add\+Start\+Structure (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{center\+Pos}{, }\item[{float}]{radius}{, }\item[{float}]{tube\+Diameter}{, }\item[{float}]{cyt\+Value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_plasmodium_ae9d9377e89267a016406d8c2e4b8b8e0}\index{Plasmodium@{Plasmodium}!getCollisionField@{getCollisionField}}
+\index{getCollisionField@{getCollisionField}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getCollisionField()}{getCollisionField()}}
+{\footnotesize\ttfamily \label{class_plasmodium_ae9d9377e89267a016406d8c2e4b8b8e0} 
+\mbox{\hyperlink{class_collision_field}{Collision\+Field}} \& Plasmodium\+::get\+Collision\+Field (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_plasmodium_a5721523294ea53b05981ad438b87f76e}\index{Plasmodium@{Plasmodium}!getEndingNodes@{getEndingNodes}}
+\index{getEndingNodes@{getEndingNodes}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getEndingNodes()}{getEndingNodes()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a5721523294ea53b05981ad438b87f76e} 
+std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \& Plasmodium\+::get\+Ending\+Nodes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_plasmodium_afb38227d0cb14867a2c5654416de2905}\index{Plasmodium@{Plasmodium}!getNodes@{getNodes}}
+\index{getNodes@{getNodes}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getNodes()}{getNodes()}}
+{\footnotesize\ttfamily \label{class_plasmodium_afb38227d0cb14867a2c5654416de2905} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \& Plasmodium\+::get\+Nodes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_plasmodium_a58b82703d6fbd0f425239aa78c01d2cd}\index{Plasmodium@{Plasmodium}!getStaticCollisionField@{getStaticCollisionField}}
+\index{getStaticCollisionField@{getStaticCollisionField}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getStaticCollisionField()}{getStaticCollisionField()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a58b82703d6fbd0f425239aa78c01d2cd} 
+const \mbox{\hyperlink{class_collision_field}{Collision\+Field}} \& Plasmodium\+::get\+Static\+Collision\+Field (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_plasmodium_a82c9b311215615ea618fa756d3119534}\index{Plasmodium@{Plasmodium}!getStaticEndingNodes@{getStaticEndingNodes}}
+\index{getStaticEndingNodes@{getStaticEndingNodes}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getStaticEndingNodes()}{getStaticEndingNodes()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a82c9b311215615ea618fa756d3119534} 
+const std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \& Plasmodium\+::get\+Static\+Ending\+Nodes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_plasmodium_a0190fad139ba744ea2a1f26240401145}\index{Plasmodium@{Plasmodium}!getStaticNodes@{getStaticNodes}}
+\index{getStaticNodes@{getStaticNodes}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getStaticNodes()}{getStaticNodes()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a0190fad139ba744ea2a1f26240401145} 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \& Plasmodium\+::get\+Static\+Nodes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_plasmodium_a65506b1e72fde257a370f7a73e4b778c}\index{Plasmodium@{Plasmodium}!getStaticTubes@{getStaticTubes}}
+\index{getStaticTubes@{getStaticTubes}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getStaticTubes()}{getStaticTubes()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a65506b1e72fde257a370f7a73e4b778c} 
+const std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_tube}{Tube}} $>$ $>$ \& Plasmodium\+::get\+Static\+Tubes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_plasmodium_afa031e9a4e3a42d3cdedbda520b915bf}\index{Plasmodium@{Plasmodium}!getTubeLength@{getTubeLength}}
+\index{getTubeLength@{getTubeLength}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getTubeLength()}{getTubeLength()}}
+{\footnotesize\ttfamily \label{class_plasmodium_afa031e9a4e3a42d3cdedbda520b915bf} 
+float Plasmodium\+::get\+Tube\+Length (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_plasmodium_af1096b6977c9f5471a7f79ddc0440c36}\index{Plasmodium@{Plasmodium}!getTubes@{getTubes}}
+\index{getTubes@{getTubes}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{getTubes()}{getTubes()}}
+{\footnotesize\ttfamily \label{class_plasmodium_af1096b6977c9f5471a7f79ddc0440c36} 
+std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_tube}{Tube}} $>$ $>$ \& Plasmodium\+::get\+Tubes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_plasmodium_a820404f320ba33fb8f08d2b25e0e273c}\index{Plasmodium@{Plasmodium}!simulateFlow@{simulateFlow}}
+\index{simulateFlow@{simulateFlow}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{simulateFlow()}{simulateFlow()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a820404f320ba33fb8f08d2b25e0e273c} 
+void Plasmodium\+::simulate\+Flow (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_plasmodium_a2d80c36b2740d5f976337ea22fb33421}\index{Plasmodium@{Plasmodium}!simulateGrowth@{simulateGrowth}}
+\index{simulateGrowth@{simulateGrowth}!Plasmodium@{Plasmodium}}
+\doxysubsubsection{\texorpdfstring{simulateGrowth()}{simulateGrowth()}}
+{\footnotesize\ttfamily \label{class_plasmodium_a2d80c36b2740d5f976337ea22fb33421} 
+void Plasmodium\+::simulate\+Growth (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_plasmodium_8h}{Plasmodium.\+h}}\item 
+\mbox{\hyperlink{_plasmodium_8cpp}{Plasmodium.\+cpp}}\end{DoxyCompactItemize}

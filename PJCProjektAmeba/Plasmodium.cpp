@@ -11,8 +11,10 @@
 
 Plasmodium::Plasmodium(const Vec2& startPosition, int fieldWidth, int fieldHeight, float tubeLength, FoodField& foodField)
     : colField(*this, static_cast<int>(fieldHeight / 0.1f), static_cast<int>(fieldWidth / 0.1f), 0.1f),
+    radarField(*this, static_cast<int>(fieldHeight / 0.1f), static_cast<int>(fieldWidth / 0.1f), 0.1f),
+    nodeField(*this, static_cast<int>(fieldHeight / 0.2f), static_cast<int>(fieldWidth / 0.2f), 0.2f),
     flowModel(*this, foodField),
-    rng(std::random_device{}()),
+    growthModel(*this, foodField),
     tubeLength(tubeLength) {
     
     //colField.mark(Vec2(0.f, 0.f));         
@@ -22,16 +24,10 @@ Plasmodium::Plasmodium(const Vec2& startPosition, int fieldWidth, int fieldHeigh
     //addGridStructure(tubeLength, 1.0f /* œrednica */, 500.0f /* cytoplazma */);
 }
 
-Vec2 randomDirection(std::mt19937& rng) {
-    std::uniform_real_distribution<float> angleDist(0.0f, 2.0f * 3.14159f);
-    float angle = angleDist(rng);
-    return Vec2(std::cos(angle), std::sin(angle));
-}
-
 void Plasmodium::addStartStructure(const Vec2& centerPos, float radius, float tubeDiameter, float cytValue) {
     // Tworzenie wêz³a centralnego
     auto center = std::make_unique<Node>(centerPos);
-    colField.markNode(centerPos, 1.0f);
+    colField.markNode(centerPos);
     Node* centerPtr = center.get();
     nodes.push_back(std::move(center));
 
@@ -44,13 +40,14 @@ void Plasmodium::addStartStructure(const Vec2& centerPos, float radius, float tu
         auto outer = std::make_unique<Node>(outerPos);
         Node* outerPtr = outer.get();
         nodes.push_back(std::move(outer));
-        colField.markNode(outerPos, 1.0f);
+        colField.markNode(outerPos);
+        nodeField.addNodeToGrid(outerPos, outerPtr);
 
         auto tube = std::make_unique<Tube>(centerPtr, outerPtr, tubeDiameter, cytValue);
         tubes.push_back(std::move(tube));
         colField.markTube(outerPos, centerPos);
 
-        EndingNodes.push_back(outerPtr);
+        endingNodes.push_back(outerPtr);
     }
 
     // Dodanie centralnego wêz³a jako potencjalnego zakoñczenia
@@ -98,7 +95,7 @@ void Plasmodium::addGridStructure(float spacing, float tubeDiameter, float cytVa
 
             // Dodaj tylko krawêdziowe jako EndingNode
             if (x == cols - 1 || y == rows - 1)
-                EndingNodes.push_back(current);
+                endingNodes.push_back(current);
         }
     }
 }
@@ -107,118 +104,48 @@ void Plasmodium::addGridStructure(float spacing, float tubeDiameter, float cytVa
 
 
 
-
-
-void Plasmodium::growOneStep(const FoodField& foodField) {
-    colField.clearRadarGrid(); // czyœæ pole radaru
-
-    if (EndingNodes.empty()) return;
-
-    sortEndings(foodField);
-
-    int activeCount = getActiveCount();
-
-    for (int i = 0; i < activeCount; i++) {
-
-        Node* parent = EndingNodes[i];
-
-        if (shouldGrow) {
-
-            int branchesCount = howManyBranches();
-
-
-        }
-
-    }
-
+void Plasmodium::simulateGrowth() {
+    growthModel.growOneStep();
 }
 
-void Plasmodium::sortEndings(const FoodField& foodField) {
-    std::sort(EndingNodes.begin(), EndingNodes.end(),
+std::vector<Node*> Plasmodium::sortEndings(const FoodField& foodField) {
+    std::vector<Node*> sorted = getEndingNodes(); // zak³adamy: const std::vector<Node*>&
+
+    std::sort(sorted.begin(), sorted.end(),
         [&](Node* A, Node* B) {
             int failA = A->getFailedGrowthFlag();
             int failB = B->getFailedGrowthFlag();
 
             if (failA != failB)
-                return failA < failB; // mniejsze flagi na górze
+                return failA < failB;
 
             float valueA = foodField.getValueAt(A->getPosition());
             float valueB = foodField.getValueAt(B->getPosition());
 
-            return valueA > valueB; // wiêksze wartoœci jedzenia na górze
+            return valueA > valueB;
         });
 
-    //Kolor ranking do wizualizacji
-    int total = static_cast<int>(EndingNodes.size());
-    if (total == 0) return;
+    return sorted;
+}
 
-    for (int i = 0; i < total; ++i) {
-        float rank = 1.0f - static_cast<float>(i) / (total - 1);
+void Plasmodium::assignRankingToNodes(const std::vector<Node*>& nodes) {
+    if (nodes.size() <= 1) return;
+
+    for (size_t i = 0; i < nodes.size(); ++i) {
+        float rank = 1.0f - static_cast<float>(i) / (nodes.size() - 1);
         float value255 = rank * 255.0f;
-        EndingNodes[i]->setRankingValue(value255);
+        nodes[i]->setRankingValue(value255);
     }
-}
-
-
-
-float Plasmodium::computeAngle(Node* parent) {
-    float baseAngle = 0;
-
-    if (parent->getConnectedTubes().empty()) {
-        // Brak rurek – losuj dowolny k¹t
-        std::uniform_real_distribution<float> angleDist(0.0f, 2 * M_PI);
-        baseAngle = angleDist(rng);
-    }else {
-        // Kierunek ostatniej rurki
-        Tube* tube = parent->getConnectedTubes()[0];
-        Node* neighbor = (tube->getNodeA() == parent) ? tube->getNodeB() : tube->getNodeA();
-        Vec2 lastDir = (parent->getPosition() - neighbor->getPosition()).normalized();
-        baseAngle = std::atan2(lastDir.getY(), lastDir.getX());
-    }
-
-    return baseAngle;
-}
-
-float Plasmodium::generateAngle(float baseAngle, int generated, int direction, const FoodField& foodField, const Vec2& position) {
-
-}
-
-float Plasmodium::normalizeAngle(float angle) {
-    while (angle <= -M_PI) angle += 2.0f * M_PI;
-    while (angle > M_PI)  angle -= 2.0f * M_PI;
-    return angle;
-}
-
-void Plasmodium::decreaseFailedGrowthFlag() {
-    for (Node* node : EndingNodes) {
-        int current = node->getFailedGrowthFlag();
-        if (current > 0)
-            node->setFailedGrowthFlag(current - 1);
-    }
-}
-
-int Plasmodium::getActiveCount() {
-    int total = static_cast<int>(EndingNodes.size());
-    int activeCount = std::max(1, total * (growthPrecentage/100));
-    return activeCount;
-}
-
-int Plasmodium::howManyBranches() {
-    std::discrete_distribution<int> branchDist({ branchesDistribution[0], branchesDistribution[1], branchesDistribution[2] });
-    int newBranches = branchDist(rng) + 1;
-    return newBranches;
-}
-
-bool Plasmodium::shouldGrow() {
-    std::uniform_real_distribution<float> skipChance(0.0f, 1.0f);
-    bool shouldGrow = skipChance(rng) >= 0.1f;
-    return shouldGrow;
 }
 
 void Plasmodium::simulateFlow(float dt) {
     flowModel.updatePhasesAndPressures(dt);
     flowModel.computeFlow();
 }
+
+
+
+
 
 
 const std::vector<std::unique_ptr<Node>>& Plasmodium::getNodes() const {
@@ -229,8 +156,29 @@ const std::vector<std::unique_ptr<Tube>>& Plasmodium::getTubes() const {
     return tubes;
 }
 
+const std::vector<Node*>& Plasmodium::getEndingNodes() const {
+    return endingNodes;
+}
+
+
 const CollisionField& Plasmodium::getCollisionField() const {
     return colField;
+}
+
+RadarField& Plasmodium::getRadarField() {
+    return radarField;
+}
+
+const RadarField& Plasmodium::getStaticRadarField() const {
+    return radarField;
+}
+
+NodeField& Plasmodium::getNodeField() {
+    return nodeField;
+}
+
+const NodeField& Plasmodium::getStaticNodeField() const {
+    return nodeField;
 }
 
 float Plasmodium::getTubeLength() const {

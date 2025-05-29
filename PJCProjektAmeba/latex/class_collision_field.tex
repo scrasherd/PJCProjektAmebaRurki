@@ -1,0 +1,195 @@
+\doxysection{Collision\+Field Class Reference}
+\hypertarget{class_collision_field}{}\label{class_collision_field}\index{CollisionField@{CollisionField}}
+
+
+{\ttfamily \#include $<$Collision\+Field.\+h$>$}
+
+
+
+Collaboration diagram for Collision\+Field\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=188pt]{class_collision_field__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_collision_field_a17df3bfc7a990e1f67c64048c1af5834}{Collision\+Field}} (\mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&plasmodium, int width, int height, float cell\+Size)
+\item 
+Vec2i \mbox{\hyperlink{class_collision_field_a08fe10ca210b2d00c55019fb6707301e}{to\+Grid\+Coords}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos) const
+\item 
+bool \mbox{\hyperlink{class_collision_field_a7db5ff2f3d05d08d68c66380c680e02b}{is\+Inside}} (const Vec2i \&grid\+Pos) const
+\item 
+std\+::vector$<$ std\+::pair$<$ float, float $>$ $>$ \mbox{\hyperlink{class_collision_field_a9183227c4c77f965b2219d4020b11e02}{get\+Available\+Angles}} (\mbox{\hyperlink{class_vec2}{Vec2}}(pos), float base\+Angle)
+\item 
+bool \mbox{\hyperlink{class_collision_field_adc6e5faca9c5cfe279ab43ad2cd3c628}{Line\+Collision\+Check}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos, const \mbox{\hyperlink{class_vec2}{Vec2}} \&dir, float range, float Collision\+Threshold)
+\item 
+float \mbox{\hyperlink{class_collision_field_a229b2aff9d4c64cb64b0e0270c302050}{get\+Density}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos) const
+\item 
+float \& \mbox{\hyperlink{class_collision_field_adf3d49fdaa78bc5ffd515eb62aa16ec4}{get\+Cell\+Ref}} (const Vec2i \&pos)
+\item 
+float \mbox{\hyperlink{class_collision_field_a46e19ee1ec4cce31f72d46c0a030f65c}{get\+Cell\+Val}} (const Vec2i \&posy) const
+\item 
+float \& \mbox{\hyperlink{class_collision_field_a5220a1df8f7b478120d5f9a58257595b}{get\+Cell\+Ref\+Radar}} (const Vec2i \&pos)
+\item 
+float \mbox{\hyperlink{class_collision_field_a0548f5338b609e3d49fb0b684a4a27a3}{get\+Cell\+Val\+Radar}} (const Vec2i \&posy) const
+\item 
+void \mbox{\hyperlink{class_collision_field_ae794af0a8340354ea41a1ee055e50ebf}{mark}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos, float value)
+\item 
+void \mbox{\hyperlink{class_collision_field_a51bc43fe529cd20e68afd543623b98c8}{mark\+Tube}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&a, const \mbox{\hyperlink{class_vec2}{Vec2}} \&b)
+\item 
+void \mbox{\hyperlink{class_collision_field_a3c99889bed84a88842b269f357e246d1}{mark\+Node}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos)
+\item 
+void \mbox{\hyperlink{class_collision_field_a5553f4cc4dcb2be629e6029d3a960416}{mark\+Radar}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos, float value)
+\item 
+float \mbox{\hyperlink{class_collision_field_a9f1362cfd9f30f01a7e6f9ae1750fc5c}{get\+Cell\+Size}} () const
+\item 
+int \mbox{\hyperlink{class_collision_field_ac08da22af8faa64137e186fb9f83ef79}{get\+Width}} () const
+\item 
+int \mbox{\hyperlink{class_collision_field_a556dc2fd7c27b34462d053cacde021c2}{get\+Height}} () const
+\item 
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, \mbox{\hyperlink{struct_block}{Block}}, \mbox{\hyperlink{struct_pair_hash}{Pair\+Hash}} $>$ \& \mbox{\hyperlink{class_collision_field_a6ba9449dbc0ce4d90d085dbd302f034a}{get\+Sparse\+Grid}} () const
+\item 
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, \mbox{\hyperlink{struct_block}{Block}}, \mbox{\hyperlink{struct_pair_hash}{Pair\+Hash}} $>$ \& \mbox{\hyperlink{class_collision_field_a68f0f1ce0adca0138b245ff96fbe8219}{get\+Radar\+Grid}} () const
+\item 
+void \mbox{\hyperlink{class_collision_field_aa0456727ac09db40dc005b3707eeb16e}{clear\+Radar\+Grid}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_collision_field_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_collision_field_a17df3bfc7a990e1f67c64048c1af5834}\index{CollisionField@{CollisionField}!CollisionField@{CollisionField}}
+\index{CollisionField@{CollisionField}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{CollisionField()}{CollisionField()}}
+{\footnotesize\ttfamily \label{class_collision_field_a17df3bfc7a990e1f67c64048c1af5834} 
+Collision\+Field\+::\+Collision\+Field (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&}]{plasmodium}{, }\item[{int}]{width}{, }\item[{int}]{height}{, }\item[{float}]{cell\+Size}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_collision_field_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_collision_field_aa0456727ac09db40dc005b3707eeb16e}\index{CollisionField@{CollisionField}!clearRadarGrid@{clearRadarGrid}}
+\index{clearRadarGrid@{clearRadarGrid}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{clearRadarGrid()}{clearRadarGrid()}}
+{\footnotesize\ttfamily \label{class_collision_field_aa0456727ac09db40dc005b3707eeb16e} 
+void Collision\+Field\+::clear\+Radar\+Grid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_a9183227c4c77f965b2219d4020b11e02}\index{CollisionField@{CollisionField}!getAvailableAngles@{getAvailableAngles}}
+\index{getAvailableAngles@{getAvailableAngles}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getAvailableAngles()}{getAvailableAngles()}}
+{\footnotesize\ttfamily \label{class_collision_field_a9183227c4c77f965b2219d4020b11e02} 
+std\+::vector$<$ std\+::pair$<$ float, float $>$ $>$ Collision\+Field\+::get\+Available\+Angles (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vec2}{Vec2}}(pos)}]{}{, }\item[{float}]{base\+Angle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_adf3d49fdaa78bc5ffd515eb62aa16ec4}\index{CollisionField@{CollisionField}!getCellRef@{getCellRef}}
+\index{getCellRef@{getCellRef}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getCellRef()}{getCellRef()}}
+{\footnotesize\ttfamily \label{class_collision_field_adf3d49fdaa78bc5ffd515eb62aa16ec4} 
+float \& Collision\+Field\+::get\+Cell\+Ref (\begin{DoxyParamCaption}\item[{const Vec2i \&}]{pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_a5220a1df8f7b478120d5f9a58257595b}\index{CollisionField@{CollisionField}!getCellRefRadar@{getCellRefRadar}}
+\index{getCellRefRadar@{getCellRefRadar}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getCellRefRadar()}{getCellRefRadar()}}
+{\footnotesize\ttfamily \label{class_collision_field_a5220a1df8f7b478120d5f9a58257595b} 
+float \& Collision\+Field\+::get\+Cell\+Ref\+Radar (\begin{DoxyParamCaption}\item[{const Vec2i \&}]{pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_a9f1362cfd9f30f01a7e6f9ae1750fc5c}\index{CollisionField@{CollisionField}!getCellSize@{getCellSize}}
+\index{getCellSize@{getCellSize}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getCellSize()}{getCellSize()}}
+{\footnotesize\ttfamily \label{class_collision_field_a9f1362cfd9f30f01a7e6f9ae1750fc5c} 
+float Collision\+Field\+::get\+Cell\+Size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_a46e19ee1ec4cce31f72d46c0a030f65c}\index{CollisionField@{CollisionField}!getCellVal@{getCellVal}}
+\index{getCellVal@{getCellVal}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getCellVal()}{getCellVal()}}
+{\footnotesize\ttfamily \label{class_collision_field_a46e19ee1ec4cce31f72d46c0a030f65c} 
+float Collision\+Field\+::get\+Cell\+Val (\begin{DoxyParamCaption}\item[{const Vec2i \&}]{posy}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_a0548f5338b609e3d49fb0b684a4a27a3}\index{CollisionField@{CollisionField}!getCellValRadar@{getCellValRadar}}
+\index{getCellValRadar@{getCellValRadar}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getCellValRadar()}{getCellValRadar()}}
+{\footnotesize\ttfamily \label{class_collision_field_a0548f5338b609e3d49fb0b684a4a27a3} 
+float Collision\+Field\+::get\+Cell\+Val\+Radar (\begin{DoxyParamCaption}\item[{const Vec2i \&}]{posy}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_a229b2aff9d4c64cb64b0e0270c302050}\index{CollisionField@{CollisionField}!getDensity@{getDensity}}
+\index{getDensity@{getDensity}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getDensity()}{getDensity()}}
+{\footnotesize\ttfamily \label{class_collision_field_a229b2aff9d4c64cb64b0e0270c302050} 
+float Collision\+Field\+::get\+Density (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_a556dc2fd7c27b34462d053cacde021c2}\index{CollisionField@{CollisionField}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily \label{class_collision_field_a556dc2fd7c27b34462d053cacde021c2} 
+int Collision\+Field\+::get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_a68f0f1ce0adca0138b245ff96fbe8219}\index{CollisionField@{CollisionField}!getRadarGrid@{getRadarGrid}}
+\index{getRadarGrid@{getRadarGrid}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getRadarGrid()}{getRadarGrid()}}
+{\footnotesize\ttfamily \label{class_collision_field_a68f0f1ce0adca0138b245ff96fbe8219} 
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, \mbox{\hyperlink{struct_block}{Block}}, \mbox{\hyperlink{struct_pair_hash}{Pair\+Hash}} $>$ \& Collision\+Field\+::get\+Radar\+Grid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_a6ba9449dbc0ce4d90d085dbd302f034a}\index{CollisionField@{CollisionField}!getSparseGrid@{getSparseGrid}}
+\index{getSparseGrid@{getSparseGrid}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getSparseGrid()}{getSparseGrid()}}
+{\footnotesize\ttfamily \label{class_collision_field_a6ba9449dbc0ce4d90d085dbd302f034a} 
+const std\+::unordered\+\_\+map$<$ std\+::pair$<$ int, int $>$, \mbox{\hyperlink{struct_block}{Block}}, \mbox{\hyperlink{struct_pair_hash}{Pair\+Hash}} $>$ \& Collision\+Field\+::get\+Sparse\+Grid (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_ac08da22af8faa64137e186fb9f83ef79}\index{CollisionField@{CollisionField}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily \label{class_collision_field_ac08da22af8faa64137e186fb9f83ef79} 
+int Collision\+Field\+::get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_a7db5ff2f3d05d08d68c66380c680e02b}\index{CollisionField@{CollisionField}!isInside@{isInside}}
+\index{isInside@{isInside}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{isInside()}{isInside()}}
+{\footnotesize\ttfamily \label{class_collision_field_a7db5ff2f3d05d08d68c66380c680e02b} 
+bool Collision\+Field\+::is\+Inside (\begin{DoxyParamCaption}\item[{const Vec2i \&}]{grid\+Pos}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_collision_field_adc6e5faca9c5cfe279ab43ad2cd3c628}\index{CollisionField@{CollisionField}!LineCollisionCheck@{LineCollisionCheck}}
+\index{LineCollisionCheck@{LineCollisionCheck}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{LineCollisionCheck()}{LineCollisionCheck()}}
+{\footnotesize\ttfamily \label{class_collision_field_adc6e5faca9c5cfe279ab43ad2cd3c628} 
+bool Collision\+Field\+::\+Line\+Collision\+Check (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{dir}{, }\item[{float}]{range}{, }\item[{float}]{Collision\+Threshold}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_ae794af0a8340354ea41a1ee055e50ebf}\index{CollisionField@{CollisionField}!mark@{mark}}
+\index{mark@{mark}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{mark()}{mark()}}
+{\footnotesize\ttfamily \label{class_collision_field_ae794af0a8340354ea41a1ee055e50ebf} 
+void Collision\+Field\+::mark (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{, }\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_a3c99889bed84a88842b269f357e246d1}\index{CollisionField@{CollisionField}!markNode@{markNode}}
+\index{markNode@{markNode}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{markNode()}{markNode()}}
+{\footnotesize\ttfamily \label{class_collision_field_a3c99889bed84a88842b269f357e246d1} 
+void Collision\+Field\+::mark\+Node (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_a5553f4cc4dcb2be629e6029d3a960416}\index{CollisionField@{CollisionField}!markRadar@{markRadar}}
+\index{markRadar@{markRadar}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{markRadar()}{markRadar()}}
+{\footnotesize\ttfamily \label{class_collision_field_a5553f4cc4dcb2be629e6029d3a960416} 
+void Collision\+Field\+::mark\+Radar (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{, }\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_a51bc43fe529cd20e68afd543623b98c8}\index{CollisionField@{CollisionField}!markTube@{markTube}}
+\index{markTube@{markTube}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{markTube()}{markTube()}}
+{\footnotesize\ttfamily \label{class_collision_field_a51bc43fe529cd20e68afd543623b98c8} 
+void Collision\+Field\+::mark\+Tube (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{a}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{b}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_collision_field_a08fe10ca210b2d00c55019fb6707301e}\index{CollisionField@{CollisionField}!toGridCoords@{toGridCoords}}
+\index{toGridCoords@{toGridCoords}!CollisionField@{CollisionField}}
+\doxysubsubsection{\texorpdfstring{toGridCoords()}{toGridCoords()}}
+{\footnotesize\ttfamily \label{class_collision_field_a08fe10ca210b2d00c55019fb6707301e} 
+Vec2i Collision\+Field\+::to\+Grid\+Coords (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption}) const}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_collision_field_8h}{Collision\+Field.\+h}}\item 
+\mbox{\hyperlink{_collision_field_8cpp}{Collision\+Field.\+cpp}}\end{DoxyCompactItemize}

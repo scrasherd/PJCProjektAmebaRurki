@@ -1,0 +1,131 @@
+\doxysection{Growth\+Model Class Reference}
+\hypertarget{class_growth_model}{}\label{class_growth_model}\index{GrowthModel@{GrowthModel}}
+
+
+{\ttfamily \#include $<$Growth\+Model.\+h$>$}
+
+
+
+Collaboration diagram for Growth\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_growth_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_growth_model_a1a2f6ce853430b2214a1903685af74ba}{Growth\+Model}} (\mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&owner, \mbox{\hyperlink{class_food_field}{Food\+Field}} \&food\+Field)
+\item 
+void \mbox{\hyperlink{class_growth_model_aa77710f58b417681687132dc430597ae}{grow\+One\+Step}} ()
+\item 
+void \mbox{\hyperlink{class_growth_model_a67a817df73299e59e2c13039966e4d78}{grow\+Single\+Node}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent, std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&ending\+Nodes, \mbox{\hyperlink{class_collision_field}{Collision\+Field}} \&col\+Field, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \&nodes, std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_tube}{Tube}} $>$ $>$ \&tubes)
+\item 
+void \mbox{\hyperlink{class_growth_model_a1b41b74da5e69a1211ccc4ce17311a78}{sort\+Endings}} (const \mbox{\hyperlink{class_food_field}{Food\+Field}} \&food\+Field, std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&ending\+Nodes)
+\item 
+float \mbox{\hyperlink{class_growth_model_afbe0ca7c67649e0a13794474cf681a72}{compute\+Angle}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}parent)
+\item 
+float \mbox{\hyperlink{class_growth_model_af59f905049f8c1ab00b56136ab1e52b5}{generate\+Angle}} (float base\+Angle, int generated, int direction, const \mbox{\hyperlink{class_food_field}{Food\+Field}} \&food\+Field, \mbox{\hyperlink{class_collision_field}{Collision\+Field}} \&col\+Field, const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos)
+\item 
+float \mbox{\hyperlink{class_growth_model_a376b6aa1fdeefd0009bcae9f22a4d292}{normalize\+Angle}} (float angle)
+\item 
+void \mbox{\hyperlink{class_growth_model_ac5edf8498f442a3d1b8f2f0386464e49}{decrease\+Failed\+Growth\+Flag}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&ending\+Nodes)
+\item 
+int \mbox{\hyperlink{class_growth_model_a3824c6940534b02a23555a1568375a05}{get\+Active\+Count}} (std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&ending\+Nodes)
+\item 
+bool \mbox{\hyperlink{class_growth_model_aa246cb00e733c490395a4cc6413b3726}{should\+Grow}} ()
+\item 
+int \mbox{\hyperlink{class_growth_model_a1560b78f7394b653238edce4eb7b454f}{how\+Many\+Branches}} ()
+\item 
+int \mbox{\hyperlink{class_growth_model_a026b494cfc1818dd0fa83505debb47cf}{left\+Or\+Right}} ()
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_growth_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_growth_model_a1a2f6ce853430b2214a1903685af74ba}\index{GrowthModel@{GrowthModel}!GrowthModel@{GrowthModel}}
+\index{GrowthModel@{GrowthModel}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{GrowthModel()}{GrowthModel()}}
+{\footnotesize\ttfamily \label{class_growth_model_a1a2f6ce853430b2214a1903685af74ba} 
+Growth\+Model\+::\+Growth\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&}]{owner}{, }\item[{\mbox{\hyperlink{class_food_field}{Food\+Field}} \&}]{food\+Field}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_growth_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_growth_model_afbe0ca7c67649e0a13794474cf681a72}\index{GrowthModel@{GrowthModel}!computeAngle@{computeAngle}}
+\index{computeAngle@{computeAngle}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{computeAngle()}{computeAngle()}}
+{\footnotesize\ttfamily \label{class_growth_model_afbe0ca7c67649e0a13794474cf681a72} 
+float Growth\+Model\+::compute\+Angle (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_ac5edf8498f442a3d1b8f2f0386464e49}\index{GrowthModel@{GrowthModel}!decreaseFailedGrowthFlag@{decreaseFailedGrowthFlag}}
+\index{decreaseFailedGrowthFlag@{decreaseFailedGrowthFlag}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{decreaseFailedGrowthFlag()}{decreaseFailedGrowthFlag()}}
+{\footnotesize\ttfamily \label{class_growth_model_ac5edf8498f442a3d1b8f2f0386464e49} 
+void Growth\+Model\+::decrease\+Failed\+Growth\+Flag (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{ending\+Nodes}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_af59f905049f8c1ab00b56136ab1e52b5}\index{GrowthModel@{GrowthModel}!generateAngle@{generateAngle}}
+\index{generateAngle@{generateAngle}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{generateAngle()}{generateAngle()}}
+{\footnotesize\ttfamily \label{class_growth_model_af59f905049f8c1ab00b56136ab1e52b5} 
+float Growth\+Model\+::generate\+Angle (\begin{DoxyParamCaption}\item[{float}]{base\+Angle}{, }\item[{int}]{generated}{, }\item[{int}]{direction}{, }\item[{const \mbox{\hyperlink{class_food_field}{Food\+Field}} \&}]{food\+Field}{, }\item[{\mbox{\hyperlink{class_collision_field}{Collision\+Field}} \&}]{col\+Field}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_a3824c6940534b02a23555a1568375a05}\index{GrowthModel@{GrowthModel}!getActiveCount@{getActiveCount}}
+\index{getActiveCount@{getActiveCount}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{getActiveCount()}{getActiveCount()}}
+{\footnotesize\ttfamily \label{class_growth_model_a3824c6940534b02a23555a1568375a05} 
+int Growth\+Model\+::get\+Active\+Count (\begin{DoxyParamCaption}\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{ending\+Nodes}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_aa77710f58b417681687132dc430597ae}\index{GrowthModel@{GrowthModel}!growOneStep@{growOneStep}}
+\index{growOneStep@{growOneStep}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{growOneStep()}{growOneStep()}}
+{\footnotesize\ttfamily \label{class_growth_model_aa77710f58b417681687132dc430597ae} 
+void Growth\+Model\+::grow\+One\+Step (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_a67a817df73299e59e2c13039966e4d78}\index{GrowthModel@{GrowthModel}!growSingleNode@{growSingleNode}}
+\index{growSingleNode@{growSingleNode}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{growSingleNode()}{growSingleNode()}}
+{\footnotesize\ttfamily \label{class_growth_model_a67a817df73299e59e2c13039966e4d78} 
+void Growth\+Model\+::grow\+Single\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{parent}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{ending\+Nodes}{, }\item[{\mbox{\hyperlink{class_collision_field}{Collision\+Field}} \&}]{col\+Field}{, }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_node}{Node}} $>$ $>$ \&}]{nodes}{, }\item[{std\+::vector$<$ std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_tube}{Tube}} $>$ $>$ \&}]{tubes}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_a1560b78f7394b653238edce4eb7b454f}\index{GrowthModel@{GrowthModel}!howManyBranches@{howManyBranches}}
+\index{howManyBranches@{howManyBranches}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{howManyBranches()}{howManyBranches()}}
+{\footnotesize\ttfamily \label{class_growth_model_a1560b78f7394b653238edce4eb7b454f} 
+int Growth\+Model\+::how\+Many\+Branches (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_a026b494cfc1818dd0fa83505debb47cf}\index{GrowthModel@{GrowthModel}!leftOrRight@{leftOrRight}}
+\index{leftOrRight@{leftOrRight}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{leftOrRight()}{leftOrRight()}}
+{\footnotesize\ttfamily \label{class_growth_model_a026b494cfc1818dd0fa83505debb47cf} 
+int Growth\+Model\+::left\+Or\+Right (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_a376b6aa1fdeefd0009bcae9f22a4d292}\index{GrowthModel@{GrowthModel}!normalizeAngle@{normalizeAngle}}
+\index{normalizeAngle@{normalizeAngle}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{normalizeAngle()}{normalizeAngle()}}
+{\footnotesize\ttfamily \label{class_growth_model_a376b6aa1fdeefd0009bcae9f22a4d292} 
+float Growth\+Model\+::normalize\+Angle (\begin{DoxyParamCaption}\item[{float}]{angle}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_aa246cb00e733c490395a4cc6413b3726}\index{GrowthModel@{GrowthModel}!shouldGrow@{shouldGrow}}
+\index{shouldGrow@{shouldGrow}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{shouldGrow()}{shouldGrow()}}
+{\footnotesize\ttfamily \label{class_growth_model_aa246cb00e733c490395a4cc6413b3726} 
+bool Growth\+Model\+::should\+Grow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_growth_model_a1b41b74da5e69a1211ccc4ce17311a78}\index{GrowthModel@{GrowthModel}!sortEndings@{sortEndings}}
+\index{sortEndings@{sortEndings}!GrowthModel@{GrowthModel}}
+\doxysubsubsection{\texorpdfstring{sortEndings()}{sortEndings()}}
+{\footnotesize\ttfamily \label{class_growth_model_a1b41b74da5e69a1211ccc4ce17311a78} 
+void Growth\+Model\+::sort\+Endings (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_food_field}{Food\+Field}} \&}]{food\+Field}{, }\item[{std\+::vector$<$ \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} $>$ \&}]{ending\+Nodes}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_growth_model_8h}{Growth\+Model.\+h}}\item 
+\mbox{\hyperlink{_growth_model_8cpp}{Growth\+Model.\+cpp}}\end{DoxyCompactItemize}

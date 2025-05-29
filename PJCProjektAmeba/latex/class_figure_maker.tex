@@ -1,0 +1,54 @@
+\doxysection{Figure\+Maker Class Reference}
+\hypertarget{class_figure_maker}{}\label{class_figure_maker}\index{FigureMaker@{FigureMaker}}
+
+
+{\ttfamily \#include $<$Figure\+Maker.\+h$>$}
+
+
+
+Collaboration diagram for Figure\+Maker\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{class_figure_maker__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_figure_maker_a02dcd20a7f66ddc5d37556c76679b127}{draw\+Square\+Vertex}} (sf\+::\+Vertex\+Array \&array, const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos, float size, sf\+::\+Color color)
+\item 
+void \mbox{\hyperlink{class_figure_maker_ab934b447571173bea9a7b7d04cb0fdc5}{draw\+Circle\+Gradient\+Vertex\+Part}} (sf\+::\+Vertex\+Array \&array, const \mbox{\hyperlink{class_vec2}{Vec2}} \&center, float inner\+Radius, float outer\+Radius, sf\+::\+Color center\+Color, sf\+::\+Color outer\+Color, int segments)
+\item 
+void \mbox{\hyperlink{class_figure_maker_a8548c0388a13224ecacc031a1e8ed683}{draw\+Circle\+Gradient\+Vertex\+Full}} (sf\+::\+Vertex\+Array \&array, const \mbox{\hyperlink{class_vec2}{Vec2}} \&center, float radius, int resolution, std\+::function$<$ float(const \mbox{\hyperlink{class_vec2}{Vec2}} \&)$>$ get\+Value\+At, std\+::function$<$ sf\+::\+Color(float)$>$ color\+From\+Value)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_figure_maker_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_figure_maker_a8548c0388a13224ecacc031a1e8ed683}\index{FigureMaker@{FigureMaker}!drawCircleGradientVertexFull@{drawCircleGradientVertexFull}}
+\index{drawCircleGradientVertexFull@{drawCircleGradientVertexFull}!FigureMaker@{FigureMaker}}
+\doxysubsubsection{\texorpdfstring{drawCircleGradientVertexFull()}{drawCircleGradientVertexFull()}}
+{\footnotesize\ttfamily \label{class_figure_maker_a8548c0388a13224ecacc031a1e8ed683} 
+void Figure\+Maker\+::draw\+Circle\+Gradient\+Vertex\+Full (\begin{DoxyParamCaption}\item[{sf\+::\+Vertex\+Array \&}]{array}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{center}{, }\item[{float}]{radius}{, }\item[{int}]{resolution}{, }\item[{std\+::function$<$ float(const \mbox{\hyperlink{class_vec2}{Vec2}} \&)$>$}]{get\+Value\+At}{, }\item[{std\+::function$<$ sf\+::\+Color(float)$>$}]{color\+From\+Value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_figure_maker_ab934b447571173bea9a7b7d04cb0fdc5}\index{FigureMaker@{FigureMaker}!drawCircleGradientVertexPart@{drawCircleGradientVertexPart}}
+\index{drawCircleGradientVertexPart@{drawCircleGradientVertexPart}!FigureMaker@{FigureMaker}}
+\doxysubsubsection{\texorpdfstring{drawCircleGradientVertexPart()}{drawCircleGradientVertexPart()}}
+{\footnotesize\ttfamily \label{class_figure_maker_ab934b447571173bea9a7b7d04cb0fdc5} 
+void Figure\+Maker\+::draw\+Circle\+Gradient\+Vertex\+Part (\begin{DoxyParamCaption}\item[{sf\+::\+Vertex\+Array \&}]{array}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{center}{, }\item[{float}]{inner\+Radius}{, }\item[{float}]{outer\+Radius}{, }\item[{sf\+::\+Color}]{center\+Color}{, }\item[{sf\+::\+Color}]{outer\+Color}{, }\item[{int}]{segments}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_figure_maker_a02dcd20a7f66ddc5d37556c76679b127}\index{FigureMaker@{FigureMaker}!drawSquareVertex@{drawSquareVertex}}
+\index{drawSquareVertex@{drawSquareVertex}!FigureMaker@{FigureMaker}}
+\doxysubsubsection{\texorpdfstring{drawSquareVertex()}{drawSquareVertex()}}
+{\footnotesize\ttfamily \label{class_figure_maker_a02dcd20a7f66ddc5d37556c76679b127} 
+void Figure\+Maker\+::draw\+Square\+Vertex (\begin{DoxyParamCaption}\item[{sf\+::\+Vertex\+Array \&}]{array}{, }\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{, }\item[{float}]{size}{, }\item[{sf\+::\+Color}]{color}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_figure_maker_8h}{Figure\+Maker.\+h}}\item 
+\mbox{\hyperlink{_figure_maker_8cpp}{Figure\+Maker.\+cpp}}\end{DoxyCompactItemize}

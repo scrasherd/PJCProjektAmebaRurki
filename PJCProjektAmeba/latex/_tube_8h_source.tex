@@ -1,0 +1,45 @@
+\doxysection{Tube.\+h}
+\hypertarget{_tube_8h_source}{}\label{_tube_8h_source}\mbox{\hyperlink{_tube_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_vec2_8h}{Vec2.h}}"{}}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_node}{Node}};}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tube_a7a16959adc728a4733bb2bb9688da6bd}{Tube}}\ \{}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ NodeA;}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ NodeB;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{float}\ TubeDiameter;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{float}\ dP;}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{float}\ dPnorm;\ \textcolor{comment}{//pole\ pomocniczne\ na\ umieszczenie\ znormalizowanej\ wartoœci\ dP\ dla\ ka¿dego\ wêz³a\ }}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ CytoplasmAmount;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_tube_a7a16959adc728a4733bb2bb9688da6bd}{Tube}}(\mbox{\hyperlink{class_node}{Node}}*\ a,\ \mbox{\hyperlink{class_node}{Node}}*\ b,\ \textcolor{keywordtype}{float}\ diameter,\ \textcolor{keywordtype}{float}\ CytValue);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_tube_af3e92cdefec019c9c448a859aeb6612e}{getNodeA}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_tube_ad91af32d5c4595102c4a20cf1dd1bdf5}{getNodeB}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_node}{Node}}*\ \mbox{\hyperlink{class_tube_ad812e79cd103fabc518208aa1b17462f}{getOtherNode}}(\mbox{\hyperlink{class_node}{Node}}*\ node)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tube_aef54bcaf6988f517d804fea56f6b969f}{getDiameter}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\ \mbox{\hyperlink{class_tube_a92db2d17a459d2a4d4db9765a0fa3e75}{getDirection}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tube_ad3c194a0f9977e212ac425aefe4032bf}{getLength}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tube_ac01e74e2ab4e5015d04edc29b749329f}{getdP}}();}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tube_ada4ea54367aefd9e3c98935ab6794463}{setdP}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tube_a42e5f4c3b63e20964cdeac789c07d07d}{getdPnorm}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tube_a0bb1ac5d9a7cdfd14b9bcfce1f0b7dac}{setdPnorm}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_tube_ac68f98f59a19ce84b4cf006f3bb85fe0}{getCytoplasmAmount}}();}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_tube_a9edfc5dbb0b8890ba5196e46302eae3a}{setCytoplasmAmount}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00040\ \};}
+
+\end{DoxyCode}

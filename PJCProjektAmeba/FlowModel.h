@@ -10,13 +10,13 @@ private:
     Plasmodium& plasmodium;
     FoodField& foodField;
 
-    float resistanceFactor = 1.0f; // opór rurki ~ 1 / (œrednica^2)
-    float damping = 0.2f;          // jak szybko zmienia siê ciœnienie
+    float resistanceFactor = 1.0f; 
+    float damping = 0.2f;
 
 public:
     FlowModel(Plasmodium& owner, FoodField& foodField);
 
-    //void updateFlow(float dt); // jedna iteracja przep³ywu
+    //void updateFlow(float dt);
 
     void updatePhasesAndPressures(float dt);
 

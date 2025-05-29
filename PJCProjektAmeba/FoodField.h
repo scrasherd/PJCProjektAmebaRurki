@@ -18,11 +18,12 @@ public:
     void updateField();
 
     const std::vector<FoodSource>& getSources() const;
-
  
     bool isInside(const Vec2& pos) const;
     float getValueAt(const Vec2& pos) const;
 
     int getWidth() const { return width; }
     int getHeight() const { return height; }
+
+    const Vec2 getFoodGradient(Vec2 pos) const;
 };

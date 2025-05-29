@@ -8,7 +8,7 @@ AppController::AppController(int mapWidth, int mapHeight, float tubeLength) :
 {
     view = window.getDefaultView();
 
-    foodField.addSource(Vec2((mapHeight / 2.0f) + 50.0f, (mapWidth / 2.0f) - 50.0f), 1.0f, 100.0f);
+    foodField.addSource(Vec2((mapHeight / 2.0f) + 50.0f, (mapWidth / 2.0f) + 50.0f), 1.0f, 100.0f);
     //foodField.addSource(Vec2((mapHeight / 2.0f) - 50.0f, (mapWidth / 2.0f) - 50.0f), 1.0f, 100.0f);
     foodField.updateField();
 }
@@ -47,12 +47,16 @@ void AppController::run() {
                     currentMode = RenderMode::Collision;
                     renderer = MapRenderer::create(currentMode);
                 }
+                else if (key == sf::Keyboard::Key::Numpad5) {
+                    currentMode = RenderMode::Node;
+                    renderer = MapRenderer::create(currentMode);
+                }
                 else if (key == sf::Keyboard::Key::Space) {
                     Pause = !Pause;
                 }
                 else if (key == sf::Keyboard::Key::Enter) {
                     if (Pause) {
-                        plasmodium.growOneStep(foodField);
+                        plasmodium.simulateGrowth();
                         plasmodium.simulateFlow(0.01f);
                     }
                 }
@@ -108,7 +112,7 @@ void AppController::run() {
             }
             else {
                 
-                plasmodium.growOneStep(foodField);
+                plasmodium.simulateGrowth();
                 
 
                 // reset fazy

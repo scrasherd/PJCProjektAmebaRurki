@@ -1,0 +1,115 @@
+\doxysection{Food\+Field Class Reference}
+\hypertarget{class_food_field}{}\label{class_food_field}\index{FoodField@{FoodField}}
+
+
+{\ttfamily \#include $<$Food\+Field.\+h$>$}
+
+
+
+Collaboration diagram for Food\+Field\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=176pt]{class_food_field__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_food_field_a81f66270289887f6864365e0a7caa67d}{Food\+Field}} (int width, int height)
+\item 
+void \mbox{\hyperlink{class_food_field_a97b93a99f77ecc748e60dcf11826357a}{add\+Source}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos, float intensity, float radius)
+\item 
+void \mbox{\hyperlink{class_food_field_a106fc0abad10ab141b5294a0d9e685b1}{clear\+Field}} ()
+\item 
+void \mbox{\hyperlink{class_food_field_a33c3e84a67643db4190d014f7cff8060}{update\+Field}} ()
+\item 
+const std\+::vector$<$ \mbox{\hyperlink{class_food_source}{Food\+Source}} $>$ \& \mbox{\hyperlink{class_food_field_a87b13b7fd8c64b6259fa6a5e88e28237}{get\+Sources}} () const
+\item 
+bool \mbox{\hyperlink{class_food_field_adc6cadac13ff150bb4bf062763a1a88c}{is\+Inside}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos) const
+\item 
+float \mbox{\hyperlink{class_food_field_a92623e98ce59d8d16912c8f4e8e8107a}{get\+Value\+At}} (const \mbox{\hyperlink{class_vec2}{Vec2}} \&pos) const
+\item 
+int \mbox{\hyperlink{class_food_field_af8a99929695d66d70c4e251785a47fb2}{get\+Width}} () const
+\item 
+int \mbox{\hyperlink{class_food_field_a1cd5aa9d0910fab222744f40c5d91a90}{get\+Height}} () const
+\item 
+const \mbox{\hyperlink{class_vec2}{Vec2}} \mbox{\hyperlink{class_food_field_af5cee7cc34c168a5170fea2569095ee7}{get\+Food\+Gradient}} (\mbox{\hyperlink{class_vec2}{Vec2}} pos) const
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_food_field_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_food_field_a81f66270289887f6864365e0a7caa67d}\index{FoodField@{FoodField}!FoodField@{FoodField}}
+\index{FoodField@{FoodField}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{FoodField()}{FoodField()}}
+{\footnotesize\ttfamily \label{class_food_field_a81f66270289887f6864365e0a7caa67d} 
+Food\+Field\+::\+Food\+Field (\begin{DoxyParamCaption}\item[{int}]{width}{, }\item[{int}]{height}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_food_field_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_food_field_a97b93a99f77ecc748e60dcf11826357a}\index{FoodField@{FoodField}!addSource@{addSource}}
+\index{addSource@{addSource}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{addSource()}{addSource()}}
+{\footnotesize\ttfamily \label{class_food_field_a97b93a99f77ecc748e60dcf11826357a} 
+void Food\+Field\+::add\+Source (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{, }\item[{float}]{intensity}{, }\item[{float}]{radius}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_food_field_a106fc0abad10ab141b5294a0d9e685b1}\index{FoodField@{FoodField}!clearField@{clearField}}
+\index{clearField@{clearField}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{clearField()}{clearField()}}
+{\footnotesize\ttfamily \label{class_food_field_a106fc0abad10ab141b5294a0d9e685b1} 
+void Food\+Field\+::clear\+Field (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_food_field_af5cee7cc34c168a5170fea2569095ee7}\index{FoodField@{FoodField}!getFoodGradient@{getFoodGradient}}
+\index{getFoodGradient@{getFoodGradient}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{getFoodGradient()}{getFoodGradient()}}
+{\footnotesize\ttfamily \label{class_food_field_af5cee7cc34c168a5170fea2569095ee7} 
+const \mbox{\hyperlink{class_vec2}{Vec2}} Food\+Field\+::get\+Food\+Gradient (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_vec2}{Vec2}}}]{pos}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_food_field_a1cd5aa9d0910fab222744f40c5d91a90}\index{FoodField@{FoodField}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily \label{class_food_field_a1cd5aa9d0910fab222744f40c5d91a90} 
+int Food\+Field\+::get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_food_field_a87b13b7fd8c64b6259fa6a5e88e28237}\index{FoodField@{FoodField}!getSources@{getSources}}
+\index{getSources@{getSources}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{getSources()}{getSources()}}
+{\footnotesize\ttfamily \label{class_food_field_a87b13b7fd8c64b6259fa6a5e88e28237} 
+const std\+::vector$<$ \mbox{\hyperlink{class_food_source}{Food\+Source}} $>$ \& Food\+Field\+::get\+Sources (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_food_field_a92623e98ce59d8d16912c8f4e8e8107a}\index{FoodField@{FoodField}!getValueAt@{getValueAt}}
+\index{getValueAt@{getValueAt}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{getValueAt()}{getValueAt()}}
+{\footnotesize\ttfamily \label{class_food_field_a92623e98ce59d8d16912c8f4e8e8107a} 
+float Food\+Field\+::get\+Value\+At (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_food_field_af8a99929695d66d70c4e251785a47fb2}\index{FoodField@{FoodField}!getWidth@{getWidth}}
+\index{getWidth@{getWidth}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{getWidth()}{getWidth()}}
+{\footnotesize\ttfamily \label{class_food_field_af8a99929695d66d70c4e251785a47fb2} 
+int Food\+Field\+::get\+Width (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_food_field_adc6cadac13ff150bb4bf062763a1a88c}\index{FoodField@{FoodField}!isInside@{isInside}}
+\index{isInside@{isInside}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{isInside()}{isInside()}}
+{\footnotesize\ttfamily \label{class_food_field_adc6cadac13ff150bb4bf062763a1a88c} 
+bool Food\+Field\+::is\+Inside (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_vec2}{Vec2}} \&}]{pos}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_food_field_a33c3e84a67643db4190d014f7cff8060}\index{FoodField@{FoodField}!updateField@{updateField}}
+\index{updateField@{updateField}!FoodField@{FoodField}}
+\doxysubsubsection{\texorpdfstring{updateField()}{updateField()}}
+{\footnotesize\ttfamily \label{class_food_field_a33c3e84a67643db4190d014f7cff8060} 
+void Food\+Field\+::update\+Field (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_food_field_8h}{Food\+Field.\+h}}\item 
+\mbox{\hyperlink{_food_field_8cpp}{Food\+Field.\+cpp}}\end{DoxyCompactItemize}

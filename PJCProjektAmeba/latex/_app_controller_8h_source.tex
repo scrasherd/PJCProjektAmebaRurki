@@ -1,0 +1,40 @@
+\doxysection{App\+Controller.\+h}
+\hypertarget{_app_controller_8h_source}{}\label{_app_controller_8h_source}\mbox{\hyperlink{_app_controller_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_plasmodium_8h}{Plasmodium.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_map_renderer_8h}{MapRenderer.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_food_field_8h}{FoodField.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_collision_field_8h}{CollisionField.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_app_controller_a988247681d8e08927d55524deb27268b}{AppController}}\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{int}\ mapWidth;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{int}\ mapHeight;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ sf::RenderWindow\ window;}
+\DoxyCodeLine{00015\ \ \ \ \ sf::View\ view;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_plasmodium}{Plasmodium}}\ plasmodium;}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_food_field}{FoodField}}\ foodField;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{_map_renderer_8h_ac9e546db27bb4f76f47d7e25f24abb88}{RenderMode}}\ currentMode\ =\ \mbox{\hyperlink{_map_renderer_8h_ac9e546db27bb4f76f47d7e25f24abb88a0a38e7286ebbb560354992b3ce62be67}{RenderMode::Food}};}
+\DoxyCodeLine{00021\ \ \ \ \ std::unique\_ptr<MapRenderer>\ renderer;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ sf::Clock\ clock;}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_app_controller_a988247681d8e08927d55524deb27268b}{AppController}}(\textcolor{keywordtype}{int}\ mapWidth,\ \textcolor{keywordtype}{int}\ mapHeight,\ \textcolor{keywordtype}{float}\ tubeLength);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_app_controller_a89987b5c5c12efbd9c9aa2ad6bf6cdbc}{run}}();}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_app_controller_a9ddc96275893c1b57b65d02c9e02a04d}{isDragging}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00033\ \ \ \ \ sf::Vector2i\ \mbox{\hyperlink{class_app_controller_a15a950a7fa0917c9b0e27945ef8a415a}{lastMousePos}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \};}
+
+\end{DoxyCode}

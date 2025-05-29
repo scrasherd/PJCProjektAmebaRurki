@@ -20,9 +20,9 @@ public:
 
     Tube(Node* a, Node* b, float diameter, float CytValue);
 
-    Node* getNodeA() const;
-    Node* getNodeB() const;
-    Node* getOtherNode(Node* node) const;
+    const Node* getNodeA() const;
+    const Node* getNodeB() const;
+    const Node* getOtherNode(const Node* node) const;
 
     float getDiameter() const;
 

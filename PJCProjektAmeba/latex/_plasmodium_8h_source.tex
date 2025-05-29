@@ -1,0 +1,64 @@
+\doxysection{Plasmodium.\+h}
+\hypertarget{_plasmodium_8h_source}{}\label{_plasmodium_8h_source}\mbox{\hyperlink{_plasmodium_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_food_field_8h}{FoodField.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_collision_field_8h}{CollisionField.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_flow_model_8h}{FlowModel.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_growth_model_8h}{GrowthModel.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_node_8h}{Node.h}}"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_tube_8h}{Tube.h}}"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_plasmodium_ae93c64b51eefb2558861dc605bf02fa7}{Plasmodium}}\ \{}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ fieldWidth,\ fieldHeight;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ tubeLength;}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{class_collision_field}{CollisionField}}\ colField;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{class_flow_model}{FlowModel}}\ flowModel;}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{class_growth_model}{GrowthModel}}\ growthModel;}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ std::vector<std::unique\_ptr<Node>>\ nodes;}
+\DoxyCodeLine{00022\ \ \ \ \ std::vector<Node*>\ endingNodes;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ std::vector<std::unique\_ptr<Tube>>\ tubes;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ Parametry}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{int}\ growthPrecentage\ =\ 10;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ skipThreshold\ =\ 0.05;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{double}\ branchesDistribution[3]\ =\ \{\ 50,\ 25,\ 25\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_plasmodium_ae93c64b51eefb2558861dc605bf02fa7}{Plasmodium}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ startPosition,\ \textcolor{keywordtype}{int}\ fieldWidth,\ \textcolor{keywordtype}{int}\ fieldHeight,\ \textcolor{keywordtype}{float}\ tubeLength,\ \mbox{\hyperlink{class_food_field}{FoodField}}\&\ foodField);}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_plasmodium_a6eb18215ef821700bc606af20086836e}{addStartStructure}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ centerPos,\ \textcolor{keywordtype}{float}\ radius,\ \textcolor{keywordtype}{float}\ tubeDiameter,\ \textcolor{keywordtype}{float}\ cytValue);}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_plasmodium_a526484a4905935e86ae2454056567528}{addGridStructure}}(\textcolor{keywordtype}{float}\ spacing,\ \textcolor{keywordtype}{float}\ tubeDiameter,\ \textcolor{keywordtype}{float}\ cytValue);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//void\ Live();}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ Rozrost}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_plasmodium_a2d80c36b2740d5f976337ea22fb33421}{simulateGrowth}}();}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//\ Przep³yw}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_plasmodium_a820404f320ba33fb8f08d2b25e0e273c}{simulateFlow}}(\textcolor{keywordtype}{float}\ dt);}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Node>>\&\ \mbox{\hyperlink{class_plasmodium_a0190fad139ba744ea2a1f26240401145}{getStaticNodes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<std::unique\_ptr<Tube>>\&\ \mbox{\hyperlink{class_plasmodium_a65506b1e72fde257a370f7a73e4b778c}{getStaticTubes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Node*>\&\ \mbox{\hyperlink{class_plasmodium_a82c9b311215615ea618fa756d3119534}{getStaticEndingNodes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ std::vector<std::unique\_ptr<Node>>\&\ \mbox{\hyperlink{class_plasmodium_afb38227d0cb14867a2c5654416de2905}{getNodes}}();}
+\DoxyCodeLine{00050\ \ \ \ \ std::vector<std::unique\_ptr<Tube>>\&\ \mbox{\hyperlink{class_plasmodium_af1096b6977c9f5471a7f79ddc0440c36}{getTubes}}();}
+\DoxyCodeLine{00051\ \ \ \ \ std::vector<Node*>\&\ \mbox{\hyperlink{class_plasmodium_a5721523294ea53b05981ad438b87f76e}{getEndingNodes}}();}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_plasmodium_afa031e9a4e3a42d3cdedbda520b915bf}{getTubeLength}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ Kolizja}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_collision_field}{CollisionField}}\&\ \mbox{\hyperlink{class_plasmodium_ae9d9377e89267a016406d8c2e4b8b8e0}{getCollisionField}}();}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_collision_field}{CollisionField}}\&\ \mbox{\hyperlink{class_plasmodium_a58b82703d6fbd0f425239aa78c01d2cd}{getStaticCollisionField}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+
+\end{DoxyCode}

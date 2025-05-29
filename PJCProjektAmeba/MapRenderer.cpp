@@ -3,6 +3,7 @@
 #include "VectorMapRenderer.h"
 #include "PressureMapRenderer.h"
 #include "CollisionMapRenderer.h"
+#include "NodeGridMapRenderer.h"
 
 
 std::unique_ptr<MapRenderer> MapRenderer::create(RenderMode mode) {
@@ -15,6 +16,8 @@ std::unique_ptr<MapRenderer> MapRenderer::create(RenderMode mode) {
         return std::make_unique<PressureMapRenderer>();
     case RenderMode::Collision:
         return std::make_unique<CollisionMapRenderer>();
+    case RenderMode::Node:
+        return std::make_unique<NodeGridMapRenderer>();
     default:
         throw std::runtime_error("Nieobs³ugiwany tryb renderowania");
     }

@@ -9,29 +9,11 @@
 
 
 CollisionField::CollisionField(Plasmodium& plasmodium, int width, int height, float cellSize)
-    : plasmodium(plasmodium),
-    cellSize(cellSize),
-    width(width),
-    height(height) {
-    // sparseGrid pozostaje pusty do momentu pierwszego mark()
-}
+    : CollisionLogic(plasmodium, width, height, cellSize)
+{}
 
-Vec2i CollisionField::toGridCoords(const Vec2& pos) const {
-    int gX = static_cast<int>(std::floor(pos.getX() / cellSize));
-    int gY = static_cast<int>(std::floor(pos.getY() / cellSize));
 
-    return Vec2i(gX, gY);
-}
-
-bool CollisionField::isInside(const Vec2i& gridPos) const {
-    if (gridPos.getXi() >= 0 && gridPos.getYi() >= 0 && gridPos.getXi() < width && gridPos.getYi() < height) {
-        return true;
-    }
-
-    return false;
-}
-
-std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(Vec2(pos), float baseAngle) {
+std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(const Vec2& pos, float baseAngle) {
         const float length = plasmodium.getTubeLength();
         const float AngleStep = 1 / 40.f;
         const float CollisionThreshold = 0.5f;
@@ -67,13 +49,12 @@ std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(Vec2(pos
  }
 
 bool CollisionField::LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) {
-
-    int printEvery = 1000; // co który punkt drukowaæ
-    int counter = 0;
+    float cellSize = getCellSize();
+    //int printEvery = 1000; 
+    //int counter = 0;
 
     for (float i = 0.5f; i < range + 0.25f; i += cellSize * 0.5f) {
         Vec2 PointOnCollisionLine = pos + dir * i;
-        markRadar(PointOnCollisionLine, 1.0f);
 
         //if (counter % printEvery == 0) {
         //    std::cout << "Sprawdzam punkt: x=" << PointOnCollisionLine.getX()
@@ -82,70 +63,38 @@ bool CollisionField::LineCollisionCheck(const Vec2& pos, const Vec2& dir, float 
         //counter++;
 
         if (getDensity(PointOnCollisionLine) > CollisionThreshold) { 
-            std::cout << "blok"; 
             return true; 
         }
     }
     return false;
 }
 
-float CollisionField::getDensity(const Vec2& pos) const {
-    Vec2i gridPos = toGridCoords(pos);
-    if (isInside(gridPos)) {
-        return getCellVal(gridPos);
-    }
-    return 0.f;
-}
-
 float CollisionField::getCellVal(const Vec2i& gridPos) const {
-    int blockSize = 8;
+    int blockSize = GridBlock<float>::getBlockSize();
     int blockX = gridPos.getXi() / blockSize;
     int blockY = gridPos.getYi() / blockSize;
     int localX = gridPos.getXi() % blockSize;
     int localY = gridPos.getYi() % blockSize;
 
-    auto it = sparseGrid.find({ blockX, blockY });
-    if (it == sparseGrid.end()) return 0.f;
-    return it->second.values[localX][localY];
+    auto it = CollisionGrid.find({ blockX, blockY });
+    if (it == CollisionGrid.end()) return 0.f;
+    return it->second.get(localX,localY);
 }
 
 float& CollisionField::getCellRef(const Vec2i& gridPos) {
-    int blockSize = 8;
+    int blockSize = GridBlock<float>::getBlockSize();
     int blockX = gridPos.getXi() / blockSize;
     int blockY = gridPos.getYi() / blockSize;
     int localX = gridPos.getXi() % blockSize;
     int localY = gridPos.getYi() % blockSize;
 
-    return sparseGrid[{blockX, blockY}].values[localX][localY];
+    return CollisionGrid[{blockX, blockY}].ref(localX,localY);
 }
-
-float CollisionField::getCellValRadar(const Vec2i& gridPos) const {
-    int blockSize = 8;
-    int blockX = gridPos.getXi() / blockSize;
-    int blockY = gridPos.getYi() / blockSize;
-    int localX = gridPos.getXi() % blockSize;
-    int localY = gridPos.getYi() % blockSize;
-
-    auto it = RadarGrid.find({ blockX, blockY });
-    if (it == RadarGrid.end()) return 0.f;
-    return it->second.values[localX][localY];
-}
-
-float& CollisionField::getCellRefRadar(const Vec2i& gridPos) {
-    int blockSize = 8;
-    int blockX = gridPos.getXi() / blockSize;
-    int blockY = gridPos.getYi() / blockSize;
-    int localX = gridPos.getXi() % blockSize;
-    int localY = gridPos.getYi() % blockSize;
-
-    return RadarGrid[{blockX, blockY}].values[localX][localY];
-}
-
 
 void CollisionField::markTube(const Vec2& a, const Vec2& b) {
+    float cellSize = getCellSize();
     float length = (b - a).length();
 
-    // Ka¿dy krok to pó³ komórki – gwarantuje przejœcie przez ka¿d¹
     int steps = std::max(1, static_cast<int>(length / (cellSize * 0.5f)));
 
     for (int i = 0; i <= steps; ++i) {
@@ -155,7 +104,7 @@ void CollisionField::markTube(const Vec2& a, const Vec2& b) {
     }
 }
 
-void CollisionField::markNode(const Vec2& pos, float value) {
+void CollisionField::markNode(const Vec2& pos) {
     Vec2i gridPos = toGridCoords(pos);
 
     int gX = gridPos.getXi();
@@ -164,11 +113,11 @@ void CollisionField::markNode(const Vec2& pos, float value) {
 
     for (int dy = -radius; dy <= radius; ++dy) {
         for (int dx = -radius; dx <= radius; ++dx) {
-            if (dx * dx + dy * dy <= radius * radius) { // warunek okrêgu
+            if (dx * dx + dy * dy <= radius * radius) {
                 int nx = gX + dx;
                 int ny = gY + dy;
                 if (nx >= 0 && ny >= 0) {
-                    getCellRef(Vec2i(nx, ny)) = value;
+                    getCellRef(Vec2i(nx, ny)) = 1.0f;
                 }
             }
         }
@@ -192,35 +141,10 @@ void CollisionField::mark(const Vec2& pos, float value) {
     }
 }
 
-void CollisionField::markRadar(const Vec2& pos, float value) {
-    Vec2i gridPos = toGridCoords(pos);
-
-    int gX = gridPos.getXi();
-    int gY = gridPos.getYi();
-
-    getCellRefRadar(Vec2i(gX, gY)) = value;
+const std::unordered_map<std::pair<int, int>, GridBlock<float>, PairHash>& CollisionField::getSparseGrid() const {
+    return CollisionGrid;
 }
 
-float CollisionField::getCellSize() const {
-    return cellSize;
-}
-
-int CollisionField::getWidth() const {
-    return width;
-}
-
-int CollisionField::getHeight() const {
-    return height;
-}
-
-const std::unordered_map<std::pair<int, int>, Block, PairHash>& CollisionField::getSparseGrid() const {
-    return sparseGrid;
-}
-
-const std::unordered_map<std::pair<int, int>, Block, PairHash>& CollisionField::getRadarGrid() const {
-    return RadarGrid;
-}
-
-void CollisionField::clearRadarGrid() {
-    RadarGrid.clear();
+void CollisionField::clearGrid() {
+    CollisionGrid.clear();
 }

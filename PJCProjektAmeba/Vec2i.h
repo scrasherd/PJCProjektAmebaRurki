@@ -34,4 +34,8 @@ public:
     bool operator==(const Vec2i& other) const {
         return x == other.x && y == other.y;
     }
+
+    int cross(const Vec2i& other) const {
+        return x * other.y - y * other.x;
+    }
 };

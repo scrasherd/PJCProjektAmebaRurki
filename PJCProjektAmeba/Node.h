@@ -17,7 +17,7 @@ private:
     float phase;
     float amplitude;
 
-    bool FailedGrowthFlag;
+    int FailedGrowthFlag = 0;
     float RankingValue;
 
 public:
@@ -25,13 +25,13 @@ public:
 
     const Vec2& getPosition() const;
 
-    float getPressure() const;
+    const float getPressure() const;
     void setPressure(float p);
 
     void connectTube(Tube* tube);
     const std::vector<Tube*>& getConnectedTubes() const;
 
-    float getPhase();
+    const float getPhase() const;
     void setPhase(float value);
 
     int getFailedGrowthFlag();

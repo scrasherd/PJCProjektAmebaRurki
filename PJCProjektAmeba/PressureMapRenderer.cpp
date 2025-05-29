@@ -12,7 +12,7 @@ void PressureMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasm
     sf::VertexArray lineArray(sf::PrimitiveType::Lines);
     sf::VertexArray nodeArray(sf::PrimitiveType::Triangles);
 
-    for (const auto& tube : plasmodium.getTubes()) {
+    for (const auto& tube : plasmodium.getStaticTubes()) {
         Vec2 a = tube->getNodeA()->getPosition();
         Vec2 b = tube->getNodeB()->getPosition();
 
@@ -30,12 +30,12 @@ void PressureMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasm
         lineArray.append(sf::Vertex(sf::Vector2f(b.getX(), b.getY()), color));
     }
 
-    for (const auto& node : plasmodium.getNodes()) {
+    for (const auto& node : plasmodium.getStaticNodes()) {
         Vec2 p = node->getPosition();
         float pressure = node->getPressure();
         float normP = std::clamp((pressure - 0.3f) / (3.0f - 0.3f), 0.0f, 1.0f);
 
-        sf::Color color = sf::Color(255 * normP, 0, 0); // skala szaroœci
+        sf::Color color = sf::Color(255 * normP, 0, 0);
 
         float s = 1.f;
         maker.drawSquareVertex(nodeArray, p, s, color);

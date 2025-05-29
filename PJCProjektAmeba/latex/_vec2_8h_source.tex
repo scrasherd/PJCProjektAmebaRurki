@@ -1,0 +1,55 @@
+\doxysection{Vec2.\+h}
+\hypertarget{_vec2_8h_source}{}\label{_vec2_8h_source}\mbox{\hyperlink{_vec2_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\ \{}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00007\ \ \ \ \ \textcolor{keywordtype}{float}\ x,\ y;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}()\ :\ x(0),\ y(0)\ \{\}}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_vec2_a6256fecebf5a43b14d5d5341c58cfdc4}{Vec2}}(\textcolor{keywordtype}{float}\ x,\ \textcolor{keywordtype}{float}\ y)\ :\ x(x),\ y(y)\ \{\}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_vec2_a65c288040d08f20d7cde65169d3cd4e3}{getX}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x;}
+\DoxyCodeLine{00015\ \ \ \ \ \}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_vec2_a4650919de82a8fb283d616863e5a3876}{getY}}()\textcolor{keyword}{\ const}\{}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ y;}
+\DoxyCodeLine{00019\ \ \ \ \ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\ \mbox{\hyperlink{class_vec2_aa19e7e0148c4f6b5943faadbde72e63f}{operator+}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}(x\ +\ other.x,\ y\ +\ other.y);}
+\DoxyCodeLine{00023\ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\ \mbox{\hyperlink{class_vec2_a1ebf2fca50f0c1d027235f46a0d19b7d}{operator-\/}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}(x\ -\/\ other.x,\ y\ -\/\ other.y);}
+\DoxyCodeLine{00027\ \ \ \ \ \}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\ \mbox{\hyperlink{class_vec2_a91d0f10b283428ab9107def7c088c13c}{operator*}}(\textcolor{keywordtype}{float}\ scalar)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}(x\ *\ scalar,\ y\ *\ scalar);}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_vec2_ae94baf0ad2fda164fd0f34cd70245d48}{operator==}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ x\ ==\ other.x\ \&\&\ y\ ==\ other.y;}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_vec2_af9ebf7c8888fd5df9514e6d519b99fb2}{length}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::sqrt(x\ *\ x\ +\ y\ *\ y);}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\ \mbox{\hyperlink{class_vec2_a3b5381a3248702d60d29c5cc977b2030}{normalized}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ len\ =\ \mbox{\hyperlink{class_vec2_af9ebf7c8888fd5df9514e6d519b99fb2}{length}}();}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (len\ >\ 0.0f)\ ?\ (*\textcolor{keyword}{this}\ *\ (1.0f\ /\ len))\ :\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}(0,\ 0);}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_vec2_adde0a7e27b6a8737a83127dece909e9f}{distanceTo}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2_a76080feed7005893ecc634f903cfbae0}{Vec2}}\&\ other)\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (*\textcolor{keyword}{this}\ -\/\ other).length();}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \};}
+\DoxyCodeLine{00050\ }
+
+\end{DoxyCode}

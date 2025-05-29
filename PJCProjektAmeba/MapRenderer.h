@@ -8,7 +8,8 @@ enum class RenderMode {
     Food,
     Vector,
     Pressure,
-    Collision
+    Collision,
+    Node
 };
 
 class MapRenderer {

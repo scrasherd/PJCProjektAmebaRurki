@@ -1,0 +1,47 @@
+\doxysection{Node.\+h}
+\hypertarget{_node_8h_source}{}\label{_node_8h_source}\mbox{\hyperlink{_node_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include"{}\mbox{\hyperlink{_tube_8h}{Tube.h}}"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include"{}\mbox{\hyperlink{_vec2_8h}{Vec2.h}}"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include<vector>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_tube}{Tube}};}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_node_ac2fe68bc00e33d8057c9a112a02308eb}{Node}}\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{class_vec2}{Vec2}}\ NodePosition;}
+\DoxyCodeLine{00012\ \ \ \ \ std::vector<Tube*>\ ConnectedTubes;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEnding;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{float}\ pressure;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{float}\ phase;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{float}\ amplitude;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ FailedGrowthFlag\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{float}\ RankingValue;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{class_node_ac2fe68bc00e33d8057c9a112a02308eb}{Node}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ pos);}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_vec2}{Vec2}}\&\ \mbox{\hyperlink{class_node_a1c78c6feace91b27b6cbb12ee16e8eb0}{getPosition}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_node_aadcf38be013c636db76ad2b9be25ec57}{getPressure}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_ac1ce8d491788a2e38891a9cb256164c3}{setPressure}}(\textcolor{keywordtype}{float}\ p);}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a32f1e31ce6c36389378ed90f81a6582f}{connectTube}}(\mbox{\hyperlink{class_tube}{Tube}}*\ tube);}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<Tube*>\&\ \mbox{\hyperlink{class_node_a9b8af299634996bd6f323438a2e04f4b}{getConnectedTubes}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_node_a0dbe24dddea6cd8792b612b2c994fdd9}{getPhase}}();}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a1f61c68a79a071e8187bc449ac64df2f}{setPhase}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_node_a3f0b291abe9d6d3500ba18e6b92927e4}{getFailedGrowthFlag}}();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a30871e5c936b1c00f2176cdfa23a7873}{setFailedGrowthFlag}}(\textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{float}\ \mbox{\hyperlink{class_node_ad6ef99c293016476ede5f4815411d0f9}{getRankingValue}}();}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_node_a3019d7d7a4a36f7c98db7a411098f509}{setRankingValue}}(\textcolor{keywordtype}{float}\ value);}
+\DoxyCodeLine{00042\ \};}
+
+\end{DoxyCode}

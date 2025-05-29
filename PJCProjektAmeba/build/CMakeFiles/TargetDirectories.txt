@@ -1,0 +1,3 @@
+C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build/CMakeFiles/AmebaRurki.dir
+C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build/CMakeFiles/edit_cache.dir
+C:/SFML/source/repos/PJCProjektAmebaRurki/PJCProjektAmeba/build/CMakeFiles/rebuild_cache.dir

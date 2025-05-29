@@ -48,7 +48,7 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
         maker.drawSquareVertex(FoodSourceArray, c, Size, color);
     }
 
-    for (const auto& tube : plasmodium.getTubes()) {
+    for (const auto& tube : plasmodium.getStaticTubes()) {
         Vec2 a = tube->getNodeA()->getPosition();
         Vec2 b = tube->getNodeB()->getPosition();
 
@@ -56,7 +56,7 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
         lineArray.append(sf::Vertex(sf::Vector2f(b.getX(), b.getY()), sf::Color::White));
     }
 
-    for (const auto& node : plasmodium.getNodes()) {
+    for (const auto& node : plasmodium.getStaticNodes()) {
         Vec2 p = node->getPosition();
         sf::Color color = (node->getConnectedTubes().size() == 1) ?
             sf::Color::Green : sf::Color(100, 100, 100);

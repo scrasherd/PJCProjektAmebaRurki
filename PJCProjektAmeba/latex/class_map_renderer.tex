@@ -1,0 +1,84 @@
+\doxysection{Map\+Renderer Class Reference}
+\hypertarget{class_map_renderer}{}\label{class_map_renderer}\index{MapRenderer@{MapRenderer}}
+
+
+{\ttfamily \#include $<$Map\+Renderer.\+h$>$}
+
+
+
+Inheritance diagram for Map\+Renderer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_map_renderer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Map\+Renderer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{class_map_renderer__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_map_renderer_a72d4cc691135ff833758f7c2b1d6d7a3}{Map\+Renderer}} ()=default
+\item 
+virtual \mbox{\hyperlink{class_map_renderer_a6d596c69d3de1885eba151858fdde1e4}{\texorpdfstring{$\sim$}{\string~}\+Map\+Renderer}} ()=default
+\item 
+virtual void \mbox{\hyperlink{class_map_renderer_a9dcc44a8a92d3910e5f89c5ed994b1fd}{draw}} (sf\+::\+Render\+Window \&window, const \mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&plasmodium, const \mbox{\hyperlink{class_food_field}{Food\+Field}} \&food\+Field)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_map_renderer}{Map\+Renderer}} $>$ \mbox{\hyperlink{class_map_renderer_a0b948066fef16305f0b3273414adef62}{create}} (\mbox{\hyperlink{_map_renderer_8h_ac9e546db27bb4f76f47d7e25f24abb88}{Render\+Mode}} mode)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_map_renderer_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_map_renderer_a72d4cc691135ff833758f7c2b1d6d7a3}\index{MapRenderer@{MapRenderer}!MapRenderer@{MapRenderer}}
+\index{MapRenderer@{MapRenderer}!MapRenderer@{MapRenderer}}
+\doxysubsubsection{\texorpdfstring{MapRenderer()}{MapRenderer()}}
+{\footnotesize\ttfamily \label{class_map_renderer_a72d4cc691135ff833758f7c2b1d6d7a3} 
+Map\+Renderer\+::\+Map\+Renderer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+\Hypertarget{class_map_renderer_a6d596c69d3de1885eba151858fdde1e4}\index{MapRenderer@{MapRenderer}!````~MapRenderer@{\texorpdfstring{$\sim$}{\string~}MapRenderer}}
+\index{````~MapRenderer@{\texorpdfstring{$\sim$}{\string~}MapRenderer}!MapRenderer@{MapRenderer}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}MapRenderer()}{\string~MapRenderer()}}
+{\footnotesize\ttfamily \label{class_map_renderer_a6d596c69d3de1885eba151858fdde1e4} 
+virtual Map\+Renderer\+::\texorpdfstring{$\sim$}{\string~}\+Map\+Renderer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}, {\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_map_renderer_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_map_renderer_a0b948066fef16305f0b3273414adef62}\index{MapRenderer@{MapRenderer}!create@{create}}
+\index{create@{create}!MapRenderer@{MapRenderer}}
+\doxysubsubsection{\texorpdfstring{create()}{create()}}
+{\footnotesize\ttfamily \label{class_map_renderer_a0b948066fef16305f0b3273414adef62} 
+std\+::unique\+\_\+ptr$<$ \mbox{\hyperlink{class_map_renderer}{Map\+Renderer}} $>$ Map\+Renderer\+::create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_map_renderer_8h_ac9e546db27bb4f76f47d7e25f24abb88}{Render\+Mode}}}]{mode}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+\Hypertarget{class_map_renderer_a9dcc44a8a92d3910e5f89c5ed994b1fd}\index{MapRenderer@{MapRenderer}!draw@{draw}}
+\index{draw@{draw}!MapRenderer@{MapRenderer}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily \label{class_map_renderer_a9dcc44a8a92d3910e5f89c5ed994b1fd} 
+virtual void Map\+Renderer\+::draw (\begin{DoxyParamCaption}\item[{sf\+::\+Render\+Window \&}]{window}{, }\item[{const \mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&}]{plasmodium}{, }\item[{const \mbox{\hyperlink{class_food_field}{Food\+Field}} \&}]{food\+Field}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{class_collision_map_renderer_a39dd1788469ffdd2b975d12007b151e7}{Collision\+Map\+Renderer}}, \mbox{\hyperlink{class_food_gradient_map_renderer_ab3bf24b1b6b1e8fb24090cd809f60b29}{Food\+Gradient\+Map\+Renderer}}, \mbox{\hyperlink{class_pressure_map_renderer_a3d4dbaa27a7e617a790cf9e9ae48bdb0}{Pressure\+Map\+Renderer}}, and \mbox{\hyperlink{class_vector_map_renderer_a5e96e436738b191a24dd5f72616ee23f}{Vector\+Map\+Renderer}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_map_renderer_8h}{Map\+Renderer.\+h}}\item 
+\mbox{\hyperlink{_map_renderer_8cpp}{Map\+Renderer.\+cpp}}\end{DoxyCompactItemize}

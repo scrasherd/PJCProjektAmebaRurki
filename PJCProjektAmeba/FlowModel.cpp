@@ -20,7 +20,7 @@ void FlowModel::updatePhasesAndPressures(float dt) {
         int count = 0;
 
         for (Tube* tube : thisNode->getConnectedTubes()) {
-            Node* neighbor = tube->getOtherNode(thisNode);
+            const Node* neighbor = tube->getOtherNode(thisNode);
             phaseSum += neighbor->getPhase();
             ++count;
         }
@@ -54,8 +54,8 @@ void FlowModel::computeDPinTubes() {
     //dP = Pa - Pb
 
     for (auto& tubePtr : tubePtrs) {
-        Node* nodeA = tubePtr->getNodeA();
-        Node* nodeB = tubePtr->getNodeB();
+        const Node* nodeA = tubePtr->getNodeA();
+        const Node* nodeB = tubePtr->getNodeB();
 
         float Pa = nodeA->getPressure();
         float Pb = nodeB->getPressure();

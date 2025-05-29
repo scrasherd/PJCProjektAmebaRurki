@@ -1,0 +1,139 @@
+\doxysection{Tube Class Reference}
+\hypertarget{class_tube}{}\label{class_tube}\index{Tube@{Tube}}
+
+
+{\ttfamily \#include $<$Tube.\+h$>$}
+
+
+
+Collaboration diagram for Tube\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{class_tube__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_tube_a7a16959adc728a4733bb2bb9688da6bd}{Tube}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}a, \mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}b, float diameter, float Cyt\+Value)
+\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tube_af3e92cdefec019c9c448a859aeb6612e}{get\+NodeA}} () const
+\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tube_ad91af32d5c4595102c4a20cf1dd1bdf5}{get\+NodeB}} () const
+\item 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_tube_ad812e79cd103fabc518208aa1b17462f}{get\+Other\+Node}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node) const
+\item 
+float \mbox{\hyperlink{class_tube_aef54bcaf6988f517d804fea56f6b969f}{get\+Diameter}} () const
+\item 
+\mbox{\hyperlink{class_vec2}{Vec2}} \mbox{\hyperlink{class_tube_a92db2d17a459d2a4d4db9765a0fa3e75}{get\+Direction}} () const
+\item 
+float \mbox{\hyperlink{class_tube_ad3c194a0f9977e212ac425aefe4032bf}{get\+Length}} () const
+\item 
+float \mbox{\hyperlink{class_tube_ac01e74e2ab4e5015d04edc29b749329f}{getdP}} ()
+\item 
+void \mbox{\hyperlink{class_tube_ada4ea54367aefd9e3c98935ab6794463}{setdP}} (float value)
+\item 
+float \mbox{\hyperlink{class_tube_a42e5f4c3b63e20964cdeac789c07d07d}{getd\+Pnorm}} ()
+\item 
+void \mbox{\hyperlink{class_tube_a0bb1ac5d9a7cdfd14b9bcfce1f0b7dac}{setd\+Pnorm}} (float value)
+\item 
+float \mbox{\hyperlink{class_tube_ac68f98f59a19ce84b4cf006f3bb85fe0}{get\+Cytoplasm\+Amount}} ()
+\item 
+void \mbox{\hyperlink{class_tube_a9edfc5dbb0b8890ba5196e46302eae3a}{set\+Cytoplasm\+Amount}} (float value)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_tube_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_tube_a7a16959adc728a4733bb2bb9688da6bd}\index{Tube@{Tube}!Tube@{Tube}}
+\index{Tube@{Tube}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{Tube()}{Tube()}}
+{\footnotesize\ttfamily \label{class_tube_a7a16959adc728a4733bb2bb9688da6bd} 
+Tube\+::\+Tube (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{a}{, }\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{b}{, }\item[{float}]{diameter}{, }\item[{float}]{Cyt\+Value}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_tube_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_tube_ac68f98f59a19ce84b4cf006f3bb85fe0}\index{Tube@{Tube}!getCytoplasmAmount@{getCytoplasmAmount}}
+\index{getCytoplasmAmount@{getCytoplasmAmount}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getCytoplasmAmount()}{getCytoplasmAmount()}}
+{\footnotesize\ttfamily \label{class_tube_ac68f98f59a19ce84b4cf006f3bb85fe0} 
+float Tube\+::get\+Cytoplasm\+Amount (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_tube_aef54bcaf6988f517d804fea56f6b969f}\index{Tube@{Tube}!getDiameter@{getDiameter}}
+\index{getDiameter@{getDiameter}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getDiameter()}{getDiameter()}}
+{\footnotesize\ttfamily \label{class_tube_aef54bcaf6988f517d804fea56f6b969f} 
+float Tube\+::get\+Diameter (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_tube_a92db2d17a459d2a4d4db9765a0fa3e75}\index{Tube@{Tube}!getDirection@{getDirection}}
+\index{getDirection@{getDirection}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getDirection()}{getDirection()}}
+{\footnotesize\ttfamily \label{class_tube_a92db2d17a459d2a4d4db9765a0fa3e75} 
+\mbox{\hyperlink{class_vec2}{Vec2}} Tube\+::get\+Direction (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_tube_ac01e74e2ab4e5015d04edc29b749329f}\index{Tube@{Tube}!getdP@{getdP}}
+\index{getdP@{getdP}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getdP()}{getdP()}}
+{\footnotesize\ttfamily \label{class_tube_ac01e74e2ab4e5015d04edc29b749329f} 
+float Tube\+::getdP (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_tube_a42e5f4c3b63e20964cdeac789c07d07d}\index{Tube@{Tube}!getdPnorm@{getdPnorm}}
+\index{getdPnorm@{getdPnorm}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getdPnorm()}{getdPnorm()}}
+{\footnotesize\ttfamily \label{class_tube_a42e5f4c3b63e20964cdeac789c07d07d} 
+float Tube\+::getd\+Pnorm (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_tube_ad3c194a0f9977e212ac425aefe4032bf}\index{Tube@{Tube}!getLength@{getLength}}
+\index{getLength@{getLength}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getLength()}{getLength()}}
+{\footnotesize\ttfamily \label{class_tube_ad3c194a0f9977e212ac425aefe4032bf} 
+float Tube\+::get\+Length (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_tube_af3e92cdefec019c9c448a859aeb6612e}\index{Tube@{Tube}!getNodeA@{getNodeA}}
+\index{getNodeA@{getNodeA}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getNodeA()}{getNodeA()}}
+{\footnotesize\ttfamily \label{class_tube_af3e92cdefec019c9c448a859aeb6612e} 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Tube\+::get\+NodeA (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_tube_ad91af32d5c4595102c4a20cf1dd1bdf5}\index{Tube@{Tube}!getNodeB@{getNodeB}}
+\index{getNodeB@{getNodeB}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getNodeB()}{getNodeB()}}
+{\footnotesize\ttfamily \label{class_tube_ad91af32d5c4595102c4a20cf1dd1bdf5} 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Tube\+::get\+NodeB (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_tube_ad812e79cd103fabc518208aa1b17462f}\index{Tube@{Tube}!getOtherNode@{getOtherNode}}
+\index{getOtherNode@{getOtherNode}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{getOtherNode()}{getOtherNode()}}
+{\footnotesize\ttfamily \label{class_tube_ad812e79cd103fabc518208aa1b17462f} 
+\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*} Tube\+::get\+Other\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption}) const}
+
+\Hypertarget{class_tube_a9edfc5dbb0b8890ba5196e46302eae3a}\index{Tube@{Tube}!setCytoplasmAmount@{setCytoplasmAmount}}
+\index{setCytoplasmAmount@{setCytoplasmAmount}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{setCytoplasmAmount()}{setCytoplasmAmount()}}
+{\footnotesize\ttfamily \label{class_tube_a9edfc5dbb0b8890ba5196e46302eae3a} 
+void Tube\+::set\+Cytoplasm\+Amount (\begin{DoxyParamCaption}\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_tube_ada4ea54367aefd9e3c98935ab6794463}\index{Tube@{Tube}!setdP@{setdP}}
+\index{setdP@{setdP}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{setdP()}{setdP()}}
+{\footnotesize\ttfamily \label{class_tube_ada4ea54367aefd9e3c98935ab6794463} 
+void Tube\+::setdP (\begin{DoxyParamCaption}\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_tube_a0bb1ac5d9a7cdfd14b9bcfce1f0b7dac}\index{Tube@{Tube}!setdPnorm@{setdPnorm}}
+\index{setdPnorm@{setdPnorm}!Tube@{Tube}}
+\doxysubsubsection{\texorpdfstring{setdPnorm()}{setdPnorm()}}
+{\footnotesize\ttfamily \label{class_tube_a0bb1ac5d9a7cdfd14b9bcfce1f0b7dac} 
+void Tube\+::setd\+Pnorm (\begin{DoxyParamCaption}\item[{float}]{value}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_tube_8h}{Tube.\+h}}\item 
+\mbox{\hyperlink{_tube_8cpp}{Tube.\+cpp}}\end{DoxyCompactItemize}

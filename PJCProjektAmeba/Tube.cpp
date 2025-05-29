@@ -7,15 +7,15 @@ Tube::Tube(Node* a, Node* b, float diameter, float CytValue)
     b->connectTube(this);
 }
 
-Node* Tube::getNodeA() const {
+const Node* Tube::getNodeA() const {
     return NodeA;
 }
 
-Node* Tube::getNodeB() const {
+const Node* Tube::getNodeB() const {
     return NodeB;
 }
 
-Node* Tube::getOtherNode(Node* node) const{
+const Node* Tube::getOtherNode(const Node* node) const{
     if (node == getNodeA()) {
         return getNodeB();
     }

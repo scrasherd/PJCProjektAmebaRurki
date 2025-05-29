@@ -1,0 +1,99 @@
+\doxysection{Flow\+Model Class Reference}
+\hypertarget{class_flow_model}{}\label{class_flow_model}\index{FlowModel@{FlowModel}}
+
+
+{\ttfamily \#include $<$Flow\+Model.\+h$>$}
+
+
+
+Collaboration diagram for Flow\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{class_flow_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_flow_model_a028e322e74c89aa49e3700dac1dcd945}{Flow\+Model}} (\mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&owner, \mbox{\hyperlink{class_food_field}{Food\+Field}} \&food\+Field)
+\item 
+void \mbox{\hyperlink{class_flow_model_a79c2bc26a314f05918366f293e0ac279}{update\+Phases\+And\+Pressures}} (float dt)
+\item 
+void \mbox{\hyperlink{class_flow_model_ac4682863c2c63ed303644c69ed42f85b}{compute\+DPin\+Tubes}} ()
+\item 
+void \mbox{\hyperlink{class_flow_model_acd9d131ffb9cd9f6c1255fb3668805a8}{compute\+Flow}} ()
+\item 
+void \mbox{\hyperlink{class_flow_model_aec29614b661b15990dc2f5655474411f}{Cytoplasm\+Transfer}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+bool \mbox{\hyperlink{class_flow_model_afc28a31ba397dfcd5e51119c3f05c4d2}{check\+Node\+For\+Correction}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+void \mbox{\hyperlink{class_flow_model_a54b5f0bf0f8b37469029603ac3b820ce}{correct\+Node\+Pressure}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\item 
+void \mbox{\hyperlink{class_flow_model_aec26dd6e012646910abdb48242de5d9c}{normalized\+Pin\+Tubes}} (\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}node)
+\end{DoxyCompactItemize}
+
+
+\label{doc-constructors}
+\Hypertarget{class_flow_model_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_flow_model_a028e322e74c89aa49e3700dac1dcd945}\index{FlowModel@{FlowModel}!FlowModel@{FlowModel}}
+\index{FlowModel@{FlowModel}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{FlowModel()}{FlowModel()}}
+{\footnotesize\ttfamily \label{class_flow_model_a028e322e74c89aa49e3700dac1dcd945} 
+Flow\+Model\+::\+Flow\+Model (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_plasmodium}{Plasmodium}} \&}]{owner}{, }\item[{\mbox{\hyperlink{class_food_field}{Food\+Field}} \&}]{food\+Field}{}\end{DoxyParamCaption})}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_flow_model_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_flow_model_afc28a31ba397dfcd5e51119c3f05c4d2}\index{FlowModel@{FlowModel}!checkNodeForCorrection@{checkNodeForCorrection}}
+\index{checkNodeForCorrection@{checkNodeForCorrection}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{checkNodeForCorrection()}{checkNodeForCorrection()}}
+{\footnotesize\ttfamily \label{class_flow_model_afc28a31ba397dfcd5e51119c3f05c4d2} 
+bool Flow\+Model\+::check\+Node\+For\+Correction (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_flow_model_ac4682863c2c63ed303644c69ed42f85b}\index{FlowModel@{FlowModel}!computeDPinTubes@{computeDPinTubes}}
+\index{computeDPinTubes@{computeDPinTubes}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{computeDPinTubes()}{computeDPinTubes()}}
+{\footnotesize\ttfamily \label{class_flow_model_ac4682863c2c63ed303644c69ed42f85b} 
+void Flow\+Model\+::compute\+DPin\+Tubes (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_flow_model_acd9d131ffb9cd9f6c1255fb3668805a8}\index{FlowModel@{FlowModel}!computeFlow@{computeFlow}}
+\index{computeFlow@{computeFlow}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{computeFlow()}{computeFlow()}}
+{\footnotesize\ttfamily \label{class_flow_model_acd9d131ffb9cd9f6c1255fb3668805a8} 
+void Flow\+Model\+::compute\+Flow (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_flow_model_a54b5f0bf0f8b37469029603ac3b820ce}\index{FlowModel@{FlowModel}!correctNodePressure@{correctNodePressure}}
+\index{correctNodePressure@{correctNodePressure}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{correctNodePressure()}{correctNodePressure()}}
+{\footnotesize\ttfamily \label{class_flow_model_a54b5f0bf0f8b37469029603ac3b820ce} 
+void Flow\+Model\+::correct\+Node\+Pressure (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_flow_model_aec29614b661b15990dc2f5655474411f}\index{FlowModel@{FlowModel}!CytoplasmTransfer@{CytoplasmTransfer}}
+\index{CytoplasmTransfer@{CytoplasmTransfer}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{CytoplasmTransfer()}{CytoplasmTransfer()}}
+{\footnotesize\ttfamily \label{class_flow_model_aec29614b661b15990dc2f5655474411f} 
+void Flow\+Model\+::\+Cytoplasm\+Transfer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_flow_model_aec26dd6e012646910abdb48242de5d9c}\index{FlowModel@{FlowModel}!normalizedPinTubes@{normalizedPinTubes}}
+\index{normalizedPinTubes@{normalizedPinTubes}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{normalizedPinTubes()}{normalizedPinTubes()}}
+{\footnotesize\ttfamily \label{class_flow_model_aec26dd6e012646910abdb48242de5d9c} 
+void Flow\+Model\+::normalized\+Pin\+Tubes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_node}{Node}} \texorpdfstring{$\ast$}{*}}]{node}{}\end{DoxyParamCaption})}
+
+\Hypertarget{class_flow_model_a79c2bc26a314f05918366f293e0ac279}\index{FlowModel@{FlowModel}!updatePhasesAndPressures@{updatePhasesAndPressures}}
+\index{updatePhasesAndPressures@{updatePhasesAndPressures}!FlowModel@{FlowModel}}
+\doxysubsubsection{\texorpdfstring{updatePhasesAndPressures()}{updatePhasesAndPressures()}}
+{\footnotesize\ttfamily \label{class_flow_model_a79c2bc26a314f05918366f293e0ac279} 
+void Flow\+Model\+::update\+Phases\+And\+Pressures (\begin{DoxyParamCaption}\item[{float}]{dt}{}\end{DoxyParamCaption})}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_flow_model_8h}{Flow\+Model.\+h}}\item 
+\mbox{\hyperlink{_flow_model_8cpp}{Flow\+Model.\+cpp}}\end{DoxyCompactItemize}

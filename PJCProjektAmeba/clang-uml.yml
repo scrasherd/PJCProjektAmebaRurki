@@ -1,0 +1,12 @@
+compilation_database_dir: ./build
+output_directory: diagrams
+diagrams:
+  myproject_class:
+    type: class
+    glob:
+      - "*.h"
+      - "*.hpp"
+      - "*.cpp"
+
+
+
