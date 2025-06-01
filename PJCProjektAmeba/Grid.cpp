@@ -1,6 +1,5 @@
 #define _USE_MATH_DEFINES
 #include "Grid.h"
-#include "Plasmodium.h"
 #include "Vec2.h"
 #include "Vec2i.h"
 #include <cmath>
@@ -8,8 +7,8 @@
 #include <iostream>
 
 
-Grid::Grid(Plasmodium& plasmodium, int width, int height)
-    : plasmodium(plasmodium),
+Grid::Grid(int width, int height)
+    :
     width(width),
     height(height) {
 }

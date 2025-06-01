@@ -151,10 +151,12 @@
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="NodeField.cpp" />
     <ClCompile Include="NodeGridMapRenderer.cpp" />
-    <ClCompile Include="Plasmodium.cpp" />
+    <ClCompile Include="PlasmodiumData.cpp" />
+    <ClCompile Include="PlasmodiumSpatialState.cpp" />
     <ClCompile Include="PressureMapRenderer.cpp" />
     <ClCompile Include="GrowthModel.cpp" />
     <ClCompile Include="RadarField.cpp" />
+    <ClCompile Include="PlasmodiumController.cpp" />
     <ClCompile Include="VectorMapRenderer.cpp" />
     <ClCompile Include="Tube.cpp" />
   </ItemGroup>
@@ -169,14 +171,18 @@
     <ClInclude Include="FoodSource.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GrowthModel.h" />
+    <ClInclude Include="IPlasmodiumModel.h" />
     <ClInclude Include="NodeField.h" />
     <ClInclude Include="NodeGridMapRenderer.h" />
+    <ClInclude Include="PlasmodiumController.h" />
+    <ClInclude Include="IPlasmodiumController.h" />
+    <ClInclude Include="PlasmodiumSpatialState.h" />
     <ClInclude Include="RadarField.h" />
     <ClInclude Include="LineInteresction.h" />
     <ClInclude Include="Vec2i.h" />
     <ClInclude Include="MapRenderer.h" />
     <ClInclude Include="Node.h" />
-    <ClInclude Include="Plasmodium.h" />
+    <ClInclude Include="PlasmodiumData.h" />
     <ClInclude Include="PressureMapRenderer.h" />
     <ClInclude Include="Tube.h" />
     <ClInclude Include="Vec2.h" />

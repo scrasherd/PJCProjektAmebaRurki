@@ -2,14 +2,14 @@
 #include <SFML/Graphics.hpp>
 #include "Node.h"
 #include "Tube.h"
-#include "CollisionField.h"
+#include "NodeField.h"
 #include <iostream>
 
-void NodeGridMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
+void NodeGridMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;
     sf::VertexArray NodeGridArray(sf::PrimitiveType::Triangles);
 
-    const NodeField& nodeField = plasmodium.getStaticNodeField();
+    const NodeField& nodeField = pController.getNodeField();
 
     float cellSize = nodeField.getCellSize();
 

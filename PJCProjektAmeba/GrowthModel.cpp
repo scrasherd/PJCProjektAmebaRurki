@@ -1,42 +1,48 @@
-#define _USE_MATH_DEFINES
+﻿#define _USE_MATH_DEFINES
 #include "GrowthModel.h"
-#include "Plasmodium.h"
 #include "Tube.h"
 #include "Node.h"
+#include "FoodField.h"
+#include "CollisionField.h"
+#include "NodeField.h"
 #include <vector>
 #include <iostream>
 
-GrowthModel::GrowthModel(Plasmodium& owner, FoodField& food) : plasmodium(owner), foodField(food) 
+GrowthModel::GrowthModel(IPlasmodiumController& pController) : pController(pController)
 {
     std::random_device rd;
     rng.seed(rd());
+    Vec2 centerPos(500.f, 500.f);
+
+    addStartStructure(centerPos, 2.0f, 1000.f);
+}
+
+void GrowthModel::simulate() {
+    growOneStep();
 }
 
 void GrowthModel::growOneStep() {
     
+    auto& rawEndingNodes = pController.getEndingNodes();
+    auto endingNodes = sortEndings(rawEndingNodes);
 
-    auto& endingNodes = plasmodium.getEndingNodes();
-    auto& colField = plasmodium.getCollisionField();
-    auto& radarField = plasmodium.getRadarField();
-    auto& nodeField = plasmodium.getNodeField();
-    auto& nodes = plasmodium.getNodes();
-    auto& tubes = plasmodium.getTubes();
+    auto& nodes = pController.getNodes();
+    auto& tubes = pController.getTubes();
+
+    auto& foodField = pController.getFoodField();
+    auto& colField = pController.getCollisionField();
+    auto& nodeField = pController.getNodeField();
 
     if (endingNodes.empty()) return;
 
-    radarField.clearGrid();
-
-    sortEndings(foodField, endingNodes);
-
     int activeCount = getActiveCount(endingNodes);
-    std::cout << activeCount << std::endl;
 
     for (int i = 0; i < activeCount; i++) {
 
         Node* parent = endingNodes[i];
 
         if (shouldGrow()) {
-            growSingleNode(parent, endingNodes, colField, nodeField, nodes, tubes);
+            growSingleNode(parent, endingNodes, colField, nodeField, foodField, nodes, tubes);
         }
 
     }
@@ -45,7 +51,7 @@ void GrowthModel::growOneStep() {
 
 }
 
-void GrowthModel::growSingleNode(Node* parent, std::vector<Node*>& endingNodes, CollisionField& colField, NodeField& nodeField, std::vector<std::unique_ptr<Node>>& nodes, std::vector<std::unique_ptr<Tube>>& tubes) {
+void GrowthModel::growSingleNode(Node* parent, const std::vector<Node*>& endingNodes, const CollisionField& colField, const NodeField& nodeField, const FoodField& foodField, const std::vector<std::unique_ptr<Node>>& nodes, const std::vector<std::unique_ptr<Tube>>& tubes) {
     Vec2 parentPos = parent->getPosition();
 
     int branchesCount = howManyBranches();
@@ -57,32 +63,12 @@ void GrowthModel::growSingleNode(Node* parent, std::vector<Node*>& endingNodes, 
     int attempts = 0;
 
     while (attempts < branchesCount) {
-        float newAngle = generateAngle(baseAngle, attempts, prefSide, foodField, colField, parentPos);
+        Node* node = generateAngle(baseAngle, attempts, prefSide, foodField, nodeField, colField, parentPos);
 
-        if (newAngle > -9.0f) {
-            float tubeLength = plasmodium.getTubeLength();
-            //std::cout << newAngle << std::endl;
+        if (node) {
 
-            Vec2 dir(std::cos(newAngle), std::sin(newAngle));
-            Vec2 newPos = parentPos + dir * tubeLength;
-
-            auto newNode = std::make_unique<Node>(newPos);
-            Node* newNodePtr = newNode.get();
-            auto newTube = std::make_unique<Tube>(parent, newNode.get(), 1.0f, 0.0f);
-
-            endingNodes.push_back(newNode.get());
-            colField.markNode(newPos);
-            nodeField.addNodeToGrid(newPos, newNodePtr);
-            nodes.push_back(std::move(newNode));
-
-            colField.markTube(parentPos, newPos);
-            tubes.push_back(std::move(newTube));
-
-            auto it = std::find(endingNodes.begin(), endingNodes.end(), parent);
-            if (it != endingNodes.end()) {
-                endingNodes.erase(it);
-            }
-
+            pController.addTube(parent, node, 0.0f);
+            pController.removeEndingNode(parent);
         }
         else {
             parent->setFailedGrowthFlag(timeoutFromGrowing);
@@ -92,39 +78,12 @@ void GrowthModel::growSingleNode(Node* parent, std::vector<Node*>& endingNodes, 
     }
 }
 
-void GrowthModel::sortEndings(const FoodField& foodField, const std::vector<Node*>& endingNodes) {
-    std::sort(endingNodes.begin(), endingNodes.end(),
-        [&](Node* A, Node* B) {
-            int failA = A->getFailedGrowthFlag();
-            int failB = B->getFailedGrowthFlag();
-
-            if (failA != failB)
-                return failA < failB; // mniejsze flagi na g�rze
-
-            float valueA = foodField.getValueAt(A->getPosition());
-            float valueB = foodField.getValueAt(B->getPosition());
-
-            return valueA > valueB; // wi�ksze warto�ci jedzenia na g�rze
-        });
-
-    //Kolor ranking do wizualizacji
-    int total = static_cast<int>(endingNodes.size());
-    if (total == 0) return;
-
-    for (int i = 0; i < total; ++i) {
-        float rank = 1.0f - static_cast<float>(i) / (total - 1);
-        float value255 = rank * 255.0f;
-        endingNodes[i]->setRankingValue(value255);
-    }
-}
-
-
 
 float GrowthModel::computeAngle(Node* parent) {
     float baseAngle = 0;
 
     if (parent->getConnectedTubes().empty()) {
-        // brak rurek losuj dowolny k�t
+        // brak rurek losuj dowolny kąt
         std::uniform_real_distribution<float> angleDist(0.0f, 2 * M_PI);
         baseAngle = angleDist(rng);
     }
@@ -139,7 +98,8 @@ float GrowthModel::computeAngle(Node* parent) {
     return baseAngle;
 }
 
-Node* GrowthModel::generateAngle(float baseAngle, int generated, int direction, const FoodField& foodField, CollisionField& colField, const Vec2& pos) {
+Node* GrowthModel::generateAngle(float baseAngle, int generated, int direction, const FoodField& foodField, const NodeField& nodeField, const CollisionField& colField, const Vec2& pos) {
+    float tubeLength = pController.getTubeLength();
     float meanAngle = baseAngle;
     float newAngle = 0;
 
@@ -159,55 +119,27 @@ Node* GrowthModel::generateAngle(float baseAngle, int generated, int direction, 
         FoodGradient = FoodGradient.normalized();
         float foodAngle = std::atan2(FoodGradient.getY(), FoodGradient.getX());
 
-        // przesun k�t o ile� procent w strone jedzenia
+        // przesun kąt o ileś procent w strone jedzenia
         meanAngle = std::lerp(meanAngle, foodAngle, foodInfluence);
     }
 
     std::normal_distribution<float> angleDist(meanAngle, spread);
-    float angle = normalizeAngle(angleDist(rng));
+    newAngle = normalizeAngle(angleDist(rng));
 
     auto availableRanges = colField.getAvailableAngles(pos, baseAngle);
-    //std::cout << "Base angle: " << baseAngle << "\n";
-    //std::cout << "Available ranges (base angle: " << baseAngle << "):\n";
-    //for (const auto& range : availableRanges) {
-    //    std::cout << "  [" << range.first << ", " << range.second << "]\n";
-    //}
 
     if (availableRanges.empty()) return nullptr;
 
-    auto bestRange = availableRanges.front();
-    float bestDistance = std::abs(normalizeAngle(meanAngle - (bestRange.first + bestRange.second) * 0.5f));
+    Vec2 dir(std::cos(newAngle), std::sin(newAngle));
+    Vec2 newPos = pos + dir * tubeLength;
 
-    for (const auto& range : availableRanges) {
-        float center = (range.first + range.second) * 0.5f;
-        float dist = std::abs(meanAngle - center);
-        if (dist < bestDistance) {
-            bestDistance = dist;
-            bestRange = range;
-        }
+    if (isAngleAllowed(newAngle, availableRanges)) {
+        return pController.addNode(newPos);
     }
 
-    float clampedMean = std::clamp(meanAngle, bestRange.first, bestRange.second);
-    float effectiveSpread = (bestRange.second - bestRange.first) * spread;
-    std::normal_distribution<float> angleDist(clampedMean, effectiveSpread);
-
-    const int maxTries = 10;
-    for (int i = 0; i < maxTries; ++i) {
-        float candidate = normalizeAngle(angleDist(rng));
-        float normStart = normalizeAngle(bestRange.first);
-        float normEnd = normalizeAngle(bestRange.second);
-
-        if ((normStart < normEnd && candidate >= normStart && candidate <= normEnd) ||
-            (normStart > normEnd && (candidate >= normStart || candidate <= normEnd))) {
-            newAngle = candidate;
-
-            // DEBUG: wypisz wybrany nowy k�t
-            //std::cout << "Generated new angle: " << newAngle << "\n";
-            return newAngle;
-        }
+    if (!isAngleAllowed(newAngle, availableRanges)) {
+        return nodeField.findNodeToConnect(pos, newPos, newAngle, tubeLength);
     }
-
-    return -10.f;
 
 }
 
@@ -217,7 +149,7 @@ float GrowthModel::normalizeAngle(float angle) {
     return angle;
 }
 
-void GrowthModel::decreaseFailedGrowthFlag(std::vector<Node*>& endingNodes) {
+void GrowthModel::decreaseFailedGrowthFlag(const std::vector<Node*>& endingNodes) {
     for (Node* node : endingNodes) {
         int current = node->getFailedGrowthFlag();
         if (current > 0)
@@ -225,8 +157,22 @@ void GrowthModel::decreaseFailedGrowthFlag(std::vector<Node*>& endingNodes) {
     }
 }
 
+bool GrowthModel::isAngleAllowed(float angle, const std::vector<std::pair<float, float>>& ranges) {
+    for (const auto& [start, end] : ranges) {
+        if (start <= end) {
+            if (angle >= start && angle <= end)
+                return true;
+        }
+        else {
+            // Zakres zawija przez ±π (np. [2.5, -2.5])
+            if (angle >= start || angle <= end)
+                return true;
+        }
+    }
+    return false;
+}
 
-int GrowthModel::getActiveCount(std::vector<Node*>& endingNodes) {
+int GrowthModel::getActiveCount(const std::vector<Node*>& endingNodes) {
     int total = static_cast<int>(endingNodes.size());
     int activeCount = std::max(1.f, total * (growthPrecentage / 100.f));
     return activeCount;
@@ -249,4 +195,53 @@ int GrowthModel::leftOrRight() {
     std::uniform_int_distribution<int> DirectionDist(0, 1);
     direction = DirectionDist(rng) == 0 ? 1 : -1;
     return direction;
+}
+
+std::vector<Node*> GrowthModel::sortEndings(const std::vector<Node*> endingNodes) {
+    auto& foodField = pController.getFoodField();
+    std::vector<Node*> sorted = endingNodes; // zakładamy: const std::vector<Node*>&
+
+    std::sort(sorted.begin(), sorted.end(),
+        [&](Node* A, Node* B) {
+            int failA = A->getFailedGrowthFlag();
+            int failB = B->getFailedGrowthFlag();
+
+            if (failA != failB)
+                return failA < failB;
+
+            float valueA = foodField.getValueAt(A->getPosition());
+            float valueB = foodField.getValueAt(B->getPosition());
+
+            return valueA > valueB;
+        });
+
+    return sorted;
+}
+
+void GrowthModel::assignRankingToNodes(const std::vector<Node*>& nodes) {
+    if (nodes.size() <= 1) return;
+
+    for (size_t i = 0; i < nodes.size(); ++i) {
+        float rank = 1.0f - static_cast<float>(i) / (nodes.size() - 1);
+        float value255 = rank * 255.0f;
+        nodes[i]->setRankingValue(value255);
+    }
+}
+
+void GrowthModel::addStartStructure(const Vec2& centerPos, float radius, float cytValue) {
+    // Tworzenie węzła centralnego
+    auto center = pController.addNode(centerPos);
+
+    // Rozmieszczanie 3 węzłów na okręgu wokół centrum (kąty co 120 stopni)
+    for (int i = 0; i < 3; ++i) {
+        float angle = i * (2.0f * 3.1415926f / 3.0f); // 0, 120°, 240°
+        Vec2 offset{ radius * std::cos(angle), radius * std::sin(angle) };
+        Vec2 outerPos = center->getPosition() + offset;
+
+        auto outer = pController.addNode(outerPos);
+
+        pController.addTube(center, outer, cytValue);
+    }
+
+    // Dodanie centralnego węzła jako potencjalnego zakończenia
 }

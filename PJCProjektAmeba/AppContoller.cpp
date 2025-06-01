@@ -1,19 +1,25 @@
 #include "AppController.h"
+#include "PlasmodiumController.h"
+#include <iostream>
 
 AppController::AppController(int mapWidth, int mapHeight, float tubeLength) :
     window(sf::VideoMode({ static_cast<unsigned int>(mapWidth), static_cast<unsigned int>(mapHeight) }), "Plasmodium App"),
     foodField(mapHeight, mapWidth),
-    plasmodium(Vec2(mapHeight / 2.0f, mapWidth / 2.0f), mapWidth, mapHeight, tubeLength, foodField),
+    plasmodium(std::make_unique<PlasmodiumController>(mapWidth, mapHeight, tubeLength, foodField)),
     renderer(MapRenderer::create(RenderMode::Food))
 {
     view = window.getDefaultView();
 
     foodField.addSource(Vec2((mapHeight / 2.0f) + 50.0f, (mapWidth / 2.0f) + 50.0f), 1.0f, 100.0f);
+    //foodField.addSource(Vec2((mapHeight / 2.0f) + 100.0f, (mapWidth / 2.0f) + 50.0f), 1.0f, 100.0f);
+
     //foodField.addSource(Vec2((mapHeight / 2.0f) - 50.0f, (mapWidth / 2.0f) - 50.0f), 1.0f, 100.0f);
     foodField.updateField();
+ 
 }
 
 void AppController::run() {
+
     bool Pause = true;
 
     static sf::Clock phaseClock;
@@ -56,8 +62,7 @@ void AppController::run() {
                 }
                 else if (key == sf::Keyboard::Key::Enter) {
                     if (Pause) {
-                        plasmodium.simulateGrowth();
-                        plasmodium.simulateFlow(0.01f);
+                        plasmodium->update();
                     }
                 }
 
@@ -102,29 +107,30 @@ void AppController::run() {
 
         if (!Pause && clock.getElapsedTime().asMilliseconds() > 1) {
             float elapsed = phaseClock.getElapsedTime().asSeconds();
+            plasmodium->update();
 
-            if (!growPhase) {
-                plasmodium.simulateFlow(0.01f);
+            //if (!growPhase) {
+            //    plasmodium.simulateFlow();
 
-                if (elapsed >= 0.5f) {
-                    growPhase = true; // przechodzimy do fazy wzrostu
-                }
-            }
-            else {
-                
-                plasmodium.simulateGrowth();
-                
+            //    if (elapsed >= 0.5f) {
+            //        growPhase = true; // przechodzimy do fazy wzrostu
+            //    }
+            //}
+            //else {
+            //    
+            //    plasmodium.simulateGrowth();
+            //    
 
-                // reset fazy
-                phaseClock.restart();
-                growPhase = false;
-            }
+            //    // reset fazy
+            //    phaseClock.restart();
+            //    growPhase = false;
+            //}
 
-            clock.restart();
+            //clock.restart();
         }
 
             window.clear();
-            renderer->draw(window, plasmodium, foodField);
+            renderer->draw(window, *plasmodium);
             window.display();
     }
 }

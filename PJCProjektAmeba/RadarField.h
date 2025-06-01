@@ -13,11 +13,11 @@ private:
     std::unordered_map<std::pair<int, int>, GridBlock<float>, PairHash> RadarGrid;
 
 public:
-    RadarField(Plasmodium& plasmodium, int width, int height, float cellSize);
+    RadarField(int width, int height, float cellSize, float tubeLength);
 
-    virtual std::vector<std::pair<float, float>> getAvailableAngles(const Vec2& pos, float baseAngle) override;
+    std::vector<std::pair<float, float>> getAvailableAnglesRadar(const Vec2& pos, float baseAngle);
 
-    virtual bool LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) override;
+    bool LineCollisionCheckRadar(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold);
 
     virtual float& getCellRef(const Vec2i& gridPos) override;
     virtual float getCellVal(const Vec2i& gridPos) const override;

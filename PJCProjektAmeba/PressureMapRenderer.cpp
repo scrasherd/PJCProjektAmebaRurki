@@ -6,13 +6,13 @@
 #include <algorithm>
 #include <iostream>
 
-void PressureMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
+void PressureMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;
 
     sf::VertexArray lineArray(sf::PrimitiveType::Lines);
     sf::VertexArray nodeArray(sf::PrimitiveType::Triangles);
 
-    for (const auto& tube : plasmodium.getStaticTubes()) {
+    for (const auto& tube : pController.getTubes()) {
         Vec2 a = tube->getNodeA()->getPosition();
         Vec2 b = tube->getNodeB()->getPosition();
 
@@ -30,7 +30,7 @@ void PressureMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasm
         lineArray.append(sf::Vertex(sf::Vector2f(b.getX(), b.getY()), color));
     }
 
-    for (const auto& node : plasmodium.getStaticNodes()) {
+    for (const auto& node : pController.getNodes()) {
         Vec2 p = node->getPosition();
         float pressure = node->getPressure();
         float normP = std::clamp((pressure - 0.3f) / (3.0f - 0.3f), 0.0f, 1.0f);

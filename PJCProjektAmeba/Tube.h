@@ -6,8 +6,8 @@ class Node;
 class Tube {
 
 private:
-	Node* NodeA;
-	Node* NodeB;
+	const Node* NodeA;
+	const Node* NodeB;
 
 	float TubeDiameter;
 

@@ -2,6 +2,11 @@
 #include"Vec2i.h"
 #include<cmath>
 
+bool endOn(const Vec2i& a, const Vec2i& b, const Vec2i& c) {
+	return std::min(a.getXi(), c.getXi()) <= b.getXi() && b.getXi() <= std::max(a.getXi(), c.getXi()) &&
+		std::min(a.getYi(), c.getYi()) <= b.getYi() && b.getYi() <= std::max(a.getYi(), c.getYi());
+}
+
 bool checkIfLinesIntersect(const Vec2i& posA, const Vec2i& posB, const Vec2i& posC, const Vec2i& posD) {
 
 	Vec2i AB = (posB - posA);
@@ -30,7 +35,3 @@ bool checkIfLinesIntersect(const Vec2i& posA, const Vec2i& posB, const Vec2i& po
 	return false;
 }
 
-bool endOn(const Vec2i& a, const Vec2i& b, const Vec2i& c) {
-	return std::min(a.getXi(), c.getXi()) <= b.getXi() && b.getXi() <= std::max(a.getXi(), c.getXi()) &&
-		std::min(a.getYi(), c.getYi()) <= b.getYi() && b.getYi() <= std::max(a.getYi(), c.getYi());
-}

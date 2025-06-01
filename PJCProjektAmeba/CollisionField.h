@@ -13,11 +13,11 @@ private:
     std::unordered_map<std::pair<int, int>, GridBlock<float>, PairHash> CollisionGrid;
 
 public:
-    CollisionField(Plasmodium& plasmodium, int width, int height, float cellSize);
+    CollisionField(int width, int height, float cellSize, float tubeLength);
 
-    virtual std::vector<std::pair<float, float>> getAvailableAngles(const Vec2& pos, float baseAngle) override;
+    const  std::vector<std::pair<float, float>> getAvailableAngles(const Vec2& pos, float baseAngle) const;
 
-    virtual bool LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) override;
+    const bool LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) const;
 
     virtual float& getCellRef(const Vec2i& gridPos) override;
     virtual float getCellVal(const Vec2i& gridPos) const override;

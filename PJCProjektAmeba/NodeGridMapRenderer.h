@@ -7,6 +7,6 @@ private:
     bool textureReady = false;
 
 public:
-    virtual void draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) override;
+    virtual void draw(sf::RenderWindow& window, const IPlasmodiumController& pController) override;
 };
 

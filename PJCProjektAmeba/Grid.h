@@ -30,12 +30,11 @@ struct PairHash {
 class Grid {
 protected:
 
-    Plasmodium& plasmodium;
     int width, height;
 
 
 public:
-    Grid(Plasmodium& plasmodium, int width, int height);
+    Grid(int width, int height);
     virtual ~Grid() = default;
 
     virtual float getCellSize() const = 0;

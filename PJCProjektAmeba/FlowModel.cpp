@@ -1,15 +1,23 @@
 #define _USE_MATH_DEFINES
 #include "FlowModel.h"
-#include "Plasmodium.h"
+#include "FoodField.h"
 #include "Tube.h"
 #include "Node.h"
 #include <vector>
 #include <iostream>
 
-FlowModel::FlowModel(Plasmodium& owner, FoodField& food) : plasmodium(owner), foodField(food) {}
+FlowModel::FlowModel(IPlasmodiumController& pController) : pController(pController) {}
+
+void FlowModel::simulate() {
+    updatePhasesAndPressures(0.01f);
+    computeDPinTubes();           
+    computeFlow();               
+}
 
 void FlowModel::updatePhasesAndPressures(float dt) {
-    auto& nodePtrs = plasmodium.getNodes();
+    auto& foodField = pController.getFoodField();
+
+    auto& nodePtrs = pController.getNodes();
     const float baseOmega = 2.f * M_PI * 0.5f; // 0.5 Hz
     const float coupling = 1.0f;
 
@@ -50,7 +58,7 @@ void FlowModel::updatePhasesAndPressures(float dt) {
 }
 
 void FlowModel::computeDPinTubes() {
-    auto& tubePtrs = plasmodium.getTubes();
+    auto& tubePtrs = pController.getTubes();
     //dP = Pa - Pb
 
     for (auto& tubePtr : tubePtrs) {
@@ -66,7 +74,7 @@ void FlowModel::computeDPinTubes() {
 }
 
 void FlowModel::computeFlow() {
-    auto& nodePtrs = plasmodium.getNodes();
+    auto& nodePtrs = pController.getNodes();
 
     float CytIn = 0;
 
@@ -169,15 +177,4 @@ void FlowModel::CytoplasmTransfer(Node* node) {
 
     }
 }
-
-//bool FlowModel::isNodeA(Node* node, Tube* tube) { // sprawdz czy node jest dla danego tube A
-//    Node* neighbor = tube->getNodeA();
-//    if (neighbor == node) {
-//        neighbor = tube->getNodeB();
-//        return false;
-//    }
-//    else {
-//        return true;
-//    }
-//}
 

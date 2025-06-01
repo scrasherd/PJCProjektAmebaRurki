@@ -13,14 +13,8 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Header Files\GridFields">
-      <UniqueIdentifier>{89d6ba05-254d-45bb-9c35-ee4356ae2f22}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\RenderModes">
       <UniqueIdentifier>{6f94f939-5a66-4a2f-b55f-484184af253f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\GridFields">
-      <UniqueIdentifier>{74cacdac-88c7-4268-9100-17bdb707ce5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\RenderModes">
       <UniqueIdentifier>{3f90ea3b-2c21-40db-bd51-03d742f5a6ab}</UniqueIdentifier>
@@ -28,18 +22,36 @@
     <Filter Include="Header Files\Util">
       <UniqueIdentifier>{65179d08-2bc8-4bac-bfc6-b98589a75c1d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Plasmodium">
+      <UniqueIdentifier>{cde20457-0c91-46dc-a80c-edff15d278d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Plasmodium">
+      <UniqueIdentifier>{756da97c-8bdf-4793-bbf1-18a81bc4e47b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Plasmodium\PlasmodiumSpatialState">
+      <UniqueIdentifier>{85f9a303-fe3a-4cbf-a5c9-6cb7ad2c60aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Plasmodium\PlasmodiumSpatialState\GridFields">
+      <UniqueIdentifier>{74cacdac-88c7-4268-9100-17bdb707ce5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Plasmodium\PlasmodiumSpatialState">
+      <UniqueIdentifier>{15baa005-dea1-402c-8f1a-e785c5d8ec55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Plasmodium\PlasmodiumSpatialState\GridFields">
+      <UniqueIdentifier>{89d6ba05-254d-45bb-9c35-ee4356ae2f22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Interface">
+      <UniqueIdentifier>{9146e0df-0e33-43b1-9d94-d24b7f211e5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Plasmodium\Models">
+      <UniqueIdentifier>{e4bbe284-90c2-45cf-b24b-7c869dee5299}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Plasmodium\Models">
+      <UniqueIdentifier>{0b9ec4ad-278a-4060-a5ea-1ec9845ba28d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Plasmodium.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Tube.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AppContoller.cpp">
@@ -51,9 +63,6 @@
     <ClCompile Include="FoodSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="FlowModel.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="FigureMaker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -61,10 +70,10 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="CollisionField.h">
-      <Filter>Header Files\GridFields</Filter>
+      <Filter>Header Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="CollisionField.cpp">
-      <Filter>Source Files\GridFields</Filter>
+      <Filter>Source Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="CollisionMapRenderer.cpp">
       <Filter>Source Files\RenderModes</Filter>
@@ -79,38 +88,44 @@
       <Filter>Source Files\RenderModes</Filter>
     </ClCompile>
     <ClCompile Include="RadarField.cpp">
-      <Filter>Source Files\GridFields</Filter>
-    </ClCompile>
-    <ClCompile Include="GrowthModel.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="Grid.cpp">
-      <Filter>Source Files\GridFields</Filter>
+      <Filter>Source Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="CollisionLogic.cpp">
-      <Filter>Source Files\GridFields</Filter>
+      <Filter>Source Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="NodeField.cpp">
-      <Filter>Source Files\GridFields</Filter>
+      <Filter>Source Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
     <ClCompile Include="NodeGridMapRenderer.cpp">
       <Filter>Source Files\RenderModes</Filter>
     </ClCompile>
+    <ClCompile Include="GrowthModel.cpp">
+      <Filter>Source Files\Plasmodium\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="FlowModel.cpp">
+      <Filter>Source Files\Plasmodium\Models</Filter>
+    </ClCompile>
+    <ClCompile Include="PlasmodiumData.cpp">
+      <Filter>Source Files\Plasmodium</Filter>
+    </ClCompile>
+    <ClCompile Include="PlasmodiumSpatialState.cpp">
+      <Filter>Source Files\Plasmodium\PlasmodiumSpatialState</Filter>
+    </ClCompile>
+    <ClCompile Include="Node.cpp">
+      <Filter>Source Files\Plasmodium</Filter>
+    </ClCompile>
+    <ClCompile Include="Tube.cpp">
+      <Filter>Source Files\Plasmodium</Filter>
+    </ClCompile>
+    <ClCompile Include="PlasmodiumController.cpp">
+      <Filter>Source Files\Plasmodium</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Plasmodium.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Tube.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="AppController.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="MapRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FoodField.h">
@@ -119,13 +134,7 @@
     <ClInclude Include="FoodSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="FlowModel.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="FigureMaker.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GrowthModel.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="CollisionMapRenderer.h">
@@ -147,22 +156,52 @@
       <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="RadarField.h">
-      <Filter>Header Files\GridFields</Filter>
+      <Filter>Header Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClInclude>
     <ClInclude Include="CollisionLogic.h">
-      <Filter>Header Files\GridFields</Filter>
+      <Filter>Header Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClInclude>
     <ClInclude Include="Grid.h">
-      <Filter>Header Files\GridFields</Filter>
+      <Filter>Header Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClInclude>
     <ClInclude Include="NodeField.h">
-      <Filter>Header Files\GridFields</Filter>
+      <Filter>Header Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClInclude>
     <ClInclude Include="NodeGridMapRenderer.h">
       <Filter>Header Files\RenderModes</Filter>
     </ClInclude>
     <ClInclude Include="LineInteresction.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="PlasmodiumData.h">
+      <Filter>Header Files\Plasmodium</Filter>
+    </ClInclude>
+    <ClInclude Include="GrowthModel.h">
+      <Filter>Header Files\Plasmodium\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="FlowModel.h">
+      <Filter>Header Files\Plasmodium\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="PlasmodiumSpatialState.h">
+      <Filter>Header Files\Plasmodium\PlasmodiumSpatialState</Filter>
+    </ClInclude>
+    <ClInclude Include="Node.h">
+      <Filter>Header Files\Plasmodium</Filter>
+    </ClInclude>
+    <ClInclude Include="Tube.h">
+      <Filter>Header Files\Plasmodium</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlasmodiumController.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="PlasmodiumController.h">
+      <Filter>Header Files\Plasmodium</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlasmodiumModel.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="MapRenderer.h">
+      <Filter>Header Files\Interface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

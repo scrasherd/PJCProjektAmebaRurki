@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Plasmodium.h"
-#include "MapRenderer.h"
+#include "IPlasmodiumController.h"
+#include "IMapRenderer.h"
 #include "FoodField.h"
 #include "CollisionField.h"
 #include <memory>
@@ -14,8 +14,8 @@ private:
     sf::RenderWindow window;
     sf::View view;
 
-    Plasmodium plasmodium;
     FoodField foodField;
+    std::unique_ptr<IPlasmodiumController> plasmodium;
 
     RenderMode currentMode = RenderMode::Food;
     std::unique_ptr<MapRenderer> renderer;

@@ -1,20 +1,23 @@
 #pragma once
 #include <vector>
-class Plasmodium;
-class FoodField;
+#include "IPlasmodiumController.h"
+#include "IPlasmodiumModel.h"
+
+
 class Node;
 class Tube;
 
-class FlowModel {
+class FlowModel : public IPlasmodiumModel {
 private:
-    Plasmodium& plasmodium;
-    FoodField& foodField;
+    IPlasmodiumController& pController;
 
     float resistanceFactor = 1.0f; 
     float damping = 0.2f;
 
 public:
-    FlowModel(Plasmodium& owner, FoodField& foodField);
+    FlowModel(IPlasmodiumController& pController);
+
+    void simulate() override;
 
     //void updateFlow(float dt);
 

@@ -9,15 +9,15 @@
 #include <iostream>
 
 
-NodeField::NodeField(Plasmodium& plasmodium, int width, int height, float cellSize)
-    : Grid(plasmodium, width, height), cellSize(cellSize)
+NodeField::NodeField(int width, int height, float cellSize)
+    : Grid(width, height), cellSize(cellSize)
 {}
 
 float NodeField::getCellSize() const {
     return cellSize;
 }
 
-const Node* NodeField::getNodeFromGridPosition(const Vec2i& gridPos) const {
+Node* NodeField::getNodeFromGridPosition(const Vec2i& gridPos) const {
     static constexpr int blockSize = GridBlock<Node*>::getBlockSize();
     int blockX = gridPos.getXi() / blockSize;
     int blockY = gridPos.getYi() / blockSize;
@@ -54,32 +54,8 @@ void NodeField::clearGrid() {
     NodeGrid.clear();
 }
 
-//Node* NodeField::findNodeToConnect(const Vec2& posA, const Vec2& posB, float angle, float tubeLength) {
-//    Vec2i posAGrid = toGridCoords(posA);
-//    Vec2i posBGrid = toGridCoords(posB);
-//
-//    int aX = posAGrid.getXi();
-//    int aY = posAGrid.getYi();
-//    int bX = posBGrid.getXi();
-//    int bY = posBGrid.getYi();
-//
-//    int cX = static_cast<int>(std::round((aX + bX) / 2.0f));
-//    int cY = static_cast<int>(std::round((aY + bY) / 2.0f));
-//
-//    int bbLengthHalf = static_cast<int>(std::ceil((tubeLength * 1.1f * (std::abs(std::cos(angle)) + std::abs(std::sin(angle)))) / 2.0f));
-//
-//    //Granice Bounding Boxa
-//    int Left = cX - bbLengthHalf;
-//    int Right = cX + bbLengthHalf;
-//    int Upper = cY - bbLengthHalf;
-//    int Lower = cY + bbLengthHalf;
-//
-//    for()
-//
-//    return nullptr;
-//}
 
-const Node* NodeField::findNodeToConnect(const Vec2& posA, const Vec2& posB, float angle, float tubeLength) {
+Node* NodeField::findNodeToConnect(const Vec2& posA, const Vec2& posB, float angle, float tubeLength) const {
     const Vec2i posAGrid = toGridCoords(posA);
     const Vec2i posBGrid = toGridCoords(posB);
 
@@ -109,7 +85,7 @@ const Node* NodeField::findNodeToConnect(const Vec2& posA, const Vec2& posB, flo
         X = X + directions[currentDir].getXi();
         Y = Y + directions[currentDir].getYi();
 
-        const Node* node = getNodeFromGridPosition(Vec2i(X, Y));
+        Node* node = getNodeFromGridPosition(Vec2i(X, Y));
         if (node && CheckForIntersection(posAGrid, posBGrid, node)) {
             return node;
         }
@@ -132,7 +108,7 @@ const Node* NodeField::findNodeToConnect(const Vec2& posA, const Vec2& posB, flo
         return nullptr;
 }
 
-bool NodeField::CheckForIntersection(const Vec2i& posA, const Vec2i& posB, const Node* node) {
+const bool NodeField::CheckForIntersection(const Vec2i& posA, const Vec2i& posB, const Node* node) const {
 
     Vec2i posC = toGridCoords(node->getPosition());
 

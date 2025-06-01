@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Plasmodium.h"
-#include "FoodField.h"
+#include "IPlasmodiumController.h"
 #include "FigureMaker.h"
 
 enum class RenderMode {
@@ -16,7 +15,7 @@ class MapRenderer {
 public:
     MapRenderer() = default;
     virtual ~MapRenderer() = default;
-    virtual void draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) = 0;
+    virtual void draw(sf::RenderWindow& window, const IPlasmodiumController& pController) = 0;
 
     static std::unique_ptr<MapRenderer> create(RenderMode mode);
 };

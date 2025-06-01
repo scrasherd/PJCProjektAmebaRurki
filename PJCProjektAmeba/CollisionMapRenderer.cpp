@@ -3,16 +3,17 @@
 #include "Node.h"
 #include "Tube.h"
 #include "CollisionField.h"
+#include "RadarField.h"
 #include <iostream>
 
-void CollisionMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
+void CollisionMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;
     sf::VertexArray CollisionArray(sf::PrimitiveType::Triangles);
 
     sf::VertexArray RadarArray(sf::PrimitiveType::Triangles);
 
-    const CollisionField& colField = plasmodium.getStaticCollisionField();
-    const RadarField& radarField = plasmodium.getStaticRadarField();
+    const CollisionField& colField = pController.getCollisionField();
+    const RadarField& radarField = pController.getRadarField();
 
     float cellSize = colField.getCellSize();
 

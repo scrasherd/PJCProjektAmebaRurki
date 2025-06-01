@@ -4,7 +4,7 @@
 #include "Tube.h"
 #include "FoodField.h"
 
-void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
+void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;
 
     sf::VertexArray lineArray(sf::PrimitiveType::Lines);
@@ -13,6 +13,8 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
     sf::VertexArray FoodSourceArray(sf::PrimitiveType::Triangles);
 
     sf::VertexArray gradient(sf::PrimitiveType::Triangles);
+
+    auto& foodField = pController.getFoodField();
 
     auto getValueAt = [&](const Vec2& pos) {
         return foodField.getValueAt(pos);
@@ -48,7 +50,7 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
         maker.drawSquareVertex(FoodSourceArray, c, Size, color);
     }
 
-    for (const auto& tube : plasmodium.getStaticTubes()) {
+    for (const auto& tube : pController.getTubes()) {
         Vec2 a = tube->getNodeA()->getPosition();
         Vec2 b = tube->getNodeB()->getPosition();
 
@@ -56,7 +58,7 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& p
         lineArray.append(sf::Vertex(sf::Vector2f(b.getX(), b.getY()), sf::Color::White));
     }
 
-    for (const auto& node : plasmodium.getStaticNodes()) {
+    for (const auto& node : pController.getNodes()) {
         Vec2 p = node->getPosition();
         sf::Color color = (node->getConnectedTubes().size() == 1) ?
             sf::Color::Green : sf::Color(100, 100, 100);

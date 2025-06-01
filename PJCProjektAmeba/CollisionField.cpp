@@ -1,6 +1,5 @@
 #define _USE_MATH_DEFINES
 #include "CollisionField.h"
-#include "Plasmodium.h"
 #include "Vec2.h"
 #include "Vec2i.h"
 #include <cmath>
@@ -8,13 +7,13 @@
 #include <iostream>
 
 
-CollisionField::CollisionField(Plasmodium& plasmodium, int width, int height, float cellSize)
-    : CollisionLogic(plasmodium, width, height, cellSize)
+CollisionField::CollisionField(int width, int height, float cellSize, float tubeLength)
+    : CollisionLogic(width, height, cellSize, tubeLength)
 {}
 
 
-std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(const Vec2& pos, float baseAngle) {
-        const float length = plasmodium.getTubeLength();
+const std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(const Vec2& pos, float baseAngle) const {
+        const float length = getTubeLength();
         const float AngleStep = 1 / 40.f;
         const float CollisionThreshold = 0.5f;
     
@@ -48,7 +47,7 @@ std::vector<std::pair<float, float>> CollisionField::getAvailableAngles(const Ve
         return AvailableRanges;
  }
 
-bool CollisionField::LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) {
+const bool CollisionField::LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) const{
     float cellSize = getCellSize();
     //int printEvery = 1000; 
     //int counter = 0;

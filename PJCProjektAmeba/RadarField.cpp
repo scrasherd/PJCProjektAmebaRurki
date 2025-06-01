@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #include "RadarField.h"
-#include "Plasmodium.h"
+#include "Node.h"
+#include "Tube.h"
 #include "Vec2.h"
 #include "Vec2i.h"
 #include <cmath>
@@ -8,12 +9,12 @@
 #include <iostream>
 
 
-RadarField::RadarField(Plasmodium& plasmodium, int width, int height, float cellSize)
-    : CollisionLogic(plasmodium, width, height, cellSize)
+RadarField::RadarField(int width, int height, float cellSize, float tubeLength)
+    : CollisionLogic(width, height, cellSize, tubeLength)
 {}
 
-std::vector<std::pair<float, float>> RadarField::getAvailableAngles(const Vec2& pos, float baseAngle) {
-    const float length = plasmodium.getTubeLength();
+std::vector<std::pair<float, float>> RadarField::getAvailableAnglesRadar(const Vec2& pos, float baseAngle) {
+    const float length = getTubeLength();
     const float AngleStep = 1 / 40.f;
     const float CollisionThreshold = 0.5f;
 
@@ -24,7 +25,7 @@ std::vector<std::pair<float, float>> RadarField::getAvailableAngles(const Vec2& 
     for (float angle = baseAngle - M_PI_2; angle <= baseAngle + M_PI_2; angle += AngleStep) {
 
         Vec2 dir(std::cos(angle), std::sin(angle));
-        bool Collision = LineCollisionCheck(pos, dir, length, CollisionThreshold);
+        bool Collision = LineCollisionCheckRadar(pos, dir, length, CollisionThreshold);
 
         if (!Collision) {
             if (!InFreeRange) {
@@ -47,7 +48,7 @@ std::vector<std::pair<float, float>> RadarField::getAvailableAngles(const Vec2& 
     return AvailableRanges;
 }
 
-bool RadarField::LineCollisionCheck(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) {
+bool RadarField::LineCollisionCheckRadar(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) {
     float cellSize = getCellSize();
     //int printEvery = 1000; 
     //int counter = 0;

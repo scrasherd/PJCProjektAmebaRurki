@@ -4,7 +4,7 @@
 #include "Tube.h"
 #include "FoodField.h"
 
-void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmodium, const FoodField& foodField) {
+void VectorMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;
 
     sf::VertexArray lineArray(sf::PrimitiveType::Lines);
@@ -14,6 +14,8 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
     sf::VertexArray FoodSourceArray(sf::PrimitiveType::Triangles);
     float halfSize = 5.0f;
 
+    auto& foodField = pController.getFoodField();
+
     for (const auto& FoodSource : foodField.getSources()) {
         Vec2 c = FoodSource.getFoodSourcePosition();
         sf::Color color = sf::Color::Red;
@@ -22,7 +24,7 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
         maker.drawSquareVertex(FoodSourceArray, c, Size, color);
     }
 
-    for (const auto& tube : plasmodium.getStaticTubes()) {
+    for (const auto& tube : pController.getTubes()) {
         Vec2 a = tube->getNodeA()->getPosition();
         Vec2 b = tube->getNodeB()->getPosition();
 
@@ -30,7 +32,7 @@ void VectorMapRenderer::draw(sf::RenderWindow& window, const Plasmodium& plasmod
         lineArray.append(sf::Vertex(sf::Vector2f(b.getX(), b.getY()), sf::Color::White));
     }
 
-    for (const auto& node : plasmodium.getStaticNodes()) {
+    for (const auto& node : pController.getNodes()) {
         Vec2 p = node->getPosition();
         float alpha = node->getRankingValue();
         sf::Color color(255, 0, 0, alpha);
