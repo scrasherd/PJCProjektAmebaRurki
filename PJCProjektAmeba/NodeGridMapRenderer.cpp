@@ -4,6 +4,16 @@
 #include "Tube.h"
 #include "NodeField.h"
 #include <iostream>
+#include "MapRendererRegistry.h"
+
+namespace {
+    const bool registered = [] {
+        MapRendererRegistry::registerRenderer(RenderMode::NodeGridMapRenderer, [] {
+            return std::make_unique<NodeGridMapRenderer>();
+            });
+        return true;
+        }();
+}
 
 void NodeGridMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;

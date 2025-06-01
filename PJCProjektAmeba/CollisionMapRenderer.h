@@ -1,7 +1,7 @@
 #pragma once
-#include "MapRenderer.h"
+#include "IMapRenderer.h"
 
-class CollisionMapRenderer : public MapRenderer {
+class CollisionMapRenderer : public IMapRenderer {
 private:
     sf::RenderTexture cachedTexture;
     bool textureReady = false;

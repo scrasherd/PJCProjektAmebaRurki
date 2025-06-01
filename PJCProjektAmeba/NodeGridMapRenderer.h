@@ -1,7 +1,7 @@
 #pragma once
-#include "MapRenderer.h"
+#include "IMapRenderer.h"
 
-class NodeGridMapRenderer : public MapRenderer {
+class NodeGridMapRenderer : public IMapRenderer {
 private:
     sf::RenderTexture cachedTexture;
     bool textureReady = false;

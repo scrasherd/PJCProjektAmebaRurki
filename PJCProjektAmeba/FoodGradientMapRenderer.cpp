@@ -3,6 +3,17 @@
 #include "Node.h"
 #include "Tube.h"
 #include "FoodField.h"
+#include "MapRendererRegistry.h"
+
+namespace {
+    const bool registered = [] {
+        MapRendererRegistry::registerRenderer(RenderMode::FoodGradientMapRenderer, [] {
+            return std::make_unique<FoodGradientMapRenderer>();
+            });
+        return true;
+        }();
+}
+
 
 void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;

@@ -4,19 +4,17 @@
 #include "FigureMaker.h"
 
 enum class RenderMode {
-    Food,
-    Vector,
-    Pressure,
-    Collision,
-    Node
+    FoodGradientMapRenderer,
+    VectorMapRenderer,
+    PressureMapRenderer,
+    CollisionMapRenderer,
+    NodeGridMapRenderer
 };
 
-class MapRenderer {
+class IMapRenderer {
 public:
-    MapRenderer() = default;
-    virtual ~MapRenderer() = default;
+    IMapRenderer() = default;
+    virtual ~IMapRenderer() = default;
     virtual void draw(sf::RenderWindow& window, const IPlasmodiumController& pController) = 0;
-
-    static std::unique_ptr<MapRenderer> create(RenderMode mode);
 };
 

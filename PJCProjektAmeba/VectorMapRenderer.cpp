@@ -3,6 +3,16 @@
 #include "Node.h"
 #include "Tube.h"
 #include "FoodField.h"
+#include "MapRendererRegistry.h"
+
+namespace {
+    const bool registered = [] {
+        MapRendererRegistry::registerRenderer(RenderMode::VectorMapRenderer, [] {
+            return std::make_unique<VectorMapRenderer>();
+            });
+        return true;
+        }();
+}
 
 void VectorMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;

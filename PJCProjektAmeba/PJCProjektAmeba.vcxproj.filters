@@ -66,9 +66,6 @@
     <ClCompile Include="FigureMaker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MapRenderer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionField.h">
       <Filter>Header Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
@@ -122,6 +119,15 @@
     </ClCompile>
     <ClCompile Include="PlasmodiumController.cpp">
       <Filter>Source Files\Plasmodium</Filter>
+    </ClCompile>
+    <ClCompile Include="MapRendererRegistry.cpp">
+      <Filter>Source Files\RenderModes</Filter>
+    </ClCompile>
+    <ClCompile Include="SimulationController.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RenderController.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,8 +206,17 @@
     <ClInclude Include="IPlasmodiumModel.h">
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="MapRenderer.h">
+    <ClInclude Include="IMapRenderer.h">
       <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="MapRendererRegistry.h">
+      <Filter>Header Files\RenderModes</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderController.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SimulationController.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -5,6 +5,16 @@
 #include "FoodField.h"
 #include <algorithm>
 #include <iostream>
+#include "MapRendererRegistry.h"
+
+namespace {
+    const bool registered = [] {
+        MapRendererRegistry::registerRenderer(RenderMode::PressureMapRenderer, [] {
+            return std::make_unique<PressureMapRenderer>();
+            });
+        return true;
+        }();
+}
 
 void PressureMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;

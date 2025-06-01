@@ -5,6 +5,16 @@
 #include "CollisionField.h"
 #include "RadarField.h"
 #include <iostream>
+#include "MapRendererRegistry.h"
+
+namespace {
+    const bool registered = [] {
+        MapRendererRegistry::registerRenderer(RenderMode::CollisionMapRenderer, [] {
+            return std::make_unique<CollisionMapRenderer>();
+            });
+        return true;
+        }();
+}
 
 void CollisionMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumController& pController) {
     FigureMaker maker;
