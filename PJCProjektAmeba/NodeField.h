@@ -20,11 +20,6 @@ public:
 
     float getCellSize() const override;
 
-    //virtual float& getCellRef(const Vec2i& gridPos) override;
-    //virtual float getCellVal(const Vec2i& gridPos) const override;
-
-    //virtual void mark(const Vec2& pos, float value) override;
-
     Node* getNodeFromGridPosition(const Vec2i& gridPos) const;
     Node*& getCellRef(const Vec2i& gridPos);
 

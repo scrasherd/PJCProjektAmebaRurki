@@ -1,29 +1,31 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Vec2.h"
+#include "Grid.h"
 #include "FoodSource.h"
 #include <vector>
 
-class FoodField {
+class FoodField : public Grid {
 private:
-    std::vector<std::vector<float>> field;
+    std::unordered_map<std::pair<int, int>, GridBlock<float>, PairHash> FoodGrid;
     std::vector<FoodSource> sources;
-    int width, height;
+    float cellSize = 1.0f;
 
 public:
     FoodField(int width, int height);
 
+    float getCellSize() const override;
+
     void addSource(const Vec2& pos, float intensity, float radius);
-    void clearField();
     void updateField();
 
     const std::vector<FoodSource>& getSources() const;
- 
-    bool isInside(const Vec2& pos) const;
+
+
+    float& refCell(const Vec2i& gridPos);
     float getValueAt(const Vec2& pos) const;
 
-    int getWidth() const { return width; }
-    int getHeight() const { return height; }
-
     const Vec2 getFoodGradient(Vec2 pos) const;
+
+    void clearGrid() override;
 };

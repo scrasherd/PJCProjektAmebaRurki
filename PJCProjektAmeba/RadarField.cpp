@@ -50,17 +50,10 @@ std::vector<std::pair<float, float>> RadarField::getAvailableAnglesRadar(const V
 
 bool RadarField::LineCollisionCheckRadar(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) {
     float cellSize = getCellSize();
-    //int printEvery = 1000; 
-    //int counter = 0;
 
     for (float i = 0.5f; i < range + 0.25f; i += cellSize * 0.5f) {
         Vec2 PointOnCollisionLine = pos + dir * i;
         mark(PointOnCollisionLine, 1.0f);
-        //if (counter % printEvery == 0) {
-        //    std::cout << "Sprawdzam punkt: x=" << PointOnCollisionLine.getX()
-        //        << ", y=" << PointOnCollisionLine.getY() << std::endl;
-        //}
-        //counter++;
 
         if (getDensity(PointOnCollisionLine) > CollisionThreshold) {
             return true;

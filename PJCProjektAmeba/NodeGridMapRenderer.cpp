@@ -37,7 +37,7 @@ void NodeGridMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumContro
                     float px = (blockX * blockSize + bx + 0.5f) * cellSize;
                     float py = (blockY * blockSize + by + 0.5f) * cellSize;
 
-                    sf::Color color = sf::Color(150, 255, 0, 255); // pe³na przezroczystoœæ, bo mamy node
+                    sf::Color color = sf::Color(150, 255, 0, 255); 
 
                     maker.drawSquareVertex(NodeGridArray, Vec2(px, py), cellSize, color);
                 }

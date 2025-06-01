@@ -1,8 +1,7 @@
 #include "PlasmodiumSpatialState.h"
 #include "FoodField.h"
 
-PlasmodiumSpatialState::PlasmodiumSpatialState(IPlasmodiumController& pController, int fieldWidth, int fieldHeight, float tubeLength, float cellSizeCollision, float cellSizeNodes) :
-	pController(pController),
+PlasmodiumSpatialState::PlasmodiumSpatialState(int fieldWidth, int fieldHeight, float tubeLength, float cellSizeCollision, float cellSizeNodes) :
 	colField(static_cast<int>(fieldWidth/cellSizeCollision), static_cast<int>(fieldHeight / cellSizeCollision), cellSizeCollision, tubeLength),
 	radarField(static_cast<int>(fieldWidth / cellSizeCollision), static_cast<int>(fieldHeight / cellSizeCollision), cellSizeCollision, tubeLength),
 	nodeField(static_cast<int>(fieldWidth / cellSizeNodes), static_cast<int>(fieldHeight / cellSizeNodes), cellSizeNodes) {

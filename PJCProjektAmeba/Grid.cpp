@@ -15,6 +15,7 @@ Grid::Grid(int width, int height)
 
 Vec2i Grid::toGridCoords(const Vec2& pos) const {
     float cellSize = getCellSize();
+
     int gX = static_cast<int>(std::floor(pos.getX() / cellSize));
     int gY = static_cast<int>(std::floor(pos.getY() / cellSize));
 

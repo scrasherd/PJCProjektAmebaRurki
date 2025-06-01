@@ -2,6 +2,7 @@
 #include "IPlasmodiumController.h"
 #include "PlasmodiumData.h"
 #include "PlasmodiumSpatialState.h"
+#include "IPlasmodiumObserver.h"
 #include "GrowthModel.h"
 #include "FlowModel.h"
 #include "FoodField.h"
@@ -11,27 +12,25 @@
 
 class PlasmodiumController : public IPlasmodiumController {
 private:
-    int fieldWidth = 1000;
-    int fieldHeight = 1000;
     float tubeLength = 2.f;
     float cellSizeCollision = 0.1f;
     float cellSizeNodes = 0.3f;
 
     PlasmodiumData pData;
 
+    std::vector<IPlasmodiumObserver*> observers;
     PlasmodiumSpatialState pSpatialState;
 
     GrowthModel growthModel;
     FlowModel flowModel;
 
     const FoodField& foodField;
-
-    //std::vector<std::unique_ptr<IPlasmodiumModel>> models;
-
 public:
     PlasmodiumController(int width, int height, float tubeLength, const FoodField& foodField);
 
-    void update() override; // g³ówny krok symulacji
+    void update() override;
+
+    void addObserver(IPlasmodiumObserver* observer);
 
     const std::vector<std::unique_ptr<Node>>& getNodes() const override;
     const std::vector<std::unique_ptr<Tube>>& getTubes() const override;
@@ -42,18 +41,9 @@ public:
 
     Node* removeEndingNode(const Node* node)override;
 
-    // IPlasmodiumMediator:
-   // PlasmodiumData& getData() override;
-
     const FoodField& getFoodField() const override;
 
     float getTubeLength() override;
-
-    //void notifyNodeAdded(Node* node) override;
-    //void notifyTubeAdded(Tube* tube) override;
-
-    //void registerModel(std::unique_ptr<IPlasmodiumModel> model);
-    //void registerFieldProjector(std::unique_ptr<IFieldProjector> projector);
 
     const CollisionField& getCollisionField() const;
     const RadarField& getRadarField() const;

@@ -13,16 +13,16 @@ PlasmodiumData::PlasmodiumData(){};
 
 Node* PlasmodiumData::addNode(const Vec2& pos) {
     auto node = std::make_unique<Node>(pos);
-    Node* rawPtr = node.get();               // zapamiêtaj wskaŸnik
-    nodes.push_back(std::move(node));        // przenieœ do wektora
+    Node* rawPtr = node.get();       
+    nodes.push_back(std::move(node));   
     endingNodes.push_back(rawPtr);
 
-    return rawPtr;                           // zwróæ wskaŸnik
+    return rawPtr;                      
 }
 
 void PlasmodiumData::addTube(Node* nodeA, Node* nodeB, float CytValue) {
     auto newTube = std::make_unique<Tube>(nodeA, nodeB, 1.0f, CytValue);
-    tubes.push_back(std::move(newTube));        // przenieœ do wektora      
+    tubes.push_back(std::move(newTube));       
 
 }
  

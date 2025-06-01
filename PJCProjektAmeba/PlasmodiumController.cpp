@@ -1,16 +1,14 @@
 #include "PlasmodiumController.h"
 
 PlasmodiumController::PlasmodiumController(int width, int height, float tubeLen, const FoodField& foodField)
-    : fieldWidth(width),
-    fieldHeight(height),
-    tubeLength(tubeLen),
+    : tubeLength(tubeLen),
     pData(),
-    pSpatialState(*this, width, height, tubeLen, cellSizeCollision, cellSizeNodes), // <-- tu!
+    pSpatialState(width, height, tubeLen, cellSizeCollision, cellSizeNodes),
     growthModel(*this),
     flowModel(*this),
     foodField(foodField)
 {
-    // inne inicjalizacje np. modeli
+    addObserver(&pSpatialState);
 }
 
 void PlasmodiumController::update() {
@@ -18,6 +16,9 @@ void PlasmodiumController::update() {
     flowModel.simulate();
 }
 
+void PlasmodiumController::addObserver(IPlasmodiumObserver* observer) {
+    observers.push_back(observer);
+}
 
 const FoodField& PlasmodiumController::getFoodField() const {
     return foodField;
@@ -41,13 +42,16 @@ const std::vector<Node*>& PlasmodiumController::getEndingNodes() const {
 
 Node* PlasmodiumController::addNode(const Vec2& pos) {
     Node* node = pData.addNode(pos);
-    pSpatialState.onNodeAdded(node->getPosition(), node);
+    for (auto* obs : observers)
+        obs->onNodeAdded(pos, node);
     return node;
 }
 
 void PlasmodiumController::addTube(Node* a, Node* b, float CytValue) {
     pData.addTube(a, b, CytValue);
-    pSpatialState.onTubeAdded(a->getPosition(), b->getPosition());
+
+    for (auto* obs : observers)
+        obs->onTubeAdded(a->getPosition(), b->getPosition());
 }
 
 Node* PlasmodiumController::removeEndingNode(const Node* node) {

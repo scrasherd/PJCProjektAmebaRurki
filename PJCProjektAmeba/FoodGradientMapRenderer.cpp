@@ -34,7 +34,7 @@ void FoodGradientMapRenderer::draw(sf::RenderWindow& window, const IPlasmodiumCo
     auto colorFromValue = [](float value) -> sf::Color {
         float t = std::clamp(value, 0.f, 1.f);
         int alpha = static_cast<int>(t * 255.0f);
-        return sf::Color(255, 140, 0, alpha); // pomarañczowy z przejrzystoœci¹
+        return sf::Color(255, 140, 0, alpha);
     };
 
     const float radius = 100.0f;

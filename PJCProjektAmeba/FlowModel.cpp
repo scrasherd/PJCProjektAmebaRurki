@@ -38,15 +38,13 @@ void FlowModel::updatePhasesAndPressures(float dt) {
             averageNeighborPhase = phaseSum / count;
         }
 
-        // 2. Dodanie szumu (losowa niewielka fluktuacja)
-        float noise = 0.1f * ((rand() / (float)RAND_MAX) - 0.5f); // zakres [-0.05, 0.05]
+        //szum
+        float noise = 0.1f * ((rand() / (float)RAND_MAX) - 0.5f);
 
-        // 3. Aktualizacja fazy – dostrajanie siê do s¹siadów (damping = jak szybko siê synchronizuje)
         float targetVelocity = baseOmega + coupling * std::sin(averageNeighborPhase - phase);
         float newPhase = (phase + targetVelocity * dt + noise);
         nodePtr->setPhase(newPhase);
 
-        // 4. Oblicz ciœnienie z fazy
         float foodAmount = foodField.getValueAt(nodePtr->getPosition());
         float foodEffect = std::exp(foodAmount) - 1.f; // im wiêcej jedzenia, tym mniejsze ciœnienie
         nodePtr->setPressure(0.5f * std::sin(newPhase)+ 2.5f - foodEffect);

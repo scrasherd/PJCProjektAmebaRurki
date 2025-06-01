@@ -164,7 +164,6 @@ bool GrowthModel::isAngleAllowed(float angle, const std::vector<std::pair<float,
                 return true;
         }
         else {
-            // Zakres zawija przez ±π (np. [2.5, -2.5])
             if (angle >= start || angle <= end)
                 return true;
         }
@@ -199,7 +198,7 @@ int GrowthModel::leftOrRight() {
 
 std::vector<Node*> GrowthModel::sortEndings(const std::vector<Node*> endingNodes) {
     auto& foodField = pController.getFoodField();
-    std::vector<Node*> sorted = endingNodes; // zakładamy: const std::vector<Node*>&
+    std::vector<Node*> sorted = endingNodes;
 
     std::sort(sorted.begin(), sorted.end(),
         [&](Node* A, Node* B) {
@@ -214,6 +213,7 @@ std::vector<Node*> GrowthModel::sortEndings(const std::vector<Node*> endingNodes
 
             return valueA > valueB;
         });
+    assignRankingToNodes(sorted);
 
     return sorted;
 }
@@ -232,7 +232,6 @@ void GrowthModel::addStartStructure(const Vec2& centerPos, float radius, float c
     // Tworzenie węzła centralnego
     auto center = pController.addNode(centerPos);
 
-    // Rozmieszczanie 3 węzłów na okręgu wokół centrum (kąty co 120 stopni)
     for (int i = 0; i < 3; ++i) {
         float angle = i * (2.0f * 3.1415926f / 3.0f); // 0, 120°, 240°
         Vec2 offset{ radius * std::cos(angle), radius * std::sin(angle) };
@@ -243,5 +242,4 @@ void GrowthModel::addStartStructure(const Vec2& centerPos, float radius, float c
         pController.addTube(center, outer, cytValue);
     }
 
-    // Dodanie centralnego węzła jako potencjalnego zakończenia
 }

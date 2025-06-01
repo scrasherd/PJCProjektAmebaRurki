@@ -37,7 +37,7 @@ Node*& NodeField::getCellRef(const Vec2i& gridPos) {
     int localX = gridPos.getXi() % blockSize;
     int localY = gridPos.getYi() % blockSize;
 
-    return NodeGrid[{blockX, blockY}].ref(localX, localY);  // Node*&
+    return NodeGrid[{blockX, blockY}].ref(localX, localY);
 }
 
 void NodeField::addNodeToGrid(const Vec2& pos, Node* node) {
@@ -97,7 +97,7 @@ Node* NodeField::findNodeToConnect(const Vec2& posA, const Vec2& posB, float ang
             turns++;
 
             if (turns == 2) {
-                stepsNeeded++; // zwiêksz d³ugoœæ kroku co dwa zakrêty
+                stepsNeeded++;
                 turns = 0;
             }
         }

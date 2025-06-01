@@ -1,12 +1,12 @@
 #pragma once
 #include "IPlasmodiumController.h"
+#include "IPlasmodiumObserver.h"
 #include "CollisionField.h"
 #include "RadarField.h"
 #include "NodeField.h"
 
-class PlasmodiumSpatialState {
+class PlasmodiumSpatialState : public IPlasmodiumObserver {
 private:
-	IPlasmodiumController& pController;
 
 	CollisionField colField;
 	RadarField radarField;
@@ -14,7 +14,7 @@ private:
 
 public:
 
-	PlasmodiumSpatialState(IPlasmodiumController& pController, int fieldWidth, int fieldHeight, float tubeLength, float cellSizeCollision, float cellSizeNodes);
+	PlasmodiumSpatialState(int fieldWidth, int fieldHeight, float tubeLength, float cellSizeCollision, float cellSizeNodes);
 
 	void onNodeAdded(const Vec2& pos, Node* node);
 	void onTubeAdded(const Vec2& posA, const Vec2& posB);
@@ -29,6 +29,4 @@ public:
 
 	NodeField& getNodeField();
 	const NodeField& getNodeField() const;
-
-
 };

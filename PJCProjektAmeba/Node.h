@@ -11,8 +11,6 @@ private:
 	Vec2 NodePosition;
 	std::vector<Tube*> ConnectedTubes;
 
-    bool isEnding;
-
     float pressure;
     float phase;
     float amplitude;

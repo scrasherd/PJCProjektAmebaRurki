@@ -6,6 +6,11 @@
 #include "SimulationController.h"
 #include <memory>
 
+struct MapSize {
+    int mapWidth;
+    int mapHeight;
+};
+
 //Kontroler aplikacji
 class AppController {
 private:
@@ -18,17 +23,11 @@ private:
 
     std::unique_ptr<IPlasmodiumController> plasmodium;
 
-    RenderMode currentMode = RenderMode::FoodGradientMapRenderer;
-    std::unique_ptr<IMapRenderer> renderer;
-
     std::unique_ptr<RenderController> renderController;
     SimulationController simulationController;
 
 
     sf::Clock clock;
-    bool isDragging = false;
-    sf::Vector2i lastMousePos;
-
 public:
     AppController(int mapWidth, int mapHeight, float tubeLength);
     void run();

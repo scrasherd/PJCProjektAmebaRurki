@@ -4,20 +4,23 @@
 #include <iostream>
 
 FoodField::FoodField(int width, int height)
-    : width(width), height(height), field(height, std::vector<float>(width, 0.0f)) {}
+    : Grid(width, height) {}
+
 
 void FoodField::addSource(const Vec2& pos, float intensity, float radius) {
     sources.emplace_back(pos, intensity, radius);
 }
 
-void FoodField::clearField() {
-    for (auto& row : field) {
-        std::fill(row.begin(), row.end(), 0.0f);
-    }
+void FoodField::clearGrid() {
+    FoodGrid.clear();
+}
+
+float FoodField::getCellSize() const {
+    return cellSize;
 }
 
 void FoodField::updateField() {
-    clearField();
+    FoodGrid.clear();
 
     for (const auto& source : sources) {
         Vec2 pos = source.getFoodSourcePosition();
@@ -38,7 +41,9 @@ void FoodField::updateField() {
 
                 if (dist < radius) {
                     float influence = intensity * (1.0f - dist / radius);
-                    field[y][x] = std::min(field[y][x] + influence, 1.0f);
+                    Vec2i gridPos(x, y);
+                    float& cell = refCell(gridPos);
+                    cell = std::min(cell + influence, 1.0f);
                 }
             }
         }
@@ -49,16 +54,34 @@ const std::vector<FoodSource>& FoodField::getSources() const {
     return sources;
 }
 
-float FoodField::getValueAt(const Vec2& pos) const {
-    if (isInside(pos)) {
-        return field[pos.getY()][pos.getX()];
-    }
-    return 0.0f;
+float& FoodField::refCell(const Vec2i& gridPos) {
+
+    constexpr int blockSize = GridBlock<float>::getBlockSize();
+    int blockX = gridPos.getXi() / blockSize;
+    int blockY = gridPos.getYi() / blockSize;
+    int localX = gridPos.getXi() % blockSize;
+    int localY = gridPos.getYi() % blockSize;
+
+    return FoodGrid[{blockX, blockY}].ref(localX, localY);
 }
 
-bool FoodField::isInside(const Vec2& pos) const {
-    return (pos.getX() >= 0 && pos.getY() >= 0 && pos.getX() < width && pos.getY() < height);
+float FoodField::getValueAt(const Vec2& pos) const {
+    Vec2i gridPos = toGridCoords(pos);
+    if (!isInside(gridPos)) return 0.0f;
+
+    constexpr int blockSize = GridBlock<float>::getBlockSize();
+    int blockX = gridPos.getXi() / blockSize;
+    int blockY = gridPos.getYi() / blockSize;
+    int localX = gridPos.getXi() % blockSize;
+    int localY = gridPos.getYi() % blockSize;
+
+    auto it = FoodGrid.find({ blockX, blockY });
+    if (it == FoodGrid.end()) return 0.0f;
+
+    return it->second.get(localX, localY);
 }
+
+
 
  const Vec2 FoodField::getFoodGradient(Vec2 pos) const {
     int x = pos.getX();
