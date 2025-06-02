@@ -157,6 +157,7 @@
     <ClCompile Include="GrowthModel.cpp" />
     <ClCompile Include="RadarField.cpp" />
     <ClCompile Include="PlasmodiumController.cpp" />
+    <ClCompile Include="RandomGrowthModel.cpp" />
     <ClCompile Include="RenderController.cpp" />
     <ClCompile Include="SimulationController.cpp" />
     <ClCompile Include="VectorMapRenderer.cpp" />
@@ -173,7 +174,8 @@
     <ClInclude Include="FoodSource.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="GrowthModel.h" />
-    <ClInclude Include="IPlasmodiumModel.h" />
+    <ClInclude Include="IFlowModel.h" />
+    <ClInclude Include="IGrowthModel.h" />
     <ClInclude Include="IPlasmodiumObserver.h" />
     <ClInclude Include="MapRendererRegistry.h" />
     <ClInclude Include="NodeField.h" />
@@ -183,6 +185,7 @@
     <ClInclude Include="PlasmodiumSpatialState.h" />
     <ClInclude Include="RadarField.h" />
     <ClInclude Include="LineInteresction.h" />
+    <ClInclude Include="RandomGrowthModel.h" />
     <ClInclude Include="RenderController.h" />
     <ClInclude Include="SimulationController.h" />
     <ClInclude Include="Vec2i.h" />

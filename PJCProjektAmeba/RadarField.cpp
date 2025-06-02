@@ -16,7 +16,7 @@ RadarField::RadarField(int width, int height, float cellSize, float tubeLength)
 std::vector<std::pair<float, float>> RadarField::getAvailableAnglesRadar(const Vec2& pos, float baseAngle) {
     const float length = getTubeLength();
     const float AngleStep = 1 / 40.f;
-    const float CollisionThreshold = 0.5f;
+    const float CollisionThreshold = 0.1f;
 
     std::vector<std::pair<float, float>> AvailableRanges;
     bool InFreeRange = false;
@@ -51,13 +51,14 @@ std::vector<std::pair<float, float>> RadarField::getAvailableAnglesRadar(const V
 bool RadarField::LineCollisionCheckRadar(const Vec2& pos, const Vec2& dir, float range, float CollisionThreshold) {
     float cellSize = getCellSize();
 
-    for (float i = 0.5f; i < range + 0.25f; i += cellSize * 0.5f) {
+    for (float i = 1.f; i < range + 0.25f; i += cellSize * 0.5f) {
         Vec2 PointOnCollisionLine = pos + dir * i;
-        mark(PointOnCollisionLine, 1.0f);
+        
 
-        if (getDensity(PointOnCollisionLine) > CollisionThreshold) {
-            return true;
+        if (getDensity(PointOnCollisionLine) < CollisionThreshold) {
+            mark(PointOnCollisionLine, 1.0f);
         }
+
     }
     return false;
 }

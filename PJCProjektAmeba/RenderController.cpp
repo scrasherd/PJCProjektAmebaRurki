@@ -21,11 +21,11 @@ void RenderController::setMode(RenderMode mode) {
 void RenderController::handleEvent(const sf::Event& event) {
     // Mapowanie klawiszy na rodzaj mapy
     static const std::unordered_map<sf::Keyboard::Key, RenderMode> keyToMode = {
-        { sf::Keyboard::Key::Numpad1, RenderMode::VectorMapRenderer },
-        { sf::Keyboard::Key::Numpad2, RenderMode::FoodGradientMapRenderer },
-        { sf::Keyboard::Key::Numpad3, RenderMode::PressureMapRenderer },
-        { sf::Keyboard::Key::Numpad4, RenderMode::CollisionMapRenderer },
-        { sf::Keyboard::Key::Numpad5, RenderMode::NodeGridMapRenderer },
+        { sf::Keyboard::Key::Num1, RenderMode::VectorMapRenderer },
+        { sf::Keyboard::Key::Num2, RenderMode::FoodGradientMapRenderer },
+        { sf::Keyboard::Key::Num3, RenderMode::PressureMapRenderer },
+        { sf::Keyboard::Key::Num4, RenderMode::CollisionMapRenderer },
+        { sf::Keyboard::Key::Num5, RenderMode::NodeGridMapRenderer },
     };
 
     if (event.is<sf::Event::KeyPressed>()) {

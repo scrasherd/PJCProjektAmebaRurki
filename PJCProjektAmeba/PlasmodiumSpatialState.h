@@ -19,6 +19,8 @@ public:
 	void onNodeAdded(const Vec2& pos, Node* node);
 	void onTubeAdded(const Vec2& posA, const Vec2& posB);
 
+	void onNodeAddedAttempt(const Vec2& pos, float angle);
+
 	void onStepMade();
 
 	CollisionField& getCollisionField();

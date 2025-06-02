@@ -5,7 +5,9 @@
 #include "IPlasmodiumObserver.h"
 #include "GrowthModel.h"
 #include "FlowModel.h"
-#include "FoodField.h"
+#include "RandomGrowthModel.h"
+#include "IGrowthModel.h"
+#include "IFlowModel.h"
 #include <vector>
 #include <memory>
 
@@ -21,8 +23,8 @@ private:
     std::vector<IPlasmodiumObserver*> observers;
     PlasmodiumSpatialState pSpatialState;
 
-    GrowthModel growthModel;
-    FlowModel flowModel;
+    std::unique_ptr<IGrowthModel> growthModel;
+    std::unique_ptr<IFlowModel> flowModel;
 
     const FoodField& foodField;
 public:
@@ -38,8 +40,9 @@ public:
 
     Node* addNode(const Vec2& pos) override;
     void addTube(Node* a, Node* b, float CytValue) override;
-
     Node* removeEndingNode(const Node* node)override;
+
+    void informRadar(Vec2 pos, float angle) override;
 
     const FoodField& getFoodField() const override;
 

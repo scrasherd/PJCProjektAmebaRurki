@@ -4,16 +4,19 @@ PlasmodiumController::PlasmodiumController(int width, int height, float tubeLen,
     : tubeLength(tubeLen),
     pData(),
     pSpatialState(width, height, tubeLen, cellSizeCollision, cellSizeNodes),
-    growthModel(*this),
-    flowModel(*this),
     foodField(foodField)
 {
+    growthModel = std::make_unique<RandomGrowthModel>(*this);
+    flowModel = std::make_unique<FlowModel>(*this);
     addObserver(&pSpatialState);
 }
 
 void PlasmodiumController::update() {
-    growthModel.simulate();
-    flowModel.simulate();
+    for (auto* obs : observers)
+        obs->onStepMade();
+
+    growthModel->simulate();
+    flowModel->simulate();
 }
 
 void PlasmodiumController::addObserver(IPlasmodiumObserver* observer) {
@@ -52,6 +55,11 @@ void PlasmodiumController::addTube(Node* a, Node* b, float CytValue) {
 
     for (auto* obs : observers)
         obs->onTubeAdded(a->getPosition(), b->getPosition());
+}
+
+void PlasmodiumController::informRadar(Vec2 pos, float angle) {
+    for (auto* obs : observers)
+        obs->onNodeAddedAttempt(pos, angle);
 }
 
 Node* PlasmodiumController::removeEndingNode(const Node* node) {

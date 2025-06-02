@@ -16,6 +16,10 @@ void PlasmodiumSpatialState::onTubeAdded(const Vec2& posA, const Vec2& posB) {
 	colField.markTube(posA, posB);
 }
 
+void PlasmodiumSpatialState::onNodeAddedAttempt(const Vec2& pos, float angle) {
+	radarField.getAvailableAnglesRadar(pos, angle);
+}
+
 void PlasmodiumSpatialState::onStepMade() {
 	radarField.clearGrid();
 }

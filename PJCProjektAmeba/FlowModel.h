@@ -1,13 +1,13 @@
 #pragma once
 #include <vector>
 #include "IPlasmodiumController.h"
-#include "IPlasmodiumModel.h"
+#include "IFlowModel.h"
 
 
 class Node;
 class Tube;
 
-class FlowModel : public IPlasmodiumModel {
+class FlowModel : public IFlowModel {
 private:
     IPlasmodiumController& pController;
 

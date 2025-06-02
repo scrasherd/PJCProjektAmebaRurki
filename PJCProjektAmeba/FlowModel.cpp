@@ -48,10 +48,6 @@ void FlowModel::updatePhasesAndPressures(float dt) {
         float foodAmount = foodField.getValueAt(nodePtr->getPosition());
         float foodEffect = std::exp(foodAmount) - 1.f; // im wiêcej jedzenia, tym mniejsze ciœnienie
         nodePtr->setPressure(0.5f * std::sin(newPhase)+ 2.5f - foodEffect);
-
-        if (nodePtr->getPosition() == Vec2(500, 500)) {
-            //std::cout << nodePtr->getPressure() << "\n";
-        }
     }
 }
 

@@ -1,5 +1,5 @@
-ï»¿#define _USE_MATH_DEFINES
-#include "GrowthModel.h"
+#define _USE_MATH_DEFINES
+#include "RandomGrowthModel.h"
 #include "Tube.h"
 #include "Node.h"
 #include "FoodField.h"
@@ -9,7 +9,7 @@
 #include <vector>
 #include <iostream>
 
-GrowthModel::GrowthModel(IPlasmodiumController& pController) : pController(pController)
+RandomGrowthModel::RandomGrowthModel(IPlasmodiumController& pController) : pController(pController)
 {
     std::random_device rd;
     rng.seed(rd());
@@ -18,21 +18,19 @@ GrowthModel::GrowthModel(IPlasmodiumController& pController) : pController(pCont
     addStartStructure(centerPos, 2.0f, 1000.f);
 }
 
-void GrowthModel::simulate() {
+void RandomGrowthModel::simulate() {
     growOneStep();
 }
 
-void GrowthModel::growOneStep() {
-    
+void RandomGrowthModel::growOneStep() {
+
     auto& rawEndingNodes = pController.getEndingNodes();
     auto endingNodes = sortEndings(rawEndingNodes);
 
     auto& nodes = pController.getNodes();
     auto& tubes = pController.getTubes();
 
-    auto& foodField = pController.getFoodField();
     auto& colField = pController.getCollisionField();
-    auto radarField = pController.getRadarField();
     auto& nodeField = pController.getNodeField();
 
     if (endingNodes.empty()) return;
@@ -44,7 +42,7 @@ void GrowthModel::growOneStep() {
         Node* parent = endingNodes[i];
 
         if (shouldGrow()) {
-            growSingleNode(parent, endingNodes, colField, nodeField, foodField, radarField, nodes, tubes);
+            growSingleNode(parent, endingNodes, colField, nodeField, nodes, tubes);
         }
 
     }
@@ -53,7 +51,7 @@ void GrowthModel::growOneStep() {
 
 }
 
-void GrowthModel::growSingleNode(Node* parent, const std::vector<Node*>& endingNodes, const CollisionField& colField, const NodeField& nodeField, const FoodField& foodField, RadarField& radarField, const std::vector<std::unique_ptr<Node>>& nodes, const std::vector<std::unique_ptr<Tube>>& tubes) {
+void RandomGrowthModel::growSingleNode(Node* parent, const std::vector<Node*>& endingNodes, const CollisionField& colField, const NodeField& nodeField, const std::vector<std::unique_ptr<Node>>& nodes, const std::vector<std::unique_ptr<Tube>>& tubes) {
     Vec2 parentPos = parent->getPosition();
 
     int branchesCount = howManyBranches();
@@ -64,10 +62,9 @@ void GrowthModel::growSingleNode(Node* parent, const std::vector<Node*>& endingN
     float baseAngle = computeAngle(parent);
     int attempts = 0;
 
-    pController.informRadar(parentPos, baseAngle);
 
     while (attempts < branchesCount) {
-        Node* node = generateAngle(baseAngle, attempts, prefSide, foodField, nodeField, colField, radarField, parentPos);
+        Node* node = generateAngle(baseAngle, attempts, prefSide, nodeField, colField, parentPos);
 
         if (node) {
 
@@ -83,11 +80,11 @@ void GrowthModel::growSingleNode(Node* parent, const std::vector<Node*>& endingN
 }
 
 
-float GrowthModel::computeAngle(Node* parent) {
+float RandomGrowthModel::computeAngle(Node* parent) {
     float baseAngle = 0;
 
     if (parent->getConnectedTubes().empty()) {
-        // brak rurek losuj dowolny kÄ…t
+        // brak rurek losuj dowolny k¹t
         std::uniform_real_distribution<float> angleDist(0.0f, 2 * M_PI);
         baseAngle = angleDist(rng);
     }
@@ -102,7 +99,7 @@ float GrowthModel::computeAngle(Node* parent) {
     return baseAngle;
 }
 
-Node* GrowthModel::generateAngle(float baseAngle, int generated, int direction, const FoodField& foodField, const NodeField& nodeField, const CollisionField& colField, RadarField& radarField, const Vec2& pos) {
+Node* RandomGrowthModel::generateAngle(float baseAngle, int generated, int direction, const NodeField& nodeField, const CollisionField& colField, const Vec2& pos) {
     float tubeLength = pController.getTubeLength();
     float meanAngle = baseAngle;
     float newAngle = 0;
@@ -123,7 +120,7 @@ Node* GrowthModel::generateAngle(float baseAngle, int generated, int direction, 
         FoodGradient = FoodGradient.normalized();
         float foodAngle = std::atan2(FoodGradient.getY(), FoodGradient.getX());
 
-        // przesun kÄ…t o ileÅ› procent w strone jedzenia
+        // przesun k¹t o ileœ procent w strone jedzenia
         meanAngle = std::lerp(meanAngle, foodAngle, foodInfluence);
     }
 
@@ -147,19 +144,19 @@ Node* GrowthModel::generateAngle(float baseAngle, int generated, int direction, 
 
 }
 
-float GrowthModel::normalizeAngle(float angle) {
+float RandomGrowthModel::normalizeAngle(float angle) {
     while (angle <= -M_PI) angle += 2.0f * M_PI;
     while (angle > M_PI)  angle -= 2.0f * M_PI;
     return angle;
 }
 
-void GrowthModel::decreaseFailedGrowthFlag(const std::vector<Node*>& endingNodes) {
+void RandomGrowthModel::decreaseFailedGrowthFlag(const std::vector<Node*>& endingNodes) {
     for (Node* node : endingNodes) {
         node->decreaseFailedGrowthFlag();
     }
 }
 
-bool GrowthModel::isAngleAllowed(float angle, const std::vector<std::pair<float, float>>& ranges) {
+bool RandomGrowthModel::isAngleAllowed(float angle, const std::vector<std::pair<float, float>>& ranges) {
     for (const auto& [start, end] : ranges) {
         if (start <= end) {
             if (angle >= start && angle <= end)
@@ -173,32 +170,32 @@ bool GrowthModel::isAngleAllowed(float angle, const std::vector<std::pair<float,
     return false;
 }
 
-int GrowthModel::getActiveCount(const std::vector<Node*>& endingNodes) {
+int RandomGrowthModel::getActiveCount(const std::vector<Node*>& endingNodes) {
     int total = static_cast<int>(endingNodes.size());
     int activeCount = std::max(1.f, total * (growthPrecentage / 100.f));
     return activeCount;
 }
 
-int GrowthModel::howManyBranches() {
+int RandomGrowthModel::howManyBranches() {
     std::discrete_distribution<int> branchDist({ branchesDistribution[0], branchesDistribution[1], branchesDistribution[2] });
     int newBranches = branchDist(rng) + 1;
     return newBranches;
 }
 
-bool GrowthModel::shouldGrow() {
+bool RandomGrowthModel::shouldGrow() {
     std::uniform_real_distribution<float> skipChance(0.0f, 1.0f);
     bool shouldGrow = skipChance(rng) >= 0.1f;
     return shouldGrow;
 }
 
-int GrowthModel::leftOrRight() {
+int RandomGrowthModel::leftOrRight() {
     int direction = 0;
     std::uniform_int_distribution<int> DirectionDist(0, 1);
     direction = DirectionDist(rng) == 0 ? 1 : -1;
     return direction;
 }
 
-std::vector<Node*> GrowthModel::sortEndings(const std::vector<Node*> endingNodes) {
+std::vector<Node*> RandomGrowthModel::sortEndings(const std::vector<Node*> endingNodes) {
     auto& foodField = pController.getFoodField();
     std::vector<Node*> sorted = endingNodes;
 
@@ -220,7 +217,7 @@ std::vector<Node*> GrowthModel::sortEndings(const std::vector<Node*> endingNodes
     return sorted;
 }
 
-void GrowthModel::assignRankingToNodes(const std::vector<Node*>& nodes) {
+void RandomGrowthModel::assignRankingToNodes(const std::vector<Node*>& nodes) {
     if (nodes.size() <= 1) return;
 
     for (size_t i = 0; i < nodes.size(); ++i) {
@@ -231,11 +228,11 @@ void GrowthModel::assignRankingToNodes(const std::vector<Node*>& nodes) {
 }
 
 void GrowthModel::addStartStructure(const Vec2& centerPos, float radius, float cytValue) {
-    // Tworzenie wÄ™zÅ‚a centralnego
+    // Tworzenie wêz³a centralnego
     auto center = pController.addNode(centerPos);
 
     for (int i = 0; i < 3; ++i) {
-        float angle = i * (2.0f * 3.1415926f / 3.0f); // 0, 120Â°, 240Â°
+        float angle = i * (2.0f * 3.1415926f / 3.0f); // 0, 120°, 240°
         Vec2 offset{ radius * std::cos(angle), radius * std::sin(angle) };
         Vec2 outerPos = center->getPosition() + offset;
 

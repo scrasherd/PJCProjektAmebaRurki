@@ -20,7 +20,9 @@ const float Node::getPressure() const {
 }
 
 void Node::setPressure(float p) {
-    pressure = p;
+    if (p > 0.f && p < 3.f ) {
+        pressure = p;
+    };
 }
 
 const float Node::getPhase() const{
@@ -37,6 +39,12 @@ int Node::getFailedGrowthFlag() {
 
 void Node::setFailedGrowthFlag(int value) {
     FailedGrowthFlag = value;
+}
+
+void Node::decreaseFailedGrowthFlag() {
+    if (FailedGrowthFlag > 0) {
+        FailedGrowthFlag--;
+    }
 }
 
 float Node::getRankingValue() {

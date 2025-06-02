@@ -129,6 +129,9 @@
     <ClCompile Include="FoodField.cpp">
       <Filter>Source Files\Plasmodium\PlasmodiumSpatialState\GridFields</Filter>
     </ClCompile>
+    <ClCompile Include="RandomGrowthModel.cpp">
+      <Filter>Source Files\Plasmodium\Models</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppController.h">
@@ -197,9 +200,6 @@
     <ClInclude Include="PlasmodiumController.h">
       <Filter>Header Files\Plasmodium</Filter>
     </ClInclude>
-    <ClInclude Include="IPlasmodiumModel.h">
-      <Filter>Header Files\Interface</Filter>
-    </ClInclude>
     <ClInclude Include="IMapRenderer.h">
       <Filter>Header Files\Interface</Filter>
     </ClInclude>
@@ -220,6 +220,15 @@
     </ClInclude>
     <ClInclude Include="IPlasmodiumObserver.h">
       <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IGrowthModel.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="IFlowModel.h">
+      <Filter>Header Files\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomGrowthModel.h">
+      <Filter>Header Files\Plasmodium\Models</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

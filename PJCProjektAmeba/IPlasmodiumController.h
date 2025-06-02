@@ -27,6 +27,8 @@ public:
 
     virtual Node* removeEndingNode(const Node* node) = 0;
 
+    virtual void informRadar(Vec2 pos, float angle) = 0;
+
     virtual ~IPlasmodiumController() = default;
 
     virtual const CollisionField& getCollisionField() const = 0;

@@ -34,6 +34,7 @@ public:
 
     int getFailedGrowthFlag();
     void setFailedGrowthFlag(int value);
+    void decreaseFailedGrowthFlag();
 
     float getRankingValue();
     void setRankingValue(float value);
