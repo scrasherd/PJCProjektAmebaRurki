@@ -9,7 +9,8 @@
 #include <vector>
 #include <iostream>
 
-GrowthModel::GrowthModel(IPlasmodiumController& pController) : pController(pController)
+GrowthModel::GrowthModel(IPlasmodiumController& controller)
+    : IGrowthModel(controller), pController(controller), rng(std::random_device{}())
 {
     std::random_device rd;
     rng.seed(rd());

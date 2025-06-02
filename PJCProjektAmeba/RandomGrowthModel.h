@@ -13,9 +13,8 @@ private:
     float growthPrecentage = 15.f;
     float skipThreshold = 0.05f;
     double branchesDistribution[3] = { 50, 25, 25 };
-    int timeoutFromGrowing = 10;
-    float foodInfluence = 0.5f;
-    float spread = 0.5f;
+    int timeoutFromGrowing = 3;
+    float spread = 1.0f;
 
 public:
     RandomGrowthModel(IPlasmodiumController& controller);

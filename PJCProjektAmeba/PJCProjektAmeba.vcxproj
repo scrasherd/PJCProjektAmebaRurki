@@ -146,6 +146,7 @@
     <ClCompile Include="FoodSource.cpp" />
     <ClCompile Include="FoodGradientMapRenderer.cpp" />
     <ClCompile Include="Grid.cpp" />
+    <ClCompile Include="IGrowthModel.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MapRendererRegistry.cpp" />
     <ClCompile Include="Node.cpp" />

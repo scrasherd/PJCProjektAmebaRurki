@@ -9,7 +9,8 @@
 #include <vector>
 #include <iostream>
 
-RandomGrowthModel::RandomGrowthModel(IPlasmodiumController& pController) : pController(pController)
+RandomGrowthModel::RandomGrowthModel(IPlasmodiumController& controller)
+    : IGrowthModel(controller), pController(controller), rng(std::random_device{}())
 {
     std::random_device rd;
     rng.seed(rd());
@@ -25,7 +26,7 @@ void RandomGrowthModel::simulate() {
 void RandomGrowthModel::growOneStep() {
 
     auto& rawEndingNodes = pController.getEndingNodes();
-    auto endingNodes = sortEndings(rawEndingNodes);
+    auto endingNodes = rawEndingNodes;
 
     auto& nodes = pController.getNodes();
     auto& tubes = pController.getTubes();
@@ -108,23 +109,13 @@ Node* RandomGrowthModel::generateAngle(float baseAngle, int generated, int direc
         meanAngle = baseAngle;
     }
     else if (generated == 1) {
-        meanAngle = baseAngle + direction * M_PI * 3.f / 8.f;
+        meanAngle = baseAngle;
     }
     else if (generated == 2) {
-        meanAngle = baseAngle - direction * M_PI * 3.f / 8.f;
+        meanAngle = baseAngle;
     }
 
-    Vec2 FoodGradient = foodField.getFoodGradient(pos);
-
-    if (FoodGradient.length() > 0.001f) {
-        FoodGradient = FoodGradient.normalized();
-        float foodAngle = std::atan2(FoodGradient.getY(), FoodGradient.getX());
-
-        // przesun k¹t o ileœ procent w strone jedzenia
-        meanAngle = std::lerp(meanAngle, foodAngle, foodInfluence);
-    }
-
-    std::normal_distribution<float> angleDist(meanAngle, spread);
+    std::uniform_real_distribution<float> angleDist(meanAngle - spread, meanAngle + spread);
     newAngle = normalizeAngle(angleDist(rng));
 
     auto availableRanges = colField.getAvailableAngles(pos, baseAngle);
@@ -227,18 +218,24 @@ void RandomGrowthModel::assignRankingToNodes(const std::vector<Node*>& nodes) {
     }
 }
 
-void GrowthModel::addStartStructure(const Vec2& centerPos, float radius, float cytValue) {
+void RandomGrowthModel::addStartStructure(const Vec2& centerPos, float radius, float cytValue) {
     // Tworzenie wêz³a centralnego
     auto center = pController.addNode(centerPos);
 
-    for (int i = 0; i < 3; ++i) {
-        float angle = i * (2.0f * 3.1415926f / 3.0f); // 0, 120°, 240°
-        Vec2 offset{ radius * std::cos(angle), radius * std::sin(angle) };
-        Vec2 outerPos = center->getPosition() + offset;
+    int gridSize = 3; // liczba komórek w jednym wymiarze
+    float spacing = radius; // odleg³oœæ miêdzy punktami siatki
+    int half = gridSize / 2;
 
-        auto outer = pController.addNode(outerPos);
+    for (int dy = -half; dy <= half; ++dy) {
+        for (int dx = -half; dx <= half; ++dx) {
+            if (dx == 0 && dy == 0) continue; // pomiñ œrodek (to ju¿ istniej¹cy center)
 
-        pController.addTube(center, outer, cytValue);
+            Vec2 offset{ dx * spacing, dy * spacing };
+            Vec2 pos = centerPos + offset;
+
+            auto node = pController.addNode(pos);
+            pController.addTube(center, node, cytValue);
+        }
     }
 
 }

@@ -132,6 +132,9 @@
     <ClCompile Include="RandomGrowthModel.cpp">
       <Filter>Source Files\Plasmodium\Models</Filter>
     </ClCompile>
+    <ClCompile Include="IGrowthModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AppController.h">

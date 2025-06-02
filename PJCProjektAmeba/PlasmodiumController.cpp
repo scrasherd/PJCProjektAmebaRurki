@@ -6,7 +6,7 @@ PlasmodiumController::PlasmodiumController(int width, int height, float tubeLen,
     pSpatialState(width, height, tubeLen, cellSizeCollision, cellSizeNodes),
     foodField(foodField)
 {
-    growthModel = std::make_unique<RandomGrowthModel>(*this);
+    growthModel = std::make_unique<GrowthModel>(*this);
     flowModel = std::make_unique<FlowModel>(*this);
     addObserver(&pSpatialState);
 }
